@@ -1,5 +1,5 @@
 # Django settings for hellodjango project.
-
+# commit test --HB
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
