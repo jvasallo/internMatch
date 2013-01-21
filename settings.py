@@ -1,5 +1,6 @@
 # Django settings for hellodjango project.
 # Joel Vasallo commented
+# Juan Carlos Escobar commented
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
