@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Company Signup</title>
+    <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Intern Match</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="page-header">
+      <div class="container">
+        <h1>Sign up for Intern Match 
+          <span style="padding-left:7em"><a href="#" class="btn btn-small btn-primary" type="button">Sign in to an existing account</a></span>
+        </h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h2>The start of something awesome!</h2>
+        <p>By creating an account for your company you will be able to take advantage of customized features to help you find likeminded interns!</p>
+        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+      </div>
+
+      <!-- Begin Signup form -->
+      <form class="form-horizontal" action='' method="POST">
+      <fieldset>
+        <div id="legend">
+          <legend class="">Register</legend>
+        </div>
+
+        <div class="control-group">
+          <!-- Company Name -->
+          <label class="control-label"  for="company_name">Company Name</label>
+          <div class="controls">
+            <input type="text" id="company_name" name="company_name" placeholder="" class="input-xlarge">
+            <p class="help-block">Enter your company's official name</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Company Website -->
+          <label class="control-label"  for="company_website">Company Website</label>
+          <div class="controls">
+            <input type="text" id="company_website" name="company_website" placeholder="" class="input-xlarge">
+            <p class="help-block">Enter your company's official website</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Address -->
+          <label class="control-label"  for="address">Address</label>
+          <div class="controls">
+            <input type="text" id="address" name="address" placeholder="" class="input-xlarge">
+          </div>
+
+          <!-- City -->
+          <label class="control-label"  for="city">City</label>
+          <div class="controls">
+            <input type="text" id="city" name="city" placeholder="" class="input-xlarge">
+          </div>
+
+          <!-- State -->
+          <label class="control-label" for="state">State</label>
+          <div class="controls">
+            <select id="state_select">
+              <option>Select...</option>
+              <option>IL</option>
+              <option>MI</option>
+              <option>NY</option>
+              <option>CA</option>
+            </select>
+          </div>
+
+          <!-- Zip Code -->
+          <label class="control-label"  for="zip">Zip Code</label>
+          <div class="controls">
+            <input type="text" id="zip" name="zip" placeholder="" class="input-xlarge">
+            <p class="help-block">Enter the company's contact information above</p>
+          </div>
+
+        </div>
+
+        <div class="control-group"> 
+	  <!-- Industry Type --> 
+          <label class="control-label" for="industry_id">Industry</label>  
+          <div class="controls">  
+            <select id="industry_select">  
+              <option>Select...</option>  
+              <option>Software Development</option>  
+              <option>Consulting</option>  
+              <option>Architecture</option>  
+              <option>Security</option>  
+            </select>  
+            <p class="help-block">Select the industry your business best matches (Don't worry you can change this later)</p>
+          </div>  
+        </div> 
+
+        <div class="control-group">
+          <!-- Username -->
+          <label class="control-label"  for="username">Username</label>
+          <div class="controls">
+            <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+            <p class="help-block">Username can contain any letters or numbers, without spaces (Username will be your company's url address at Intern Match)</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- E-mail -->
+          <label class="control-label" for="email">E-mail</label>
+          <div class="controls">
+            <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+            <p class="help-block">Please provide your E-mail</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Password-->
+          <label class="control-label" for="password">Password</label>
+          <div class="controls">
+            <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+            <p class="help-block">Password should be at least 4 characters</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Password -->
+          <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+          <div class="controls">
+            <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+            <p class="help-block">Please confirm password</p>
+          </div>
+        </div>
+
+        <div class="form-actions">  
+	  <!-- Submit and extra button -->
+          <button type="submit" class="btn btn-success">Create Account</button>  
+          <button class="btn">Cancel</button>  
+        </div>
+      </fieldset>
+      </form>
+    </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/bootstrap-transition.js"></script>
+    <script src="../static/js/bootstrap-alert.js"></script>
+    <script src="../static/js/bootstrap-modal.js"></script>
+    <script src="../static/js/bootstrap-dropdown.js"></script>
+    <script src="../static/js/bootstrap-scrollspy.js"></script>
+    <script src="../static/js/bootstrap-tab.js"></script>
+    <script src="../static/js/bootstrap-tooltip.js"></script>
+    <script src="../static/js/bootstrap-popover.js"></script>
+    <script src="../static/js/bootstrap-button.js"></script>
+    <script src="../static/js/bootstrap-collapse.js"></script>
+    <script src="../static/js/bootstrap-carousel.js"></script>
+    <script src="../static/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>
