@@ -114,6 +114,8 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+AUTH_PROFILE_MODULE = 'register.Intern'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -127,7 +129,8 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     
     'register',
-    'registration'
+    #'registration',
+    'crispy_forms'
 )
 
 # A sample logging configuration. The only tangible logging

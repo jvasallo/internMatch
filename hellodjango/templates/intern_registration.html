@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Intern Sign Up</title>
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    
+<form class="form-horizontal" action="" method="POST">
+{% csrf_token %}
+{% if form.errors %} <p>Please correct the fields: </p> {% endif %}
+<div class="register-div">
+	{% if form.username.errors %}<p class="error">{{ form.username.errors }}</p>{% endif %}
+	<p><label for="username"{% if form.username.errors %} class="error"{% endif %}>Username:</label</p>
+	<p>{{ form.username }}</p>
+</div>
+<div class="register-div">
+	{% if form.email.errors %}<p class="error">{{ form.email.errors }}</p>{% endif %}
+	<p><label for="email"{% if form.email.errors %} class="error"{% endif %}>Email:</label</p>
+	<p>{{ form.email }}</p>
+</div>
+<div class="register-div">
+	{% if form.password.errors %}<p class="error">{{ form.password.errors }}</p>{% endif %}
+	<p><label for="password"{% if form.password.errors %} class="error"{% endif %}>Password:</label</p>
+	<p>{{ form.password }}</p>
+</div>
+<div class="register-div">
+	{% if form.password1.errors %}<p class="error">{{ form.password1.errors }}</p>{% endif %}
+	<p><label for="password1"{% if form.password1.errors %} class="error"{% endif %}>Verify Password:</label</p>
+	<p>{{ form.password1 }}</p>
+</div>
+<p><input type="submit" /></p>
+</form>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Intern Match</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="page-header">
+      <div class="container">
+        <h1>Sign up for Intern Match 
+          <span style="padding-left:7em"><a href="#" class="btn btn-small btn-primary" type="button">Sign in to an existing account</a></span>
+        </h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h2>Your career begins today!</h2>
+        <p>By creating an intern account you will be able to take advantage of customized features to help you find like-minded companies!</p>
+        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+      </div>
+
+      <!-- Begin Signup form -->
+      <form class="form-horizontal" action='/register' method="POST">
+      {% csrf_token %}
+      
+		<input type="submit" value="Submit" />
+	  </form>
+    
+    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+
+  </body>
+</html>
