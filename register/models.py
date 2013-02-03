@@ -4,7 +4,14 @@ from django.db.models.signals import post_save
 
 class Intern(models.Model):
     user = models.OneToOneField(User)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=30)
+    address = models.CharField(max_length=100)
+    city = models.CharField(max_length=20)
+    zip = models.CharField(max_length=10)
+    school = zip = models.CharField(max_length=80)
+    graduation_date = models.DateField()
+    major = models.CharField(max_length=50)
+    
     
     def __unicode__(self):
         return self.name

@@ -12,6 +12,11 @@
 {% csrf_token %}
 {% if form.errors %} <p>Please correct the fields: </p> {% endif %}
 <div class="register-div">
+	{% if form.major.errors %}<p class="error">{{ form.major.errors }}</p>{% endif %}
+	<p><label for="major"{% if form.major.errors %} class="error"{% endif %}>Major:</label</p>
+	<p>{{ form.major }}</p>
+</div>
+<div class="register-div">
 	{% if form.username.errors %}<p class="error">{{ form.username.errors }}</p>{% endif %}
 	<p><label for="username"{% if form.username.errors %} class="error"{% endif %}>Username:</label</p>
 	<p>{{ form.username }}</p>
@@ -78,8 +83,13 @@
 	  </form>
     
     <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="{{ STATIC_URL }}js/jquery-1.8.0.js"></script>
 	<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 
   </body>
 </html>
+
+
+
+
+
