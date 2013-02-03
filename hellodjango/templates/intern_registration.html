@@ -12,6 +12,41 @@
 {% csrf_token %}
 {% if form.errors %} <p>Please correct the fields: </p> {% endif %}
 <div class="register-div">
+	{% if form.name.errors %}<p class="error">{{ form.name.errors }}</p>{% endif %}
+	<p><label for="name"{% if form.name.errors %} class="error"{% endif %}>Name:</label</p>
+	<p>{{ form.name }}</p>
+</div>
+<div class="register-div">
+	{% if form.address.errors %}<p class="error">{{ form.address.errors }}</p>{% endif %}
+	<p><label for="address"{% if form.address.errors %} class="error"{% endif %}>Address:</label</p>
+	<p>{{ form.address }}</p>
+</div>
+<div class="register-div">
+	{% if form.city.errors %}<p class="error">{{ form.city.errors }}</p>{% endif %}
+	<p><label for="city"{% if form.city.errors %} class="error"{% endif %}>City:</label</p>
+	<p>{{ form.city }}</p>
+</div>
+<div class="register-div">
+	{% if form.zip.errors %}<p class="error">{{ form.zip.errors }}</p>{% endif %}
+	<p><label for="zip"{% if form.zip.errors %} class="error"{% endif %}>Zip code:</label</p>
+	<p>{{ form.zip }}</p>
+</div>
+<div class="register-div">
+	{% if form.state.errors %}<p class="error">{{ form.state.errors }}</p>{% endif %}
+	<p><label for="state"{% if form.state.errors %} class="error"{% endif %}>State:</label</p>
+	<p>{{ form.state }}</p>
+</div>
+<div class="register-div">
+	{% if form.school.errors %}<p class="error">{{ form.school.errors }}</p>{% endif %}
+	<p><label for="school"{% if form.school.errors %} class="error"{% endif %}>School:</label</p>
+	<p>{{ form.school }}</p>
+</div>
+<div class="register-div">
+	{% if form.graduation.errors %}<p class="error">{{ form.graduation.errors }}</p>{% endif %}
+	<p><label for="graduation"{% if form.graduation.errors %} class="error"{% endif %}>Graduation:</label</p>
+	<p>{{ form.graduation }}</p>
+</div>
+<div class="register-div">
 	{% if form.major.errors %}<p class="error">{{ form.major.errors }}</p>{% endif %}
 	<p><label for="major"{% if form.major.errors %} class="error"{% endif %}>Major:</label</p>
 	<p>{{ form.major }}</p>
@@ -83,9 +118,15 @@
 	  </form>
     
     <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui-1.10.0.custom.css">
 	<script src="{{ STATIC_URL }}js/jquery-1.8.0.js"></script>
+	<script src="{{ STATIC_URL }}js/jquery-ui-1.10.0.custom.js"></script>
 	<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-
+	<script>
+		$(function() {
+			$("#id_graduation").datepicker();
+		});
+	</script>
   </body>
 </html>
 
