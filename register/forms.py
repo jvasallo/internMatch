@@ -26,18 +26,18 @@ class RegistrationForm(ModelForm):
     ('5', 'California'),
     )
 
-    name        = forms.CharField(label=(u'Name'))
-    address     = forms.CharField(label=(u'Address'))
-    city        = forms.CharField(label=(u'City'))
-    state       = forms.ChoiceField(label=(u'State'), choices=STATES)
-    zip         = forms.CharField(label=(u'Zip'))
-    school      = forms.CharField(label=(u'School'))
-    graduation  = forms.DateField(label=(u'Graduation Date'))   
-    major       = forms.ChoiceField(label=(u'Major'), choices=MAJORS)
-    username    = forms.CharField(label=(u'User Name'))
-    email       = forms.EmailField(label=(u'Email Address'))
-    password    = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
-    password1   = forms.CharField(label=(u'Verify Password'), widget=forms.PasswordInput(render_value=False))
+    name             = forms.CharField(label=(u'Name'))
+    address          = forms.CharField(label=(u'Address'))
+    city             = forms.CharField(label=(u'City'))
+    state            = forms.ChoiceField(label=(u'State'), choices=STATES)
+    zip              = forms.CharField(label=(u'Zip'))
+    school           = forms.CharField(label=(u'School'))
+    graduation_date  = forms.DateField(label=(u'Graduation Date'))   
+    major            = forms.ChoiceField(label=(u'Major'), choices=MAJORS)
+    username         = forms.CharField(label=(u'User Name'))
+    email            = forms.EmailField(label=(u'Email Address'))
+    password         = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
+    password1        = forms.CharField(label=(u'Verify Password'), widget=forms.PasswordInput(render_value=False))
     
     class Meta:
         model = Intern
@@ -54,4 +54,10 @@ class RegistrationForm(ModelForm):
     def clean(self):
         if self.cleaned_data.get("password") != self.cleaned_data.get("password1"):
             raise forms.ValidationError("Passwords did not match")
+        self.cleaned_data['graduation_date']
+        import pdb; pdb.set_trace()
         return self.cleaned_data
+    
+    def clean_graduation(self):
+        import pdb; pdb.set_trace()
+        return self.cleaned_data['graduation_date']

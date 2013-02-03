@@ -8,7 +8,7 @@ class Intern(models.Model):
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=20)
     zip = models.CharField(max_length=10)
-    school = zip = models.CharField(max_length=80)
+    school = models.CharField(max_length=80)
     graduation_date = models.DateField()
     major = models.CharField(max_length=50)
     
@@ -16,6 +16,6 @@ class Intern(models.Model):
     def __unicode__(self):
         return self.name
     
-def create_intern_user_callback(sender, instance, **kwargs):
-    intern , new = User.objects.get_or_create(user=instance)
-post_save.connect(create_intern_user_callback, User)
+#def create_intern_user_callback(sender, instance, **kwargs):
+#    intern , new = User.objects.get_or_create(user=instance)
+#post_save.connect(create_intern_user_callback, User)

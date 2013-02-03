@@ -42,9 +42,9 @@
 	<p>{{ form.school }}</p>
 </div>
 <div class="register-div">
-	{% if form.graduation.errors %}<p class="error">{{ form.graduation.errors }}</p>{% endif %}
-	<p><label for="graduation"{% if form.graduation.errors %} class="error"{% endif %}>Graduation:</label</p>
-	<p>{{ form.graduation }}</p>
+	{% if form.graduation_date.errors %}<p class="error">{{ form.graduation_date.errors }}</p>{% endif %}
+	<p><label for="graduation_date"{% if form.graduation_date.errors %} class="error"{% endif %}>Graduation:</label</p>
+	<p>{{ form.graduation_date }}</p>
 </div>
 <div class="register-div">
 	{% if form.major.errors %}<p class="error">{{ form.major.errors }}</p>{% endif %}
@@ -124,7 +124,7 @@
 	<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 	<script>
 		$(function() {
-			$("#id_graduation").datepicker();
+			$("#id_graduation_date").datepicker();
 		});
 	</script>
   </body>
