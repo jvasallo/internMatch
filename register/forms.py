@@ -7,7 +7,13 @@ from crispy_forms.helper import FormHelper
 class RegistrationForm(ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
-        super(RegistrationForm, self).__init__(*args, **kwargs)
+        self.helper.form_id = 'id-exampleForm'
+        self.helper.form_class = 'blueForms'
+        self.helper.form_method = 'post'
+        self.helper.form_action = 'submit_registration'
+
+        self.helper.add_input(Submit('submit', 'Submit'))
+        super(ExampleForm, self).__init__(*args, **kwargs)
     
     MAJORS = (
     ('1', 'Accountancy'),
