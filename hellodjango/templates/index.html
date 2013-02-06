@@ -9,7 +9,7 @@
 
 	
     <!-- Le styles -->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
 	
 	<!-- Note to self! If you put one of these comments inside CSS everything goes to hell and you'll spend two hours wondering why. --HB -->
 	<style type="text/css">
@@ -45,20 +45,12 @@
         padding: 7px 9px;
       }
     </style>
-    <link href="../static/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <!-- Fav and touch icons -->
-	<!-- TODO: These paths also probably need to be changed, but I'm not exactly sure to what. -->
-<!--     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png"> -->
   </head>
 
   <body>
@@ -86,13 +78,13 @@
 
     
 	<div class="container">
-      <h1>Internmatch</h1>
+      <h1>Intern Match</h1>
       <p>Put some nice engaging promo text here! Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 	  
 	  <div class="row">
 	    <div class="span4">
           <form class="form-signin">
-            <h2 class="form-signin-heading">Please sign in</h2>
+            <h2 class="form-signin-heading">Sign In</h2>
             <input type="text" class="input-block-level" placeholder="Email address">
             <input type="password" class="input-block-level" placeholder="Password">
             <label class="checkbox">
@@ -104,20 +96,24 @@
 	  <!--
 	   I tried to follow the bootstrap example code here, may or may not be doing it wrong
 	  -->
-	      <div class="span4 form-signin">
-		    
-		      <h2>Student sign-up</h2>
-              <p>Here's some sample promo text for the student sign-up. You, too, could work for great companies like Aperture Science, Acme Labs, and Dunder-Mifflin Inc.</p>
-			  <a href="/register/intern" class="btn btn-large btn-primary">Sign up</a>
-		    </form>
-		  </div>
+	    <div class="span4">
+		  <form class="form-signin">
+		    <h2>Sign Up</h2>
+            <p>Here's some sample promo text for the sign-up box. How vexing a fumble to drop a jolly zucchini in the quicksand.</p>
+			<a href="/register/intern" class="btn btn-large btn-primary" style="margin-bottom:10px;">Student Sign-up</a>
+			<a href="/register/company" class="btn btn-large btn-primary">Employer Sign-up</a>
+		  </form>
+		</div>
 		
-          <div class="span4 form-signin">
-		      <h2>Employer sign-up</h2>
-			  <p>Here's some sample promo text for the employer sign-up. Are you looking for interns or employees with skills in raid tanking, pwning noobs, or l33t hacking? Connect with students and recent grads today!</p>
-              <a href="/register/company" class="btn btn-large btn-primary" >Sign up</a>
-		  </div>
-		  
+        <div class="span4">
+		  <form class="form-signin">
+		    <h2>Search</h2>
+			<p>Promo text! Six big devils from Japan quickly forgot how to waltz.</p>
+		    <input type="text" class="input-block-level" placeholder="Company, location....">
+		    <a href="#" class="btn btn-large btn-primary">Search</a>
+			  <!-- TODO: Point this button at the search page, once we have a search page. -->
+	      </form>
+		</div>
 	  </div> <!-- row -->
     </div> <!-- /container -->
 
@@ -125,19 +121,19 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 	
-    <script src="../static/js/jquery.js"></script>
-    <script src="../static/js/bootstrap-transition.js"></script>
-    <script src="../static/js/bootstrap-alert.js"></script>
-    <script src="../static/js/bootstrap-modal.js"></script>
-    <script src="../static/js/bootstrap-dropdown.js"></script>
-    <script src="../static/js/bootstrap-scrollspy.js"></script>
-    <script src="../static/js/bootstrap-tab.js"></script>
-    <script src="../static/js/bootstrap-tooltip.js"></script>
-    <script src="../static/js/bootstrap-popover.js"></script>
-    <script src="../static/js/bootstrap-button.js"></script>
-    <script src="../static/js/bootstrap-collapse.js"></script>
-    <script src="../static/js/bootstrap-carousel.js"></script>
-    <script src="../static/js/bootstrap-typeahead.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-transition.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-dropdown.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-scrollspy.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-tab.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-tooltip.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-popover.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-button.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-collapse.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-carousel.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-typeahead.js"></script>
 
   </body>
 </html>
