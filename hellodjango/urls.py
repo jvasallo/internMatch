@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^$', TemplateView.as_view(template_name="index.html")),
     url(r'^signin$', TemplateView.as_view(template_name="signin.html")),
+	url(r'^test$', TemplateView.as_view(template_name="hero.html")),
     url(r'^register/', include('register.urls')),
     #url(r'^accounts/', include('registration.backends.default.urls')),
 )
