@@ -12,13 +12,19 @@ def InternRegistration(request):
         return HttpResponseRedirect('/profile')
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
-        import pdb; pdb.set_trace()
         if form.is_valid():
             user = User.objects.create_user(username=form.cleaned_data['username'],email=form.cleaned_data['email'],
                                             password=form.cleaned_data['password'])
             user.save()
             intern = user.get_profile()
-            intern.name = form.cleaned_data['name']
+            intern.name     = form.cleaned_data['name']
+            intern.address  = form.cleaned_data['address']
+            intern.city     = form.cleaned_data['city']
+            intern.zip      = form.cleaned_data['zip']
+            intern.school   = form.cleaned_data['school']
+            import pdb; pdb.set_trace()
+            intern.graduation_date = form.cleaned_data['graduation_date']
+            intern.major    = form.cleaned_data['major']
             intern.save()
             return HttpResponseRedirect('/profile')
         else:

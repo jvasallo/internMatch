@@ -3,8 +3,9 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from register.models import Intern
 from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
-class RegistrationForm(ModelForm):
+class RegistrationForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'id-exampleForm'
@@ -13,7 +14,7 @@ class RegistrationForm(ModelForm):
         self.helper.form_action = 'submit_registration'
 
         self.helper.add_input(Submit('submit', 'Submit'))
-        super(ExampleForm, self).__init__(*args, **kwargs)
+        super(RegistrationForm, self).__init__(*args, **kwargs)
     
     MAJORS = (
     ('1', 'Accountancy'),
@@ -60,7 +61,7 @@ class RegistrationForm(ModelForm):
     def clean(self):
         if self.cleaned_data.get("password") != self.cleaned_data.get("password1"):
             raise forms.ValidationError("Passwords did not match")
-        self.cleaned_data['graduation_date']
+        
         import pdb; pdb.set_trace()
         return self.cleaned_data
     
