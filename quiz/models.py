@@ -1,16 +1,17 @@
 from django.db import models
 from django.db.models.signals import post_save
+from register.models import Profile
 import random
 
 # Create your models here.
 class Quiz(models.Model):
-    user_id = models.IntegerField()
+    user_id = models.OneToOneField(Profile)
     quiz_string = models.CharField(max_length=100, null=True)
     quiz_result = models.IntegerField()
 
     @classmethod
     def create(cls, userID):
-	q = cls(user_id=userID, quiz_string=None, quiz_result=0) 
+	q = cls(user_id=userID, quiz_string=None, quiz_result=None) 
                    #Link this to David's user Model, update this via post, update via def
 	q.save()
 	return q
