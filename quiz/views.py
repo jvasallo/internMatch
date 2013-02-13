@@ -1,10 +1,10 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.contrib.auth.models import User
-from quiz.forms import Quiz
+from quiz.models import Quiz
 
 def QuizResultsParsing(request):
+    import pdb; pdb.set_trace()
     if request.user.is_authenticated(): # if user is logged in https://docs.djangoproject.com/en/dev/topics/forms/?from=olddocs
 	if request.method == 'POST': # and if request is a POST
             q = Quiz.create(request.user.user_id)  # init a null quiz result

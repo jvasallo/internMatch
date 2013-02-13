@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     
     'register',
+    'quiz',
     #'registration',
     'crispy_forms'
 )

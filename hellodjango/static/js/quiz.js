@@ -30,9 +30,8 @@ window.onload = function(){
 		quizData = JSON.stringify(quizArrayResults);
 	
 		alert('Data to POST: ' + quizData);
-		$.post('../quiz/send/', function(quizData) { // data is the the data we want to send
+		$.post('quiz/submit', function(quizData) { // data is the the data we want to send
 			//handle any other tasks once the server returns with status
-			alert("Data Loaded: " + quizData);
 		});
 	});
 };
