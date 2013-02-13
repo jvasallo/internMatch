@@ -12,13 +12,15 @@ class Intern(models.Model):
     graduation_date = models.DateField(null=True)
     major = models.CharField(max_length=50, null=True)
     
-    
     def __unicode__(self):
         return self.name
     
-def create_intern_user_callback(sender, instance, created, **kwargs):
+def create_user_callback(sender, instance, created, **kwargs):
     if created:
         import pdb; pdb.set_trace()
         Intern.objects.create(user=instance)
-        
-post_save.connect(create_intern_user_callback, sender=User)
+    else:
+        Intern.objects.update(user=instance)
+
+
+post_save.connect(create_user_callback, sender=User)

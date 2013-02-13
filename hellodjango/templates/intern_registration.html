@@ -10,73 +10,6 @@
       }
     </style>
     
-    
-<form class="form-horizontal" action="" method="POST">
-{% csrf_token %}
-{% if form.errors %} <p>Please correct the fields: </p> {% endif %}
-<div class="register-div">
-	{% if form.name.errors %}<p class="error">{{ form.name.errors }}</p>{% endif %}
-	<p><label for="name"{% if form.name.errors %} class="error"{% endif %}>Name:</label</p>
-	<p>{{ form.name }}</p>
-</div>
-<div class="register-div">
-	{% if form.address.errors %}<p class="error">{{ form.address.errors }}</p>{% endif %}
-	<p><label for="address"{% if form.address.errors %} class="error"{% endif %}>Address:</label</p>
-	<p>{{ form.address }}</p>
-</div>
-<div class="register-div">
-	{% if form.city.errors %}<p class="error">{{ form.city.errors }}</p>{% endif %}
-	<p><label for="city"{% if form.city.errors %} class="error"{% endif %}>City:</label</p>
-	<p>{{ form.city }}</p>
-</div>
-<div class="register-div">
-	{% if form.zip.errors %}<p class="error">{{ form.zip.errors }}</p>{% endif %}
-	<p><label for="zip"{% if form.zip.errors %} class="error"{% endif %}>Zip code:</label</p>
-	<p>{{ form.zip }}</p>
-</div>
-<div class="register-div">
-	{% if form.state.errors %}<p class="error">{{ form.state.errors }}</p>{% endif %}
-	<p><label for="state"{% if form.state.errors %} class="error"{% endif %}>State:</label</p>
-	<p>{{ form.state }}</p>
-</div>
-<div class="register-div">
-	{% if form.school.errors %}<p class="error">{{ form.school.errors }}</p>{% endif %}
-	<p><label for="school"{% if form.school.errors %} class="error"{% endif %}>School:</label</p>
-	<p>{{ form.school }}</p>
-</div>
-<div class="register-div">
-	{% if form.graduation_date.errors %}<p class="error">{{ form.graduation_date.errors }}</p>{% endif %}
-	<p><label for="graduation_date"{% if form.graduation_date.errors %} class="error"{% endif %}>Graduation:</label</p>
-	<p>{{ form.graduation_date }}</p>
-</div>
-<div class="register-div">
-	{% if form.major.errors %}<p class="error">{{ form.major.errors }}</p>{% endif %}
-	<p><label for="major"{% if form.major.errors %} class="error"{% endif %}>Major:</label</p>
-	<p>{{ form.major }}</p>
-</div>
-<div class="register-div">
-	{% if form.username.errors %}<p class="error">{{ form.username.errors }}</p>{% endif %}
-	<p><label for="username"{% if form.username.errors %} class="error"{% endif %}>Username:</label</p>
-	<p>{{ form.username }}</p>
-</div>
-<div class="register-div">
-	{% if form.email.errors %}<p class="error">{{ form.email.errors }}</p>{% endif %}
-	<p><label for="email"{% if form.email.errors %} class="error"{% endif %}>Email:</label</p>
-	<p>{{ form.email }}</p>
-</div>
-<div class="register-div">
-	{% if form.password.errors %}<p class="error">{{ form.password.errors }}</p>{% endif %}
-	<p><label for="password"{% if form.password.errors %} class="error"{% endif %}>Password:</label</p>
-	<p>{{ form.password }}</p>
-</div>
-<div class="register-div">
-	{% if form.password1.errors %}<p class="error">{{ form.password1.errors }}</p>{% endif %}
-	<p><label for="password1"{% if form.password1.errors %} class="error"{% endif %}>Verify Password:</label</p>
-	<p>{{ form.password1 }}</p>
-</div>
-<p><input type="submit" /></p>
-</form>
-
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -104,24 +37,13 @@
         </h1>
       </div>
     </div>
-
+    
     <div class="container">
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h2>Your career begins today!</h2>
-        <p>By creating an intern account you will be able to take advantage of customized features to help you find like-minded companies!</p>
-        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-      </div>
-
-      <!-- Begin Signup form -->
-      <form class="form-horizontal" action='/register' method="POST">
-      {% csrf_token %}
-      
-		<input type="submit" value="Submit" />
-	  </form>
+    	{% load crispy_forms_tags %}
+		{% crispy form %}
+	</div>
     
-    
-	<script src="{{ STATIC_URL }}js/jquery-1.8.0.js"></script>
+	<script src="{{ STATIC_URL }}js/jquery.js	"></script>
 	<script src="{{ STATIC_URL }}js/jquery-ui-1.10.0.custom.js"></script>
 	<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 	<script>
