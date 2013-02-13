@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
-from quiz.forms import Quiz
+from quizzes.forms import Quiz
 
 def QuizResultsParsing(request):
     if request.user.is_authenticated(): # if user is logged in https://docs.djangoproject.com/en/dev/topics/forms/?from=olddocs
