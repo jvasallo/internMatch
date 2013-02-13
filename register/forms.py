@@ -4,14 +4,15 @@ from django.forms import ModelForm
 from register.models import Intern
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.forms.models import formset_factory
 
 class RegistrationForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'id-exampleForm'
-        self.helper.form_class = 'blueForms'
+        self.helper.form_class = 'form-horizontal'
         self.helper.form_method = 'post'
-        self.helper.form_action = 'submit_registration'
+        self.helper.form_action = ''
 
         self.helper.add_input(Submit('submit', 'Submit'))
         super(RegistrationForm, self).__init__(*args, **kwargs)
@@ -33,18 +34,41 @@ class RegistrationForm(forms.Form):
     ('5', 'California'),
     )
 
-    name             = forms.CharField(label=(u'Name'))
-    address          = forms.CharField(label=(u'Address'))
-    city             = forms.CharField(label=(u'City'))
-    state            = forms.ChoiceField(label=(u'State'), choices=STATES)
-    zip              = forms.CharField(label=(u'Zip'))
-    school           = forms.CharField(label=(u'School'))
-    graduation_date  = forms.DateField(label=(u'Graduation Date'))   
-    major            = forms.ChoiceField(label=(u'Major'), choices=MAJORS)
-    username         = forms.CharField(label=(u'User Name'))
-    email            = forms.EmailField(label=(u'Email Address'))
-    password         = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
-    password1        = forms.CharField(label=(u'Verify Password'), widget=forms.PasswordInput(render_value=False))
+    name             = forms.CharField(
+                                       label=(u'Name'),
+                                       required=True,
+                                       )
+    school           = forms.CharField(
+                                       label=(u'School'),
+                                       required=True,
+                                       )
+    graduation_date  = forms.DateField(
+                                       label=(u'Graduation Date'),
+                                       required=True,
+                                       )   
+    major            = forms.ChoiceField(
+                                         label=(u'Major'),
+                                         choices=MAJORS,
+                                         required=True,
+                                          )
+    username         = forms.CharField(
+                                       label=(u'User Name'),
+                                       required=True,
+                                       )
+    email            = forms.EmailField(
+                                        label=(u'Email Address'),
+                                        required=True,
+                                        )
+    password         = forms.CharField(
+                                       label=(u'Password'),
+                                       widget=forms.PasswordInput(render_value=False),
+                                       required=True,
+                                       )
+    password1        = forms.CharField(
+                                       label=(u'Verify Password'),
+                                       widget=forms.PasswordInput(render_value=False),
+                                       required=True,
+                                       )
     
     class Meta:
         model = Intern
