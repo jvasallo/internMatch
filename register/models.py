@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
-class Intern(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User)
     name = models.CharField(max_length=30, null=True)
     address = models.CharField(max_length=100, null=True)
@@ -15,12 +15,17 @@ class Intern(models.Model):
     def __unicode__(self):
         return self.name
     
-def create_user_callback(sender, instance, created, **kwargs):
+    class Meta:
+        permissions = (
+                       ("intern", "Is the user an intern"),
+                       )
+    
+def create_profile_callback(sender, instance, created, **kwargs):
     if created:
-        import pdb; pdb.set_trace()
-        Intern.objects.create(user=instance)
-    else:
-        Intern.objects.update(user=instance)
+#        import pdb; pdb.set_trace()
+        Profile.objects.create(user=instance)
+#    else:
+#        Profile.objects.update(user=instance)
 
 
-post_save.connect(create_user_callback, sender=User)
+post_save.connect(create_profile_callback, sender=User)

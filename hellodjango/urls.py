@@ -16,7 +16,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^$', TemplateView.as_view(template_name="index.html")),
-    url(r'^signin$', TemplateView.as_view(template_name="signin.html")),
     url(r'^user/profile$', TemplateView.as_view(template_name="profile.html")),
     url(r'^register/', include('register.urls')),
     #url(r'^accounts/', include('registration.backends.default.urls')),

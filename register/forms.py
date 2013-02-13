@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from register.models import Intern
+from register.models import Profile
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from crispy_forms.helper import FormHelper
@@ -74,7 +74,7 @@ class InternRegistrationForm(forms.Form):
                                        )
     
     class Meta:
-        model = Intern
+        model = Profile
         exclude = ('user',)
         
     def clean_username(self):
@@ -87,8 +87,7 @@ class InternRegistrationForm(forms.Form):
     
     def clean(self):
         if self.cleaned_data.get("password") != self.cleaned_data.get("password1"):
-            raise forms.ValidationError("Passwords did not match")
-        
+            raise forms.ValidationError("Passwords did not match")        
         #import pdb; pdb.set_trace()
         return self.cleaned_data
     
@@ -120,7 +119,7 @@ class CompanyRegistrationForm(forms.Form):
     )
 
     name             = forms.CharField(
-                                       label=(u'Name'),
+                                       label=(u'Company Name'),
                                        required=True,
                                        )
 #    school           = forms.CharField(
@@ -158,7 +157,7 @@ class CompanyRegistrationForm(forms.Form):
                                        )
     
     class Meta:
-        model = Intern
+        model = Profile
         exclude = ('user',)
         
     def clean_username(self):

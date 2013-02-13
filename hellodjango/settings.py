@@ -114,7 +114,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-AUTH_PROFILE_MODULE = 'register.Intern'
+AUTH_PROFILE_MODULE = 'register.Profile'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -162,5 +162,5 @@ LOGGING = {
     }
 }
 # HEROKU SETTING - Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] =  dj_database_url.config()
