@@ -4,6 +4,7 @@
 		<script src="{{ STATIC_URL }}js/jquery-1.8.0.js"></script>
 		<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 		<script src="{{ STATIC_URL }}js/jquery-ui-1.10.0.custom.js"></script>
+		<script src="{{ STATIC_URL }}js/quiz.js"></script>
 		<link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
 		<!-- <link rel="stylesheet" href="/resources/demos/style.css" /> -->
@@ -32,12 +33,6 @@
 				padding-bottom: 60px;
 			}
 		</style>
-		<script>
-			$(function() {
-				$("#sortable").sortable();
-				$("#sortable").disableSelection();
-			});
-		</script>
 	</head>
 
 	<body>
@@ -83,61 +78,68 @@
 				</legend>
 			</div>
 			<ul id="sortable">
-				<li class="ui-state-default">
+				<li id="1" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1
 				</li>
-				<li class="ui-state-default">
+				<li id="2" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2
 				</li>
-				<li class="ui-state-default">
+				<li id="3" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3
 				</li>
-				<li class="ui-state-default">
+				<li id="4" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4
 				</li>
-				<li class="ui-state-default">
+				<li id="5" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5
 				</li>
-				<li class="ui-state-default">
+				<li id="6" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6
 				</li>
-				<li class="ui-state-default">
+				<li id="7" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7
 				</li>
-				<li class="ui-state-default">
+				<li id="8" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 8
 				</li>
-				<li class="ui-state-default">
+				<li id="9" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 9
 				</li>
-				<li class="ui-state-default">
+				<li id="10" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 10
 				</li>
-				<li class="ui-state-default">
+				<li id="11" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 11
 				</li>
-				<li class="ui-state-default">
+				<li id="12" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 12
 				</li>
-				<li class="ui-state-default">
+				<li id="13" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 13
 				</li>
-				<li class="ui-state-default">
+				<li id="14" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 14
 				</li>
-				<li class="ui-state-default">
+				<li id="15" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 15
 				</li>
-				<li class="ui-state-default">
+				<li id="16" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 16
 				</li>
-				<li class="ui-state-default">
+				<li id="17" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 17
 				</li>
-				<li class="ui-state-default">
+				<li id="18" class="ui-state-default quiz-category">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 18
 				</li>
 			</ul>
+			
+			<div class="form-actions">  
+				<!-- Submit and Cancel buttons -->
+				<button id="send-quiz" class="btn btn-success">Submit</button>  
+				<button class="btn">Cancel</button>  
+			</div>
+			
 		</div>
 
 	</body>
