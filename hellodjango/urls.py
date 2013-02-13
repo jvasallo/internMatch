@@ -19,4 +19,5 @@ urlpatterns = patterns('',
     url(r'^user/profile$', TemplateView.as_view(template_name="profile.html")),
     url(r'^register/', include('register.urls')),
     #url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^quiz/send/$', 'quiz.views.QuizResultsParsing'),
 )
