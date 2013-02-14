@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^user/profile$', TemplateView.as_view(template_name="profile.html")),
     url(r'^login/', TemplateView.as_view(template_name="signin.html")),
     url(r'^register/', include('register.urls')),
+	url(r'^profile/', include('prof.urls')),
     #url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^quiz/', include('quiz.urls')),
 )

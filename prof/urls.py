@@ -6,6 +6,5 @@ from django.views.generic import TemplateView
 # admin.autodiscover()
 
 urlpatterns = patterns('',
- 
-    url(r'^intern/', 'prof.views.GetInternProfile' )
+    url(r'^intern/$', 'prof.views.GetInternProfile' )
 )
