@@ -1,7 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
+from django.contrib.auth import authenticate, login
 from register.forms import InternRegistrationForm, CompanyRegistrationForm
 from django.contrib.contenttypes.models import ContentType
 from register.models import Profile
@@ -19,17 +20,14 @@ def InternRegistration(request):
                                             password=form.cleaned_data['password'],)
             import pdb; pdb.set_trace()
             user.save()
-            intern = user.get_profile()
-            intern.name     = form.cleaned_data['name']
-            intern.school   = form.cleaned_data['school']
+            profile           = user.get_profile()
+            profile.name      = form.cleaned_data['name']
+            profile.school    = form.cleaned_data['school']
             #import pdb; pdb.set_trace()
-            intern.graduation_date = form.cleaned_data['graduation_date']
-            intern.major    = form.cleaned_data['major']
-            
-#            perm = create_perm('intern')
-#            user.user_permissions.add(perm)
-            
-            intern.save()
+            profile.graduation_date = form.cleaned_data['graduation_date']
+            profile.major     = form.cleaned_data['major']
+            profile.is_intern = True           
+            profile.save()
             return HttpResponseRedirect('/register/quiz')
         else:
             #import pdb; pdb.set_trace()
@@ -39,12 +37,6 @@ def InternRegistration(request):
         context = {'form': form}
         return render_to_response('intern_registration.html', context, context_instance=RequestContext(request))
     
-#def create_perm(perm):
-#    content_type  = ContentType.objects.get(app_label='register', model='profile')
-#    permission    = Permission.objects.create(codename=perm,
-#                                       name='Is the user an intern',
-#                                       content_type=content_type)
-
 def CompanyRegistration(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/profile')
@@ -55,8 +47,10 @@ def CompanyRegistration(request):
                                             password=form.cleaned_data['password'],)
             #import pdb; pdb.set_trace()
             user.save()
-            company = user.get_profile()
-            company.name     = form.cleaned_data['name']
+            login(request, user)
+            company           = user.get_profile()
+            company.name      = form.cleaned_data['name']
+            company.is_intern = False
             #import pdb; pdb.set_trace()
             company.save()
             return HttpResponseRedirect('/register/quiz')
@@ -69,10 +63,16 @@ def CompanyRegistration(request):
         return render_to_response('intern_registration.html', context, context_instance=RequestContext(request))
     
 def Signin(request):
-    if request.user.is_authenticated():
-        return HttpResponseRedirect('/profile')
-    if request.method == 'POST':
-        request.user.has_perm('intern')
+    import pdb; pdb.set_trace()
+    #user = authenticate(username='1', password='password') GET PASSWORD FROM FORM AND AUTHENTICATE
+    #login(request, user)
+    profile = Profile.objects.get(user_id=user.id)
+    if request.method == 'GET':
+        
+        if request.user.is_authenticated() and profile.is_intern:
+            return HttpResponseRedirect('/profile/intern')
+        if request.user.is_authenticated() and not profile.is_intern:
+            return HttpResponseRedirect('/profile/company')
     
     
 def QuizResultsParsing(request):
