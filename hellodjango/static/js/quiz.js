@@ -12,7 +12,7 @@ window.onload = function(){
 	var quizData;						// Quiz Data to POST
 	
 	$('#send-quiz').on('click', function() { 
-	quizObjectResults = $('#sortable .quiz-category');
+  	  quizObjectResults = $('#sortable .quiz-category');
 		var numberOfItems = quizObjectResults.length;
 		quizStringResults = new String();
 		for (var i=0; i<numberOfItems; i++) {
@@ -28,7 +28,14 @@ window.onload = function(){
 		//alert('Quiz Results (Array): ' + quizArrayResults);
 		//alert('Quiz Results (String): ' + quizStringResults);
 		quizData = JSON.stringify(quizArrayResults);
-	
+
+//	        connectWith: '.object',
+  //              update: function() {
+    //                $.ajax({
+      //                    type: "POST",
+        //                  data: quizData,
+          //                url: "quiz/submit"
+            //            });
 		alert('Data to POST: ' + quizData);
 		$.post('quiz/submit', function(quizData) { // data is the the data we want to send
 			//handle any other tasks once the server returns with status
