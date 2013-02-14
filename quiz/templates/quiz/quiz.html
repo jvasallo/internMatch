@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery-ui-1.10.0.custom.js"></script>
+   <!-- <script src="{{ STATIC_URL }}js/quiz.js"></script> -->
+    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+
+    <title>QSRT Quiz</title>
+    <style>
+		#sortable {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			width: 60%;
+		}
+		#sortable li {
+			margin: 0 3px 3px 3px;
+			padding: 0.4em;
+			padding-left: 1.5em;
+			font-size: 1.4em;
+			height: 18px;
+		}
+		#sortable li span {
+			position: absolute;
+			margin-left: -1.3em;
+		}
+		body {
+			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+			padding-bottom: 60px;
+		}
+    </style>
+    <script>
+      $(function() {
+        $( "#sortable" ).sortable();
+        $( "#sortable" ).disableSelection();
+      });
+     
+      function onSubmit() {    
+        var sortedQuizObjects = $('#sortable .quiz-option');
+        var n = sortedQuizObjects.length;                       // total quiz items
+        var quizData = "[%USER_ID_HERE%] ";                                 // initialize new string to put quiz results
+
+        for (var i=0; i<n; i++) {
+          // only add space between id's if not last id in list
+          if (i < n-1) {
+            quizData = quizData + sortedQuizObjects[i].id + " "
+          }
+          // add no extra space if last id in list
+          else {
+            quizData = quizData + sortedQuizObjects[i].id
+          }
+        }
+        $.ajax({ // create an AJAX call...
+          data: quizData, // get the form data
+          type: 'POST', // GET or POST
+          url: 'submit/', // the file to call
+          success: function(response) { // on success..
+            alert('Success');
+          }
+        });
+        alert(quizData);
+      }
+
+    function exitApp() {
+      window.location = "/";
+    }
+    </script>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+	  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+	  <a class="brand" href="/">Intern Match</a>
+
+	  <div class="nav-collapse collapse">
+    	    <ul class="nav">
+	      <li class="active"><a href="/">Home</a></li>
+	      <li><a href="#about">About</a></li>
+	      <li><a href="#contact">Contact Us</a></li>
+            </ul>
+	  </div><!--/.nav-collapse -->
+	</div>
+      </div>
+    </div>
+ 
+    <div class="page-header">
+      <div class="container">
+        <h1>QSRT Quiz</h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h2>Quiz Time!</h2>
+        <p>By taking this quiz we can help match you with others better! Don't worry, you can always retake the quiz!</p>
+      </div>
+
+      <div id="legend">
+        <legend class="">{{ quiz.question }}</legend>
+      </div>
+
+     <!-- <form action="" method="post">
+      {% csrf_token %} -->
+      <ul id="sortable">
+        {% for option in quiz.option_set.all %}
+          <li id="{{ option.option_value }}" class="ui-state-default quiz-option"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{ option.option_name }}</li>
+        {% endfor %}
+      </ul>
+
+      <div class="form-actions">  
+        <!-- Submit and Cancel buttons -->
+	<button onclick="onSubmit()" id="submit-quiz" class="btn btn-success" value="Submit">Submit</button>  
+	<button onclick="exitApp()" class="btn">Cancel</button>  
+      </div>	  
+<!--      </form>  -->
+	  
+    </div>
+  </body>
+</html>

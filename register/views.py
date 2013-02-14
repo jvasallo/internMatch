@@ -73,16 +73,3 @@ def Signin(request):
         return HttpResponseRedirect('/profile')
     if request.method == 'POST':
         request.user.has_perm('intern')
-    
-    
-def QuizResultsParsing(request):
-     django.middleware.csrf.get_token(request)
-#    import pdb; pdb.set_trace()
-#    if request.user.is_authenticated(): # if user is logged in https://docs.djangoproject.com/en/dev/topics/forms/?from=olddocs
-#        if request.method == 'POST': # and if request is a POST
-#            q = Quiz.create(request.user.user_id)  # init a null quiz result
-#            q.collectQuizData(request.POST) # use the request to sent the data to the def collectQuizData
-#        return HttpResponseRedirect('complete/') # redirect to a thank you page or something
-#    else: # else user needs to log in
-    return HttpResponseRedirect('complete/')
-        #return render_to_response('intern_registration.html', context, context_instance=RequestContext(request)) # redirect them back to the registration page or error page.
