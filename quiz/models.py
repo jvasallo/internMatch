@@ -27,14 +27,13 @@ class QuizResult(models.Model):
     @classmethod
     def create(cls, userID):
         q = cls(user_id=userID, quiz_string=None, quiz_result=None)
-                   #Link this to David's user Model, update this via post, update via def
         q.save()
         return q
 
-    # this def will handle the POST request. For now, just filling with dummy data.
-    def collectQuizData(self, request):
-        self.quiz_string = request # change this to the POST request
-        self.parseQuizString(request)
+    # this def will handle the POST request data. For now, just filling with dummy data.
+    def collectQuizData(self, quizString):
+        self.quiz_string = quizString
+        self.parseQuizString(quizString)
         self.save()
 
     # using this def, the professor can call his script to take:

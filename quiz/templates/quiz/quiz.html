@@ -40,8 +40,8 @@
      
       function onSubmit() {    
         var sortedQuizObjects = $('#sortable .quiz-option');
-        var n = sortedQuizObjects.length;                       // total quiz items
-        var quizData = "[%USER_ID_HERE%] ";                                 // initialize new string to put quiz results
+        var n = sortedQuizObjects.length; // total quiz items
+        var quizData = ""; // initialize new string to put quiz results
 
         for (var i=0; i<n; i++) {
           // only add space between id's if not last id in list
@@ -54,14 +54,15 @@
           }
         }
         $.ajax({ // create an AJAX call...
-          data: quizData, // get the form data
+          data: {'userID' : "user.id",
+                 'quizID' : 1, 
+                 'quizString' : quizData},
           type: 'POST', // GET or POST
           url: 'submit/', // the file to call
           success: function(response) { // on success..
-            alert('Success');
+            alert('Success -- STATUS: 200');
           }
         });
-        alert(quizData);
       }
 
     function exitApp() {
@@ -94,7 +95,6 @@
     </div>
 
     <div class="container">
-      <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h2>Quiz Time!</h2>
         <p>By taking this quiz we can help match you with others better! Don't worry, you can always retake the quiz!</p>
@@ -104,8 +104,6 @@
         <legend class="">{{ quiz.question }}</legend>
       </div>
 
-     <!-- <form action="" method="post">
-      {% csrf_token %} -->
       <ul id="sortable">
         {% for option in quiz.option_set.all %}
           <li id="{{ option.option_value }}" class="ui-state-default quiz-option"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{ option.option_name }}</li>
@@ -117,7 +115,6 @@
 	<button onclick="onSubmit()" id="submit-quiz" class="btn btn-success" value="Submit">Submit</button>  
 	<button onclick="exitApp()" class="btn">Cancel</button>  
       </div>	  
-<!--      </form>  -->
 	  
     </div>
   </body>
