@@ -7,7 +7,7 @@ urlpatterns = patterns('',
     url(r'^company$', 'register.views.CompanyRegistration'),
     url(r'^login$', 'register.views.Login'),
     url(r'^logout', 'register.views.Logout'),
-    url(r'^quiz/submit', 'register.views.QuizResultsParsing'),
+#    url(r'^quiz/submit', 'register.views.QuizResultsParsing'),
     url(r'^complete$', TemplateView.as_view(template_name="complete.html")),
     url(r'^signin$', TemplateView.as_view(template_name="signin.html")),
 )
