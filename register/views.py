@@ -30,7 +30,7 @@ def InternRegistration(request):
 #            user.user_permissions.add(perm)
             
             intern.save()
-            return HttpResponseRedirect('/register/quiz')
+            return HttpResponseRedirect('/quiz')
         else:
             #import pdb; pdb.set_trace()
             return render_to_response('intern_registration.html', {'form': form}, context_instance=RequestContext(request))
@@ -59,7 +59,7 @@ def CompanyRegistration(request):
             company.name     = form.cleaned_data['name']
             #import pdb; pdb.set_trace()
             company.save()
-            return HttpResponseRedirect('/register/quiz')
+            return HttpResponseRedirect('/quiz')
         else:
             #import pdb; pdb.set_trace()
             return render_to_response('intern_registration.html', {'form': form}, context_instance=RequestContext(request))
