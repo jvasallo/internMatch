@@ -9,6 +9,5 @@ urlpatterns = patterns('',
     url(r'^logout', 'register.views.Logout'),
     url(r'^quiz/submit', 'register.views.QuizResultsParsing'),
     url(r'^complete$', TemplateView.as_view(template_name="complete.html")),
-    url(r'^quiz$', TemplateView.as_view(template_name="quiz.html")),
     url(r'^signin$', TemplateView.as_view(template_name="signin.html")),
 )
