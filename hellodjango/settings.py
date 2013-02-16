@@ -131,7 +131,8 @@ INSTALLED_APPS = (
     'quiz',
     'account',
     #'registration',
-    'crispy_forms'
+    'crispy_forms',
+    #'haystack'
 )
 
 # A sample logging configuration. The only tangible logging
@@ -162,6 +163,14 @@ LOGGING = {
         },
     }
 }
+
+# SEARCH SETTING: Uses Haystack module
+#HAYSTACK_CONNECTIONS = {
+#    'default': {
+#        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+#    },
+#}
+
 # HEROKU SETTING - Parse database configuration from $DATABASE_URL
 #import dj_database_url
 #DATABASES['default'] =  dj_database_url.config()
