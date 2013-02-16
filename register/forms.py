@@ -107,9 +107,7 @@ class CompanyRegistrationForm(forms.Form):
 
         self.helper.add_input(Submit('submit', 'Sign up'))
         super(CompanyRegistrationForm, self).__init__(*args, **kwargs)
-    
-
-    
+ 
     STATES = (
     ('1', 'Alabama'),
     ('2', 'Alaska'),

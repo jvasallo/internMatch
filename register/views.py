@@ -11,7 +11,7 @@ from register.models import Profile
 
 
 def InternRegistration(request):
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     if request.user.is_authenticated():
         return HttpResponseRedirect('/profile/intern')
     if request.method == 'POST':
@@ -34,14 +34,14 @@ def InternRegistration(request):
             return HttpResponseRedirect('/register/quiz')
         else:
             # import pdb; pdb.set_trace()
-            return render_to_response('intern_registration.html', {'form': form}, context_instance=RequestContext(request))
+            return render_to_response('register/registration.html', {'form': form}, context_instance=RequestContext(request))
     else:
         form = InternRegistrationForm()
         context = {'form': form}
-        return render_to_response('intern_registration.html', context, context_instance=RequestContext(request))
+        return render_to_response('register/registration.html', context, context_instance=RequestContext(request))
     
 def CompanyRegistration(request):
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     if request.user.is_authenticated():
         return HttpResponseRedirect('/profile/company')
     if request.method == 'POST':
@@ -60,14 +60,14 @@ def CompanyRegistration(request):
             return HttpResponseRedirect('/quiz')
         else:
             # import pdb; pdb.set_trace()
-            return render_to_response('intern_registration.html', {'form': form}, context_instance=RequestContext(request))
+            return render_to_response('register/registration.html', {'form': form}, context_instance=RequestContext(request))
     else:
         form = CompanyRegistrationForm()
         context = {'form': form}
-        return render_to_response('intern_registration.html', context, context_instance=RequestContext(request))
+        return render_to_response('register/registration.html', context, context_instance=RequestContext(request))
     
 def Login(request):
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     user = authenticate(username=request.POST['username'], password=request.POST['password'])
     login(request, user)
     profile = Profile.objects.get(user_id=user.id)
@@ -78,8 +78,7 @@ def Login(request):
             return HttpResponseRedirect('/profile/company')
 
 def Logout(request):
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     if request.user.is_authenticated():
         logout(request)
         return HttpResponseRedirect('/')
-    
