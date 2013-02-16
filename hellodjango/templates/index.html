@@ -18,6 +18,7 @@
       	.search-form {
       	background-color:#000000;
       	color:#FFFFFF;
+	padding-top:15px;
       	padding-bottom:20px;
       }
     </style>
@@ -71,8 +72,8 @@
         <!--<h1>Intern | Match </h1>-->
         <br />
         <form class="search-form">
-      	  <br />
-          Seeking: <input type="text" class="input-large" placeholder="Enter job title or keyword"> in <input type="text" class="input-large" placeholder="City, State, or Zip Code">
+          Seeking: <input type="text" class="input-large" id="skills" data-provide="typeahead" data-items="4" placeholder="Enter job title or keyword">
+          in <input type="text" class="input-large" id="city" data-provide="typeahead" data-items="2" placeholder="City, State, or Zip Code">
           <br />
           <a href="/search" type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i> Search</a>
         </form>
@@ -106,6 +107,12 @@
     <script src="{{ STATIC_URL }}js/bootstrap-collapse.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-carousel.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-typeahead.js"></script>
+    <script>  
+      var subjects = ['PHP', 'Python', 'Django', 'MySQL', 'SQL', 'PostgreSQL', 'HTML', 'CSS', 'HTML5', 'CSS3', 'JSON'];   
+      var city = ['Chicago, IL', 'Schaumburg, IL', 'Niles, IL', 'Detroit, MI', 'Milwaukee, WI'];
+      $('#skills').typeahead({source: subjects})  
+      $('#city').typeahead({source: city})
+    </script>
 
   </body>
 </html>
