@@ -51,6 +51,7 @@ def CompanyRegistration(request):
                                             password=form.cleaned_data['password'],)
             # import pdb; pdb.set_trace()
             user.save()
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             login(request, user)
             company = user.get_profile()
             company.name = form.cleaned_data['name']
@@ -65,20 +66,3 @@ def CompanyRegistration(request):
         form = CompanyRegistrationForm()
         context = {'form': form}
         return render_to_response('register/registration.html', context, context_instance=RequestContext(request))
-    
-def Login(request):
-    #import pdb; pdb.set_trace()
-    user = authenticate(username=request.POST['username'], password=request.POST['password'])
-    login(request, user)
-    profile = Profile.objects.get(user_id=user.id)
-    if request.method == 'GET':
-        if request.user.is_authenticated() and profile.is_intern:
-            return HttpResponseRedirect('/profile/intern')
-        if request.user.is_authenticated() and not profile.is_intern:
-            return HttpResponseRedirect('/profile/company')
-
-def Logout(request):
-    #import pdb; pdb.set_trace()
-    if request.user.is_authenticated():
-        logout(request)
-        return HttpResponseRedirect('/')

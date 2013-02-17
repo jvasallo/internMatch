@@ -1,4 +1,4 @@
-# Django settings for hellodjango project.
+# Django settings for home project.
 import os
 
 PROJECT_ROOT = os.path.dirname(__file__)
@@ -102,10 +102,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'hellodjango.urls'
+ROOT_URLCONF = 'home.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'hellodjango.wsgi.application'
+WSGI_APPLICATION = 'home.wsgi.application'
 
 TEMPLATE_DIRS = (
   os.path.join(PROJECT_ROOT, "templates"),
