@@ -60,7 +60,8 @@
           type: 'POST', // GET or POST
           url: 'submit/', // the file to call
           success: function(response) { // on success..
-            alert('Success -- STATUS: 200');
+              window.location.href = "quiz/complete";
+            //alert('Success -- STATUS: 200');
           }
         });
       }
