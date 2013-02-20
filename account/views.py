@@ -4,20 +4,30 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from account.models import InternProfile, CompanyProfile
 
-def sample_intern(request):
-    return render_to_response('account/profile_intern.html', {'quiz': 'quiz'}, context_instance=RequestContext(request))
+#def profile(request):
+#   if request.user.is_authenticated():
+#       if request.user.is_intern == "Intern":
+#           internProfile(request)
+#       else:
+#           companyProfile(request)
+#    else:
+#        return HttpResponseRedirect('login/')       
 
-def sample_company(request):
-    return render_to_response('account/profile_company.html', {'quiz': 'quiz'}, context_instance=RequestContext(request))
+def generateInternProfile(user):
+    return render_to_response('account/profile_intern.html', {'intern': user}, context_instance=RequestContext(request))
+
+def generateCompanyProfile(user):
+    return render_to_response('account/profile_company.html', {'company': user}, context_instance=RequestContext(request))
 
 #@login_required
-def view_profile(request):
+def index(request):
     if request.user.is_authenticated():
-#        if request.method == 'GET':
-#                intern = user.getProfile()
+        user = request.user
+        if user.is_intern == "Intern":
+            generateInternProfile(user)
+        else:
+            generateCompanyProfile(user)
 #                return render_to_response('templates/profile.html', { 'profile': intern })
-#    else:
-#            return HttpResponseRedirect('/register/intern')
         user_profile = request.user.get_profile()
         url = user_profile.url
     else:
