@@ -14,7 +14,7 @@ def Login(request):
     #user = authenticate(username=request.POST['username'], password=request.POST['password'])
 #    import pdb; pdb.set_trace()
     if request.method == 'POST':
-        import pdb; pdb.set_trace()
+#        import pdb; pdb.set_trace()
         form = SigninForm(request.POST)
         if form.is_valid():
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
