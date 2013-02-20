@@ -43,7 +43,7 @@
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h2>The start of something awesome!</h2>
-        <p>By creating an account for your company you will be able to take advantage of customized features to help you find likeminded interns!</p>
+        <p>Bringing your company new interns like never before!</p>
         <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
       </div>
 
@@ -56,10 +56,10 @@
 
         <div class="control-group">
           <!-- Company Name -->
-          <label class="control-label"  for="company_name">Company Name</label>
+          <label class="control-label"  for="company_name">Job Title</label>
           <div class="controls">
             <input type="text" id="company_name" name="company_name" placeholder="" class="input-xlarge">
-            <p class="help-block">Enter your company's official name</p>
+            <p class="help-block">Enter your the job title per your needs.</p>
           </div>
         </div>
 
@@ -73,12 +73,6 @@
         </div>
 
         <div class="control-group">
-          <!-- Address -->
-          <label class="control-label"  for="address">Address</label>
-          <div class="controls">
-            <input type="text" id="address" name="address" placeholder="" class="input-xlarge">
-          </div>
-
           <!-- City -->
           <label class="control-label"  for="city">City</label>
           <div class="controls">
@@ -108,25 +102,25 @@
 
         <div class="control-group"> 
 	  <!-- Industry Type --> 
-          <label class="control-label" for="industry_id">Industry</label>  
+          <label class="control-label" for="industry_id">Common Skill</label>  
           <div class="controls">  
             <select id="industry_select">  
               <option>Select...</option>  
-              <option>Software Development</option>  
-              <option>Consulting</option>  
-              <option>Architecture</option>  
+              <option>Python</option>  
+              <option>Java</option>  
+              <option>Fortran</option>  
               <option>Security</option>  
             </select>  
-            <p class="help-block">Select the industry your business best matches (Don't worry you can change this later)</p>
+            <p class="help-block">Select the skill the best matches the job</p>
           </div>  
         </div> 
 
         <div class="control-group">
           <!-- Username -->
-          <label class="control-label"  for="username">Username</label>
+          <label class="control-label"  for="username">Contact Name</label>
           <div class="controls">
             <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
-            <p class="help-block">Username can contain any letters or numbers, without spaces (Username will be your company's url address at Intern Match)</p>
+            <p class="help-block">Name of individual to inquire about more information.</p>
           </div>
         </div>
 
@@ -135,31 +129,13 @@
           <label class="control-label" for="email">E-mail</label>
           <div class="controls">
             <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
-            <p class="help-block">Please provide your E-mail</p>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <!-- Password-->
-          <label class="control-label" for="password">Password</label>
-          <div class="controls">
-            <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-            <p class="help-block">Password should be at least 4 characters</p>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <!-- Password -->
-          <label class="control-label"  for="password_confirm">Password (Confirm)</label>
-          <div class="controls">
-            <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
-            <p class="help-block">Please confirm password</p>
+            <p class="help-block">Please provide contact E-mail</p>
           </div>
         </div>
 
         <div class="form-actions">  
 	  <!-- Submit and extra button -->
-          <a href="/register/complete" class="btn btn-success">Create Account</a>  
+          <a href="/profile/company" class="btn btn-success">Add Job</a>
           <button class="btn">Cancel</button>  
         </div>
       </fieldset>
