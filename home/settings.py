@@ -82,6 +82,10 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
+FIXTURE_DIRS = (
+    os.path.join(PROJECT_ROOT, '../quiz/fixtures/'),
+)
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'ays^07dlbjf2+igoc-)@!1!pg-5%(5vmj16p0-f#bg@^z%4^lp'
 
