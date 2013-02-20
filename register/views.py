@@ -31,7 +31,7 @@ def InternRegistration(request):
             profile.major = form.cleaned_data['major']
             profile.is_intern = True           
             profile.save()
-            return HttpResponseRedirect('/register/quiz')
+            return HttpResponseRedirect('/quiz')
         else:
             # import pdb; pdb.set_trace()
             return render_to_response('register/registration.html', {'form': form}, context_instance=RequestContext(request))
