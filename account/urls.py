@@ -8,4 +8,5 @@ from django.views.generic import TemplateView
 urlpatterns = patterns('',
     url(r'^$', 'account.views.index'),
     url(r'add/$', 'account.views.add'),
+    url(r'edit/$', 'account.views.edit'),
 )
