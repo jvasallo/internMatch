@@ -11,19 +11,19 @@ def index(request):
     if request.user.is_authenticated():
         return render_to_response('index.html', {'user': request.user}, context_instance=RequestContext(request))
     else:
-        return render_to_response('index.html', {'user':None}, context_instance=RequestContext(request))
+        return render_to_response('index.html', {'user': None}, context_instance=RequestContext(request))
 
 def contact(request):
     if request.user.is_authenticated():
         return render_to_response('contact.html', {'user': request.user}, context_instance=RequestContext(request))
     else:
-        return render_to_response('contact.html', {'user':None}, context_instance=RequestContext(request))
+        return render_to_response('contact.html', {'user': None}, context_instance=RequestContext(request))
 
 def about(request):
     if request.user.is_authenticated():
         return render_to_response('about.html', {'user': request.user}, context_instance=RequestContext(request))
     else:
-        return render_to_response('about.html', {'user':None}, context_instance=RequestContext(request))
+        return render_to_response('about.html', {'user': None}, context_instance=RequestContext(request))
 
 def Login(request):
     if request.method == 'POST':
@@ -38,8 +38,7 @@ def Login(request):
             return render_to_response('signin.html', {'form': form}, context_instance=RequestContext(request))
     else:
         form = SigninForm()
-        context = {'form': form}
-        return render_to_response('signin.html', context, context_instance=RequestContext(request))
+        return render_to_response('signin.html', {'form': form}, context_instance=RequestContext(request))
 
 def Logout(request):
     if request.user.is_authenticated():
