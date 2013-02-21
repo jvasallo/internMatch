@@ -49,6 +49,5 @@ class SigninForm(forms.Form):
         password = self.cleaned_data.get("password")
         user = authenticate(username=username, password=password)
         if user == None:
-            import pdb; pdb.set_trace()
             raise forms.ValidationError("Invalid login")        
         return self.cleaned_data

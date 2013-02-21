@@ -19,8 +19,7 @@ function onSubmit() {
        }
    }
    $.ajax({ // create an AJAX call...
-       data: {'userID' : "user.id",
-              'quizID' : 1, 
+       data: {'quizID' : 1, 
               'quizString' : quizData},
        type: 'POST', // GET or POST
        url: 'submit/', // the file to call
