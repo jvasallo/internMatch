@@ -25,7 +25,7 @@ def InternRegistration(request):
             profile.major = form.cleaned_data['major']
             profile.is_intern = True           
             profile.save()
-            return HttpResponseRedirect('/quiz/begin')
+            return HttpResponseRedirect('/quiz')
         else:
             return render_to_response('register/registration.html', {'form': form}, context_instance=RequestContext(request))
     else:
@@ -48,7 +48,7 @@ def CompanyRegistration(request):
             company.name = form.cleaned_data['name']
             company.is_intern = False
             company.save()
-            return HttpResponseRedirect('/quiz/begin')
+            return HttpResponseRedirect('/quiz')
         else:
             return render_to_response('register/registration.html', {'form': form}, context_instance=RequestContext(request))
     else:
