@@ -88,15 +88,11 @@ class InternRegistrationForm(forms.Form):
     def clean(self):
         if self.cleaned_data.get("password") != self.cleaned_data.get("password1"):
             raise forms.ValidationError("Passwords did not match")        
-        #import pdb; pdb.set_trace()
         return self.cleaned_data
     
     def clean_graduation(self):
-        #import pdb; pdb.set_trace()
         return self.cleaned_data['graduation_date']
     
-    
-
 class CompanyRegistrationForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -169,6 +165,4 @@ class CompanyRegistrationForm(forms.Form):
     def clean(self):
         if self.cleaned_data.get("password") != self.cleaned_data.get("password1"):
             raise forms.ValidationError("Passwords did not match")
-        
-        #import pdb; pdb.set_trace()
         return self.cleaned_data
