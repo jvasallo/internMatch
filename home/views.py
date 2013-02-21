@@ -33,7 +33,7 @@ def Login(request):
             login(request, user)
             profile = Profile.objects.get(user_id=user.id)
             if request.user.is_authenticated():
-                return HttpResponseRedirect('/profile')
+                return HttpResponseRedirect('/')
         else:
             return render_to_response('signin.html', {'form': form}, context_instance=RequestContext(request))
     else:

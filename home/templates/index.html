@@ -25,9 +25,10 @@
             <br />
             <a href="/search" type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i> Search</a>
         </form>
-
+    {% if user = None %}
         <p>What are you waiting for? Sign up today and get personalized matches!</p>   
         <a href="/register/intern" class="btn btn-large btn-primary">Student Sign-up</a>
         <a href="/register/company" class="btn btn-large btn-primary">Employer Sign-up</a>
+    {% endif %}
     </div>
 {% endblock %}
