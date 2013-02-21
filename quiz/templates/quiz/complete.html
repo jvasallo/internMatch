@@ -1,38 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Quiz Time</title>
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-  </head>
-
-  <body>
-
-    <!-- Add fancy toolbar -->
-	{% include 'quiz/base/base_quiz.html' %}
-	
-    <div class="page-header">
-      <div class="container">
-        <h1>QSRT Quiz</h1>
-      </div>
-    </div>
-
-    <div class="container">
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
+{% extends 'quiz/base.html' %}
+{% block container %}    
+    <div class="hero-unit">
         <h2>That's it! Your done!</h2>
-        <p>Check out your profile, begin searching for like-minded companies, and find your dream job!</p>
-        <p><a href="/profile/intern" class="btn btn-primary btn-large">My Profile</a></p>
-      </div>
-	</div>
-
-	<link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui-1.10.0.custom.css">
-	<!-- <script src="{{ STATIC_URL }}js/jquery-1.8.0.js"></script> -->
-	<script src="{{ STATIC_URL }}js/jquery.js"></script>
-	<script src="{{ STATIC_URL }}js/jquery-ui-1.10.0.custom.js"></script>
-	<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-  </body>
+        <p>Check out your profile, begin searching for opportunities!</p>
+        <p><a href="/profile" class="btn btn-primary btn-large">My Profile</a></p>
+    </div>
+{% endblock %}
