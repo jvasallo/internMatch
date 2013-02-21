@@ -6,8 +6,6 @@ from django.views.generic import TemplateView
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-#    url(r'^profile/$', 'account.views.view_profile'),
-    url(r'intern/$', 'account.views.sample_intern'),
-    url(r'company/$', 'account.views.sample_company'),
-    url(r'company/addjob/$', TemplateView.as_view(template_name="account/addjob.html")),
+    url(r'^$', 'account.views.index'),
+    url(r'add/$', 'account.views.add'),
 )

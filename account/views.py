@@ -2,26 +2,27 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
+from django.contrib.auth.models import User
 from account.models import InternProfile, CompanyProfile
 
-def sample_intern(request):
-    return render_to_response('account/profile_intern.html', {'quiz': 'quiz'}, context_instance=RequestContext(request))
-
-def sample_company(request):
-    return render_to_response('account/profile_company.html', {'quiz': 'quiz'}, context_instance=RequestContext(request))
-
-#@login_required
-def view_profile(request):
+def index(request):
     if request.user.is_authenticated():
-#        if request.method == 'GET':
-#                intern = user.getProfile()
-#                return render_to_response('templates/profile.html', { 'profile': intern })
-#    else:
-#            return HttpResponseRedirect('/register/intern')
-        user_profile = request.user.get_profile()
-        url = user_profile.url
+        user = request.user
+        userProfile = request.user.get_profile()
+        if userProfile.is_intern:
+            return render_to_response('account/profile_intern.html', {'intern': user}, context_instance=RequestContext(request))
+        else:
+            return render_to_response('account/profile_company.html', {'company': user}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('login/')
 
-
-# We should add some middleware to determine if user is "Company" or "Intern"
+def add(request):
+    if request.user.is_authenticated():
+        user = request.user
+        userProfile = request.user.get_profile()
+        if userProfile.is_intern:
+            return render_to_response('account/add.html', {'intern': user}, context_instance=RequestContext(request))
+        else:
+            return render_to_response('account/add.html', {'company': user}, context_instance=RequestContext(request))
+    else:
+        return HttpResponseRedirect('login/')

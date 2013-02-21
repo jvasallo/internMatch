@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.signals import post_save
-from register.models import Profile
+from django.contrib.auth.models import User
 import random
 
 # Create your models here.
@@ -19,14 +19,14 @@ class Option(models.Model):
         return self.option_name
     
 class QuizResult(models.Model):
-    quiz = models.OneToOneField(Quiz)
-    user = models.OneToOneField(Profile)
+    quiz = models.ForeignKey(Quiz, unique=False)
+    user = models.ForeignKey(User)
     quiz_string = models.CharField(max_length=100, null=True)
-    quiz_result = models.IntegerField()
+    quiz_result = models.IntegerField(null=True)
 
     @classmethod
-    def create(cls, userID):
-        q = cls(user_id=userID, quiz_string=None, quiz_result=None)
+    def create(cls, quizID, userID):
+        q = cls(quiz=quizID, user=userID, quiz_string=None, quiz_result=None)
         q.save()
         return q
 
@@ -40,7 +40,7 @@ class QuizResult(models.Model):
     #      self.quiz_result = os.system('gfortran qsrtScript.f -d %s' % self.quiz_string)
     # or something like that
     def parseQuizString(self, quizData):
-        self.quiz_result = random.randrange(1,6)
+        self.quiz_result = random.randrange(1,7)
 
     def findUserScore(self, userID):
         return Quiz.objects.filter(user_id = userID)
