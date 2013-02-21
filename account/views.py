@@ -5,7 +5,6 @@ from django.template import RequestContext
 from django.contrib.auth.models import User
 from account.models import InternProfile, CompanyProfile
 
-#@login_required
 def index(request):
     if request.user.is_authenticated():
         user = request.user
@@ -17,3 +16,13 @@ def index(request):
     else:
         return HttpResponseRedirect('login/')
 
+def add(request):
+    if request.user.is_authenticated():
+        user = request.user
+        userProfile = request.user.get_profile()
+        if userProfile.is_intern:
+            return render_to_response('account/add.html', {'intern': user}, context_instance=RequestContext(request))
+        else:
+            return render_to_response('account/add.html', {'company': user}, context_instance=RequestContext(request))
+    else:
+        return HttpResponseRedirect('login/')

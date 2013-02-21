@@ -7,5 +7,5 @@ from django.views.generic import TemplateView
 
 urlpatterns = patterns('',
     url(r'^$', 'account.views.index'),
-    url(r'company/addjob/$', TemplateView.as_view(template_name="account/addjob.html")),
+    url(r'add/$', 'account.views.add'),
 )
