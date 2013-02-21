@@ -1,36 +1,21 @@
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Intern | Match Contact</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- Le styles -->
-    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-    <link href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
-
-  </head>
-
-  <body>
-
-    <!-- Add fancy toolbar -->
-	{% include 'base/base_index.html' %}
-
-    <div class="container">
-
+{% extends "base.html" %}
+{% block listdropdown %}
+    {% if user %}
+                        <li class="dropdown">
+                            <a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile/intern">Edit Profile</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+    {% endif %}
+{% endblock %}
+{% block signinbutton %}
+    {% if user = None %}
+                <p class="navbar-text pull-right"><a href="/login" class="navbar-link">Login</a></p>
+    {% endif %}
+{% endblock %}
+{% block container %}
       <h1>Contact Intern Match</h1>
       <p>We are commited to keeping in contact with you! Any questions or suggestions just give us a holler, and a representative will contact you shortly!
       <br> 
@@ -38,30 +23,7 @@
       <ul>
         <li>Email: admin@internmatch.com</li>
         <li>Phone: 773 123 4567</li>
-        <li>Address: 1234 N. Fake St<br />
-                  Chicago, IL 12345
-        </li>
+        <li>Address: 1234 N. Fake St<br />Chicago, IL 12345</li>
       </ul>
       </p>
-
-    </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!-- <script src="{{ STATIC_URL }}js/jquery-1.8.0.js"></script> -->
-    <script src="{{ STATIC_URL }}js/jquery.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-transition.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-dropdown.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-scrollspy.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-tab.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-tooltip.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-popover.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-button.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-collapse.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-carousel.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-typeahead.js"></script>
-  </body>
-</html>
+{% endblock %}

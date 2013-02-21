@@ -7,23 +7,33 @@ from django.template import RequestContext
 from register.models import Profile
 from home.forms import SigninForm
 
+def index(request):
+    if request.user.is_authenticated():
+        return render_to_response('index.html', {'user': request.user}, context_instance=RequestContext(request))
+    else:
+        return render_to_response('index.html', {'user':None}, context_instance=RequestContext(request))
+
+def contact(request):
+    if request.user.is_authenticated():
+        return render_to_response('contact.html', {'user': request.user}, context_instance=RequestContext(request))
+    else:
+        return render_to_response('contact.html', {'user':None}, context_instance=RequestContext(request))
+
+def about(request):
+    if request.user.is_authenticated():
+        return render_to_response('about.html', {'user': request.user}, context_instance=RequestContext(request))
+    else:
+        return render_to_response('about.html', {'user':None}, context_instance=RequestContext(request))
 
 def Login(request):
-#    if request.user.is_authenticated():
-#        return HttpResponseRedirect('/profile/intern')
-    #user = authenticate(username=request.POST['username'], password=request.POST['password'])
-#    import pdb; pdb.set_trace()
     if request.method == 'POST':
-#        import pdb; pdb.set_trace()
         form = SigninForm(request.POST)
         if form.is_valid():
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             login(request, user)
             profile = Profile.objects.get(user_id=user.id)
-            if request.user.is_authenticated() and profile.is_intern:
-                return HttpResponseRedirect('/profile/intern')
-            if request.user.is_authenticated() and not profile.is_intern:
-                return HttpResponseRedirect('/profile/company')
+            if request.user.is_authenticated():
+                return HttpResponseRedirect('/profile')
         else:
             return render_to_response('signin.html', {'form': form}, context_instance=RequestContext(request))
     else:
@@ -32,7 +42,8 @@ def Login(request):
         return render_to_response('signin.html', context, context_instance=RequestContext(request))
 
 def Logout(request):
-    #import pdb; pdb.set_trace()
     if request.user.is_authenticated():
         logout(request)
+        return HttpResponseRedirect('/')
+    else:
         return HttpResponseRedirect('/')
