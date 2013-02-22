@@ -134,7 +134,7 @@ INSTALLED_APPS = (
     'register',
     'quiz',
     'account',
-    #'registration',
+    'search',
     'crispy_forms',
     #'haystack'
 )
