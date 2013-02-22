@@ -16,10 +16,6 @@ class Profile(models.Model):
     def __unicode__(self):
         return self.name
     
-    class Meta:
-        permissions = (
-                       ("intern", "Is the user an intern"),
-                       )
     
 def create_profile_callback(sender, instance, created, **kwargs):
     if created:

@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from register.models import Profile
 from home.forms import SigninForm
+import pdb
 
 def index(request):
     if request.user.is_authenticated():

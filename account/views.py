@@ -1,9 +1,7 @@
-from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
-from account.models import InternProfile, CompanyProfile
 
 def index(request):
     if request.user.is_authenticated():
