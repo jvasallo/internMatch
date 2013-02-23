@@ -50,6 +50,5 @@ def Logout(request):
         return HttpResponseRedirect('/')
     
 def SearchResults(request):
-    posting = JobPost.objects.get(id=2)
-    import pdb; pdb.set_trace()
-    return render_to_response('search.html', {'posting': posting}, context_instance=RequestContext(request))
+    posting = JobPost.objects.get(id=2) # TODO replace with list of all postings
+    return render_to_response('search.html', {'posting': posting, 'isAuth': request.user.is_authenticated()}, context_instance=RequestContext(request))

@@ -21,11 +21,18 @@ class SigninForm(forms.Form):
                                                 'username',
                                                 'password',
                                     ),
-                                    ButtonHolder(
-                                                 Submit('submit', 'Sign In', css_class='btn btn-large btn-primary')
-                                                 )
+                                    ButtonHolder(Submit('submit', 'Sign In', css_class='btn btn-large btn-primary')),
+                                    HTML("""
+                                         <div class="row">
+                                            <div class="span4">
+                                                <br>
+                                                Not registered?
+                                                <br>Sign up as a 
+                                                <a href="/register/company">company</a> or an
+                                                <a href="/register/intern">intern</a>
+                                            </div>
+                                         </div> """),
                                     )
-#        self.helper.add_input(Submit('submit', 'Sign In'))
         super(SigninForm, self).__init__(*args, **kwargs)
     
     username         = forms.CharField(
