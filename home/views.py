@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from register.models import Profile
 from home.forms import SigninForm
+from job_post.models import JobPost
 import pdb
 
 def index(request):
@@ -47,3 +48,8 @@ def Logout(request):
         return HttpResponseRedirect('/')
     else:
         return HttpResponseRedirect('/')
+    
+def SearchResults(request):
+    posting = JobPost.objects.get(id=2)
+    import pdb; pdb.set_trace()
+    return render_to_response('search.html', {'posting': posting}, context_instance=RequestContext(request))

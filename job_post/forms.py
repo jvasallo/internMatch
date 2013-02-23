@@ -19,9 +19,10 @@ class JobPostForm(forms.Form):
                                     Fieldset(
                                              'Enter relevant information',
                                              Field('headline'),
-                                             Field('company_bio'),
+                                             Field('position'),
                                              Field('description'),
                                              Field('date_post_ends', css_class='date'),
+                                             Field('company_bio'),
                                              Field('required_skills'),
                                              Field('desired_skills'),
                                              Field('city'),
@@ -36,13 +37,16 @@ class JobPostForm(forms.Form):
  
 
     headline        = forms.CharField(
-                                               label=(u'Job Posting Title'),
+                                               label=(u'Job Posting Headline'),
                                                required=True,)
     description     = forms.CharField(
                                                label=(u'Job Description'),
                                                required=True,)
     date_post_ends  = forms.DateField(
                                                label=(u'Date posting will end'),
+                                               required=True,)
+    position           = forms.CharField(          
+                                               label=(u'Position'),
                                                required=True,)
     required_skills = forms.CharField(
                                                label=(u'Required Skills'),

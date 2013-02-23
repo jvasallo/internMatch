@@ -33,6 +33,7 @@ def add_job_post(form, profile):
     job_post.company = profile
     job_post.date_post_ends = form.cleaned_data['date_post_ends']
     job_post.date_posted = date.today()
+    job_post.position = form.cleaned_data['position']
     job_post.description = form.cleaned_data['description']
     job_post.headline = form.cleaned_data['headline']
     job_post.company_bio = form.cleaned_data['company_bio']

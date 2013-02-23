@@ -15,6 +15,6 @@ urlpatterns = patterns('',
     url(r'^profile/', include('account.urls')),
     url(r'^job-post/', include('job_post.urls')),
     url(r'^quiz/', include('quiz.urls')),
-    url(r'^search/', TemplateView.as_view(template_name="search/search.html")),
+    url(r'^search/', 'home.views.SearchResults'),
     url(r'^search_co/', TemplateView.as_view(template_name="search/co_search.html")),
 )

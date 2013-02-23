@@ -2,11 +2,12 @@ from django.db import models
 from register.models import Profile
 
 class JobPost(models.Model):
-    date_posted    = models.DateField(null=True)
-    date_post_ends = models.DateField(null=True)
+    date_posted    = models.DateField()
+    date_post_ends = models.DateField()
     company        = models.ForeignKey(Profile)
     description    = models.TextField(max_length=250, null=True)
     company_bio    = models.TextField(max_length=250, null=True)
+    position       = models.CharField(max_length=50)
     headline       = models.CharField(max_length=50, null=True)
     city           = models.CharField(max_length=50, null=True)
     state          = models.CharField(max_length=50, null=True)
