@@ -20,8 +20,9 @@ def JobPosting(request):
                 #import pdb; pdb.set_trace()
                 add_skill(request.POST.getlist('desired_skills'), job_post, 'desired')
                 add_skill(request.POST.getlist('required_skills'), job_post, 'required')
-                                    
                 return HttpResponseRedirect('/profile')
+            else:
+                return render_to_response('job-post.html', {'form': form}, context_instance=RequestContext(request))
         else:
             form = JobPostForm()
             return render_to_response('job-post.html', {'form': form}, context_instance=RequestContext(request))

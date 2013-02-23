@@ -177,31 +177,14 @@
 					</div>
 				</div>
 				<div class="span9 well">
-					
+					{% for posting in postings %}
 					<a href="?"><h3>{{ posting.position }}</h3></a>
 					<p><a href="?" target="_blank"><b>{{ posting.company.name }}</b></a> - {{ posting.city }}, {{ posting.state }}
 					<br>
 					{{ posting.headline }}</p>
 					<hr>
-					
-					<a href="?"><h3>{{ posting.position }}</h3></a>
-					<p><a href="?" target="_blank"><b>{{ posting.company.name }}</b></a> - {{ posting.city }}, {{ posting.state }}
-					<br>
-					{{ posting.headline }}</p>
-					<hr>
-					
-					<a href="?"><h3>{{ posting.position }}</h3></a>
-					<p><a href="?" target="_blank"><b>{{ posting.company.name }}</b></a> - {{ posting.city }}, {{ posting.state }}
-					<br>
-					{{ posting.headline }}</p>
-					<hr>
-					
-					<a href="?"><h3>{{ posting.position }}</h3></a>
-					<p><a href="?" target="_blank"><b>{{ posting.company.name }}</b></a> - {{ posting.city }}, {{ posting.state }}
-					<br>
-					{{ posting.headline }}</p>
-					<hr>
-					
+					{% endfor %}
+										
 					
 					
 

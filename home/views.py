@@ -6,8 +6,6 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from register.models import Profile
 from home.forms import SigninForm
-from job_post.models import JobPost
-import pdb
 
 def index(request):
     if request.user.is_authenticated():
@@ -54,7 +52,3 @@ def Logout(request):
         return HttpResponseRedirect('/')
     else:
         return HttpResponseRedirect('/')
-    
-def SearchResults(request):
-    posting = JobPost.objects.get(id=2) # TODO replace with list of all postings
-    return render_to_response('search.html', {'posting': posting, 'isAuth': request.user.is_authenticated()}, context_instance=RequestContext(request))

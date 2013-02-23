@@ -23,14 +23,14 @@ class JobPostForm(forms.Form):
                                              Field('description'),
                                              Field('date_post_ends', css_class='date'),
                                              Field('company_bio'),
-                                             Field('required_skills'),
-                                             Field('desired_skills'),
                                              Field('city'),
                                              Field('state'),
-                                             ButtonHolder(Button('button', 'Add Required Skill', css_class='btn btn-large btn-primary add-req-skill')),
-                                             ButtonHolder(Button('button', 'Add Desired Skill', css_class='btn btn-large btn-primary add-des-skill')),
+                                             Field('required_skills'),
+                                             Field('desired_skills'),
                                              css_class='fields'
                                     ),
+                                    ButtonHolder(Button('button', 'Add Required Skill', css_class='btn btn-large btn-primary add-req-skill')),
+                                    ButtonHolder(Button('button', 'Add Desired Skill', css_class='btn btn-large btn-primary add-des-skill')),
                                     ButtonHolder(Submit('submit', 'Save', css_class='btn btn-large btn-primary'))
                                     )
         super(JobPostForm, self).__init__(*args, **kwargs)
