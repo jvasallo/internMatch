@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'account',
     'job_post',
     #'registration',
+    'search',
     'crispy_forms',
     'home',
     #'haystack'

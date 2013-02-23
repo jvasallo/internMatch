@@ -42,6 +42,12 @@ def Login(request):
         form = SigninForm()
         return render_to_response('signin.html', {'form': form}, context_instance=RequestContext(request))
 
+def Forgot(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/')
+
 def Logout(request):
     if request.user.is_authenticated():
         logout(request)
