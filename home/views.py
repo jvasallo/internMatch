@@ -25,6 +25,12 @@ def about(request):
     else:
         return render_to_response('about.html', {'user': None}, context_instance=RequestContext(request))
 
+def legal(request):
+    if request.user.is_authenticated():
+        return render_to_response('legal.html', {'user': request.user}, context_instance=RequestContext(request))
+    else:
+        return render_to_response('legal.html', {'user': None}, context_instance=RequestContext(request))		
+		
 def Login(request):
     if request.method == 'POST':
         form = SigninForm(request.POST)
