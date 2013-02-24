@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
@@ -16,11 +16,28 @@ def index(request):
         return HttpResponseRedirect('/login')
 
 def publicCompanyProfile(request, company_id):
-    try:
+    try: # try to get a profile record
         companyProfile = Profile.objects.get(pk=company_id)
-    except JobPost.DoesNotExist:
+    except Profile.DoesNotExist:
         raise Http404
-    return render_to_response('account/profile_company.html', {'company': companyProfile}, context_instance=RequestContext(request))
+    if companyProfile.is_intern: # if the companyProfile retrieved is flagged as an intern....
+        return HttpResponseRedirect('/')
+    else: # else we have an actual company profile so display it.
+        return render_to_response('account/profile_company.html', {'company': companyProfile}, context_instance=RequestContext(request))
+
+def privateInternProfile(request, intern_id):
+    if request.user.is_authenticated():
+        userProfile = request.user.get_profile()
+        if userProfile.is_intern: # interns can't view profile pages
+            return HttpResponseRedirect('/')    
+        else: # request to view profile is coming from company
+            try:
+                internProfile = Profile.objects.get(pk=intern_id)
+            except Profile.DoesNotExist:
+                raise Http404
+            return render_to_response('account/profile_intern.html', {'intern': internProfile}, context_instance=RequestContext(request))
+    else: # redirect to home because user is not company nor intern
+        return HttpResponseRedirect('/')
 
 def add(request):
     if request.user.is_authenticated():

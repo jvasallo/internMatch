@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'add/$', 'account.views.add'),
     url(r'edit/$', 'account.views.edit'),
     url(r'company/(?P<company_id>\d+)/$', 'account.views.publicCompanyProfile'),
+    url(r'intern/(?P<intern_id>\d+)/$', 'account.views.privateInternProfile'),
 )
