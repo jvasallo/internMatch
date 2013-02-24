@@ -12,6 +12,12 @@ class JobPost(models.Model):
     city           = models.CharField(max_length=50, null=True)
     state          = models.CharField(max_length=50, null=True)
     
+    def getRequiredSkills(self):
+        return self.skill_set.filter(type='required')
+    
+    def getDesiredSkills(self):
+        return self.skill_set.filter(type='desired')
+    
     def __unicode__(self):
         return self.headline
     

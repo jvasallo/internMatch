@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User, Permission
@@ -28,6 +28,13 @@ def JobPosting(request):
             return render_to_response('job-post.html', {'form': form}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/register/company')
+
+def detail(request, job_post_id):
+    try:
+        jobpost = JobPost.objects.get(pk=job_post_id)
+    except JobPost.DoesNotExist:
+        raise Http404
+    return render_to_response('job-post/detail.html', {'jobpost': jobpost}, context_instance=RequestContext(request))
 
 def add_job_post(form, profile):
     job_post = JobPost()
