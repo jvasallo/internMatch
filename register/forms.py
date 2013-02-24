@@ -3,9 +3,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from register.models import Profile
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Field
 
 class InternRegistrationForm(forms.Form):
     def __init__(self, *args, **kwargs):
@@ -16,7 +14,7 @@ class InternRegistrationForm(forms.Form):
         self.helper.form_action = ''
 
         self.helper.add_input(Submit('submit', 'Sign up'))
-        super(InternRegistrationForm, self).__init__(*args, **kwargs)
+	super(InternRegistrationForm, self).__init__(*args, **kwargs)
     
     MAJORS = (
     ('1', 'Accountancy'),
@@ -72,6 +70,15 @@ class InternRegistrationForm(forms.Form):
                                        required=True,
                                        min_length=6,
                                        )
+    agree_terms = forms.MultipleChoiceField(
+        label = (u''),
+        required=True,
+        choices = (
+            ('agree', "I Agree"),
+        ),
+        widget = forms.CheckboxSelectMultiple,
+        help_text = "<a href='/legal' target='_blank'>Terms of Service</a>",
+    )
     
     class Meta:
         model = Profile
@@ -149,6 +156,15 @@ class CompanyRegistrationForm(forms.Form):
                                        required=True,
                                        min_length=6,
                                        )
+    agree_terms = forms.MultipleChoiceField(
+        label = (u''),
+        required=True,
+        choices = (
+            ('agree', "I Agree"),
+        ),
+        widget = forms.CheckboxSelectMultiple,
+        help_text = "<a href='/legal' target='_blank'>Terms of Service</a>",
+    )
     
     class Meta:
         model = Profile
