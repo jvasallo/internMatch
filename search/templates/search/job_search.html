@@ -1,0 +1,89 @@
+{% extends 'search/base.html' %}
+{% block listdropdown %}
+    {% if isAuth %}
+                        <li class="dropdown">
+                            <a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">Edit Profile</a></li>
+                                <li><a href="/quiz">Take Quiz</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+    {% endif %}
+{% endblock %}
+{% block signinbutton %}
+    {% if not isAuth %}
+                <p class="navbar-text pull-right"><a href="/login" class="navbar-link">Login</a></p>
+    {% endif %}
+{% endblock %}
+{% block container %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+	    <div class="span12 well">
+                <h1>Search Results <small>[search term]</small></h1>
+		    <form class="search-form">
+		    Seeking:
+		    <input type="text" class="input-large" id="skills" data-provide="typeahead" data-items="4" placeholder="Enter job title or keyword">
+		    in
+		    <input type="text" class="input-large" id="city" data-provide="typeahead" data-items="2" placeholder="City, State, or Zip Code">
+		    <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i> Search	</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container-fluid">
+        <div class="row-fluid">
+	    <div class="span3 well">
+	        <b>Sort By: </b>
+		<br>
+		<div class="btn-group" data-toggle="buttons-radio">
+		    <button type="button" class="btn btn-primary">Relevance</button>
+                    <button type="button" class="btn btn-primary">Date Posted</button>
+                </div>
+		<br>
+		<br>
+		<b>Compensation:</b>
+		<br>
+		<div class="btn-group" data-toggle="buttons-radio">
+		    <button type="button" class="btn btn-primary">Both</button>
+		    <button type="button" class="btn btn-primary">Paid</button>
+       		    <button type="button" class="btn btn-primary">Unpaid</button>
+		</div>
+		<br>
+		<br>
+		<b>Location:</b>
+		<br>
+		<div class="btn-group">
+		    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> Chicago, IL <span class="caret"></span> </a>
+		    <ul class="dropdown-menu">
+    		        <li>Schaumburg, IL</li>
+		        <li>Detroit, MI</li>
+		    </ul>
+		</div>
+	    </div>
+	    <div class="span9 well">
+	        {% for posting in postings %}
+                    <a href="/job-post/{{ posting.id }}"><h3>{{ posting.headline }}</h3></a>
+		    <p><a href="/profile/company/{{ posting.company.id }}"><b>{{ posting.company.name }}</b></a> - {{ posting.city }}, {{ posting.state }}
+		    <br>
+		    {{ posting.position }}
+                    </p>
+		    <hr>
+		{% endfor %}
+										
+		<div class="pagination pagination-centered">
+                    <ul>
+		        <li><a href="#">&laquo;</a></li>
+  		        <li><a href="#">1</a></li>
+		        <li><a href="#">2</a></li>
+		        <li><a href="#">3</a></li>
+		        <li><a href="#">4</a></li>
+		        <li><a href="#">5</a></li>
+		        <li><a href="#">&raquo;</a></li>
+		    </ul>
+		</div>
+	    </div>
+        </div><!-- End Row-->
+    </div><!-- End Container -->
+{% endblock %}
