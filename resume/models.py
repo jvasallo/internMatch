@@ -8,6 +8,9 @@ class Resume(models.Model):
     
     def getReferences(self):
         return self.reference_set.all()
+
+    def getExperiences(self):
+        return self.experience_set.all()
     
     def getSkills(self):
 	return self.skill_set.all()
@@ -28,26 +31,27 @@ class Skill(models.Model):
 
 class Experience(models.Model):
     intern = models.ForeignKey('register.Profile', null=True)      # Job/Project experience could belong to intern
-    title = 
-    company_class_name =
-    start_date = 
-    end_date = 
-    city = 
-    state = 
-    description = 
+    title = models.CharField(max_length=50,null=True)
+    company_class_name = models.CharField(max_length=50,null=True)
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
+    city = models.CharField(max_length=50,null=True)
+    state = models.CharField(max_length=50,null=True)
+    description = models.CharField(max_length=50,null=True)
 
     def __unicode__(self):
         return self.title
 
 class Activity(models.Model):
     intern = models.ForeignKey('register.Profile', null=True)      # activity could belong to intern
-    name = 
+    name = models.CharField(max_length=50,null=True)
 
     def __unicode__(self):
         return self.name
     
 class Reference(models.Model):
     name = models.CharField(max_length=50,null=True)
+    relationship = models.CharField(max_length=50, null=True)
     email = models.CharField(max_length=50,null=True)
     resume = models.ForeignKey('Resume', null=True)    # skill could be part of resume
     intern = models.ForeignKey('register.Profile', null=True)      # reference could belong to intern

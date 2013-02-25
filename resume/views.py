@@ -37,9 +37,9 @@ def ResumePosting(request):
 
 def add_resume(form, profile):
     resume = ResumePost()
-    resume_post.company = profile
-    resume_post.date_post_ends = form.cleaned_data['date_post_ends']
-    resume_post.date_posted = date.today()
+    resume.summary = form.cleaned_data['summary']
+    resume.date_post_ends = form.cleaned_data['start_date']
+    resume.date_posted = date.today()
     resume_post.position = form.cleaned_data['position']
     resume_post.description = form.cleaned_data['description']
     resume_post.headline = form.cleaned_data['headline']
@@ -49,10 +49,19 @@ def add_resume(form, profile):
     resume_post.save()
     return resume_post
 
-def add_skill(skills, resume_post, type):
+def add_skill(skills, resume, type):
     for s in skills:
         skill = Skill()
         skill.name = s
-        skill.resume = resume_post
+        skill.resume = resume
         skill.type = type
         skill.save()
+
+def add_activity(activities, resume, type):
+    for s in skills:
+        skill = Skill()
+        skill.name = s
+        skill.resume = resume
+        skill.type = type
+        skill.save()
+
