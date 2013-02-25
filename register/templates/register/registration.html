@@ -6,4 +6,45 @@
 {% block container %}
     {% load crispy_forms_tags %}
         {% crispy form %}
+    <div id="termsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="termsModalLabel">Intern | Match Terms of Service</h3>
+        </div>
+        <div class="modal-body">
+            <p>By signing up to Intern Match you agree, but not limited to:
+            <br><br>
+            <b>Privacy</b>
+            <br>
+            <br>Any information that you provide to Intern Match is subject to our Privacy Policy, which governs our collection and use of your information. You understand that through your use of the Services you consent to the collection and use (as set forth in the Privacy Policy) of this information, including the transfer of this information to the United States and/or other countries for storage, processing and use by Intern Match. As part of providing you the Services, we may need to provide you with certain communications, such as service announcements and administrative messages. These communications are considered part of the Services and your Intern Match account, which you may not be able to opt-out from receiving.
+            <br><br>
+
+            <b>Personal Information Collected</b><br>
+            <br>We collect information:
+            <ul>
+                <li>When you register an account to become a Intern Match user ("Candidate" or "Company"), such as your name, e-mail, EIN, address, and a password.</li>
+                <li>When you view and interact with Intern Match pages, features, and functionality, including Intern Match mobile applications and software.</li>
+                <li>We also collect your IP address, browser type, operating system, mobile carrier, and your ISP, and receive the URLs of sites from which you arrive or leave the Intern Match website, or sites that have embedded Intern Match platform technology.</li>
+                <li>Through cookies and other technologies that allow us to recognize you and customize your experience.</li>
+                <li>When you interact with services available through Intern Match like surveys, polls or other third party research undertaken with your consent.</li>
+            </ul>
+            <br>
+
+            <b>Use of Personal Information</b><br>
+            <br>We use the information you provide to:
+            <ul>
+                <li>Enable you to share your information and communicate with Companies, or provide your personal details to third parties offering combined services with Intern Match.</li>
+                <li>Administer your account with us and customize the service we provide to you and other Users.</li>
+                <li>Send you service communications through email and notices on the Intern Match website.</li>
+                <li>Connect you to opportunities by enabling other professionals to find you on Intern Match.</li>
+            </ul>
+            <br>
+
+            <br>We do not sell, rent, or otherwise provide personally identifiable information to third parties without your consent except where it is necessary to carry out your instructions. Also, we may share information with affiliates to provide the Services. We also provide you with the means to control whether or not your contact information is viewable to other Users through your profile.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+    </div>
 {% endblock %}

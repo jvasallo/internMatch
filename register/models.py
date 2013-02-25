@@ -7,10 +7,16 @@ class Profile(models.Model):
     name = models.CharField(max_length=30, null=True)
     address = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=20, null=True)
+    state = models.CharField(max_length=20, null=True)
     zip = models.CharField(max_length=10, null=True)
     school = models.CharField(max_length=80, null=True)
+    phone = models.CharField(max_length=15, null=True)
+    contactEmail = models.CharField(max_length=50, null=True)
+    website = models.CharField(max_length=100, null=True)
     graduation_date = models.DateField(null=True)
     major = models.CharField(max_length=50, null=True)
+    industry = models.CharField(max_length=50, null=True)
+    description = models.CharField(max_length=500, null=True)
     is_intern = models.BooleanField()
     
     def __unicode__(self):
@@ -19,7 +25,6 @@ class Profile(models.Model):
     
 def create_profile_callback(sender, instance, created, **kwargs):
     if created:
-#        import pdb; pdb.set_trace()
         Profile.objects.create(user=instance)
 #    else:
 #        Profile.objects.update(user=instance)

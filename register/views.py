@@ -46,6 +46,15 @@ def CompanyRegistration(request):
             login(request, user)
             company = user.get_profile()
             company.name = form.cleaned_data['name']
+            company.description = form.cleaned_data['description']
+            company.industry = form.cleaned_data['industry']
+            company.address = form.cleaned_data['address']
+            company.city = form.cleaned_data['city']
+            company.state = form.cleaned_data['state']
+            company.zip = form.cleaned_data['zip']
+            company.phone = form.cleaned_data['phone']
+            company.contactEmail = form.cleaned_data['contactEmail']
+            company.website = form.cleaned_data['website']
             company.is_intern = False
             company.save()
             return HttpResponseRedirect('/quiz')
