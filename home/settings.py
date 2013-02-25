@@ -84,6 +84,7 @@ STATICFILES_FINDERS = (
 
 FIXTURE_DIRS = (
     os.path.join(PROJECT_ROOT, '../quiz/fixtures/'),
+    os.path.join(PROJECT_ROOT, '../register/fixtures/'),
 )
 
 # Make this unique, and don't share it with anybody.
