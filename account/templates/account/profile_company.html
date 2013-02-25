@@ -18,12 +18,11 @@
 	          <div class="navbar-inner">
 	            <div class="container">
 	              <ul class="nav">
-	                <li class="active"><a href="#">Profile</a></li>
-	                <li><a href="#">Personality</a></li>
-					<li><a href="#">Active Applicants</a></li>
-					<li><a href="#">Active Job Listings</a></li>
-	                <li><a href="#">Search History</a></li>
-	                <li><a href="#">Notifications</a></li>
+	                <li class="active"><a href="/profile">Profile</a></li>
+	                <li><a href="/quiz">Retake Quiz</a></li>
+			<li><a href="/job-post">Post New Job</a></li>
+			<li><a href="#">Active Job Listings</a></li>
+	                <li><a href="#">Potential Applicants</a></li>
 	              </ul>
 	            </div>
 	          </div>
@@ -31,40 +30,35 @@
       </div>
       <div class="row">
         <div class="span8">
-	  <h2>ACME Corporation</h2>
-	  <!-- <p>Unique and Reliable Products</p> --> <br>
+	  <h2>{{ profile.name }}</h2>
+          <h4>Industry: {{ profile.industry }}</h4>
 	  <p>
-        <h3>Company Description:</h3>
-        Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-      </p>
-	  <p>
-        <h3>Personality type:</h3>
-        Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-      </p>
-	  <p>
-        <h3>Affiliations and Partnerships:</h3>
-        <ul>
-		  <li>ACE</li>
+              <h3>Company Description:</h3>
+              {{ profile.description }}
+          </p>
+          <p>
+              <h3>Affiliations and Partnerships:</h3>
+              <ul>
+                  <li>ACE</li>
 		  <li>AJAX</li>
 		  <li>Warner Bros.</li>
-		</ul>
+	      </ul>
 	  </p>
-      <p>
-		<br>
-		<p>
-	    <h4>Company Location:</h4>
-	    <ul>
-			1234 N. Michigan Ave <br>
-			Chicago, IL 60601 <br>
-		</ul>
-	  </p>
-        <h4>Contact Information:</h4>
-		<ul>
-			<b>Phone: </b> (312)555-5555 <br>
-			<b>Fax: </b> (312)555-6666 <br>
-			<b>Email: </b> careers@acmecorp.com <br>
-			<b>Website: </b> <a href="#">www.acmecorp.com</a> <br>
-		</ul>
-      </p>
+          <p>
+              <p>
+                  <br>
+    	          <h4>Company Location:</h4>
+                  <ul>
+	  	  {{ profile.address }}<br>
+		  {{ profile.city }}, {{ profile.state }} {{ profile.zip }}<br>
+	          </ul>
+	      </p>
+              <h4>Contact Information:</h4>
+  	      <ul>
+	          <b>Phone: </b> {{ profile.phone }}<br>
+		  <b>Email: </b> {{ profile.contactEmail }}<br>
+                  <b>Website: </b> <a href="{{ profile.website }}">{{ profile.website }}</a> <br>
+	      </ul>
+          </p>
         </div> <!-- /.span8 -->
 {% endblock %}

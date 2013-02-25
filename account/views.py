@@ -9,9 +9,9 @@ def index(request):
         user = request.user
         userProfile = request.user.get_profile()
         if userProfile.is_intern:
-            return render_to_response('account/profile_intern.html', {'intern': user}, context_instance=RequestContext(request))
+            return render_to_response('account/profile_intern.html', {'intern': user, 'profile': userProfile}, context_instance=RequestContext(request))
         else:
-            return render_to_response('account/profile_company.html', {'company': user}, context_instance=RequestContext(request))
+            return render_to_response('account/profile_company.html', {'company': user, 'profile': userProfile}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login')
 
