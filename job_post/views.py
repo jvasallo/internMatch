@@ -17,7 +17,6 @@ def JobPosting(request):
         if request.method == 'POST':
             if form.is_valid():
                 job_post = add_job_post(form,profile)
-                import pdb; pdb.set_trace()
                 add_skills(request.POST.getlist('desired_skills')[0].split(','), job_post, 'desired')
                 add_skills(request.POST.getlist('required_skills')[0].split(','), job_post, 'required')
                 return HttpResponseRedirect('/profile')
