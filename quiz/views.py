@@ -29,18 +29,18 @@ def submit(request):
     if request.user.is_authenticated(): # if user is logged in https://docs.djangoproject.com/en/dev/topics/forms/?from=olddocs
         user = request.user
         if request.method == 'POST': # and if request is a POST
-            quiz = Quiz.objects.get(id=int(request.POST.get('quizID').encode('ascii','ignore')))
+            quiz = Quiz.objects.get(id=int(request.POST.get('quizID')))
             try:
                 user_quizresult = QuizResult.objects.get(user=user)
             except Exception:
                 user_quizresult = None
 
             if user_quizresult:
-                quizData = str(request.POST.get('quizString').encode('ascii','ignore'))
+                quizData = str(request.POST.get('quizString'))
                 user_quizresult.collectQuizData(quizData)
             else:
                 user_quizresult = QuizResult.create(quiz, user)  # init a null quiz result
-                quizData = str(request.POST.get('quizString').encode('ascii','ignore'))
+                quizData = str(request.POST.get('quizString')) 
                 user_quizresult.collectQuizData(quizData)
             return HttpResponseRedirect('quiz/complete/') # redirect to a thank you page or something
     else: # else user needs to log in
