@@ -154,17 +154,19 @@ a.editable-click.editable-disabled:hover {
 
 .editable-empty, .editable-empty:hover{
   font-style: italic; 
-  color: #DD1144;  
+  color: grey;  
   border-bottom: none;
   text-decoration: none;
 }
 
 .editable-unsaved {
-  font-weight: bold; 
+  /*font-weight: bold;*/
+  color: red;
 }
 
 .editable-unsaved:after {
 /*    content: '*'*/
+  color: green;
 }
 
 

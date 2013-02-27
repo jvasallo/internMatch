@@ -70,6 +70,14 @@
 	    <a href="#" id="email">{{ intern.email }}</a>
         </div>
     </div>
+	
+	<div class="control-group">
+        <!-- Skills -->
+        <label class="control-label" for="skills">Skills:</label>
+        <div class="controls">
+	    <a href="#" id="skills">{{ profile.skills }}</a>
+        </div>
+    </div>
     {% endif%}
 	  
     {% if company %}
@@ -158,6 +166,14 @@
         <label class="control-label"  for="website">Company Website:</label>
         <div class="controls">
             <a href="#" id="website">{{ user.get_profile.website }}</a>
+        </div>
+    </div>
+	
+	<div class="control-group">
+        <!-- Skills -->
+        <label class="control-label" for="skills">Skills:</label>
+        <div class="controls">
+	    <a href="#" id="skills">{{ profile.skills }}</a>
         </div>
     </div>
 {% endif%}
