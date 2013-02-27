@@ -55,8 +55,10 @@ def edit(request):
         user = request.user
         userProfile = request.user.get_profile()
         if userProfile.is_intern:
-            return render_to_response('account/edit.html', {'intern': user}, context_instance=RequestContext(request))
+            #return render_to_response('account/edit_html.html', {'intern': user}, context_instance=RequestContext(request))
+            return render_to_response('account/edit_xeditable.html', {'intern': user}, context_instance=RequestContext(request))
         else:
-            return render_to_response('account/edit.html', {'company': user}, context_instance=RequestContext(request))
+            #return render_to_response('account/edit_html.html', {'company': user}, context_instance=RequestContext(request))
+            return render_to_response('account/edit_xeditable.html', {'company': user}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login')

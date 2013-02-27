@@ -4,7 +4,8 @@
                         <li class="dropdown">
                             <a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/profile">Edit Profile</a></li>
+                                <li><a href="/profile">View Profile</a></li>
+								<li><a href="/profile/edit">Edit Profile</a></li>
                                 <li><a href="/quiz">Take Quiz</a></li>
                                 <li><a href="/logout">Logout</a></li>
                             </ul>
@@ -32,7 +33,7 @@
       <div class="row">
         <div class="span8">
 	  <h2>{{ InternProfile.user }}</h2>
-	  <p>{{ profile.major   }}</p>
+	  <p>Major: {{ profile.major   }}</p>
 	  <p>
             <h3>Professional Summary:</h3>
             Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
