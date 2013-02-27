@@ -29,8 +29,6 @@ class JobPostForm(forms.Form):
                                              Field('desired_skills'),
                                              css_class='fields'
                                     ),
-                                    ButtonHolder(Button('button', 'Add Required Skill', css_class='btn btn-large btn-primary add-req-skill')),
-                                    ButtonHolder(Button('button', 'Add Desired Skill', css_class='btn btn-large btn-primary add-des-skill')),
                                     ButtonHolder(Submit('submit', 'Save', css_class='btn btn-large btn-primary'))
                                     )
         super(JobPostForm, self).__init__(*args, **kwargs)
@@ -45,14 +43,14 @@ class JobPostForm(forms.Form):
     date_post_ends  = forms.DateField(
                                                label=(u'Date posting will end'),
                                                required=True,)
-    position           = forms.CharField(          
+    position        = forms.CharField(          
                                                label=(u'Position'),
                                                required=True,)
     required_skills = forms.CharField(
-                                               label=(u'Required Skills'),
+                                               label=(u'Required Skills - Enter a comma separated list'),
                                                required=False,)
     desired_skills  = forms.CharField(
-                                               label=(u'Desired Skills'),
+                                               label=(u'Desired Skills - Enter a comma separated list'),
                                                required=False,)
     company_bio     = forms.CharField(          
                                                label=(u'Company Bio'),
@@ -63,6 +61,8 @@ class JobPostForm(forms.Form):
     state           = forms.CharField(          
                                                label=(u'State'),
                                                required=False,)
+    url             = forms.URLField(          label=(u'Company application url'),
+                                               required=False)
         
     
     def clean(self):

@@ -17,9 +17,9 @@ def JobPosting(request):
         if request.method == 'POST':
             if form.is_valid():
                 job_post = add_job_post(form,profile)
-                #import pdb; pdb.set_trace()
-                add_skill(request.POST.getlist('desired_skills'), job_post, 'desired')
-                add_skill(request.POST.getlist('required_skills'), job_post, 'required')
+                import pdb; pdb.set_trace()
+                add_skills(request.POST.getlist('desired_skills')[0].split(','), job_post, 'desired')
+                add_skills(request.POST.getlist('required_skills')[0].split(','), job_post, 'required')
                 return HttpResponseRedirect('/profile')
             else:
                 return render_to_response('job-post.html', {'form': form}, context_instance=RequestContext(request))
@@ -50,7 +50,7 @@ def add_job_post(form, profile):
     job_post.save()
     return job_post
 
-def add_skill(skills, job_post, type):
+def add_skills(skills, job_post, type):
     for s in skills:
         skill = Skill()
         skill.name = s
