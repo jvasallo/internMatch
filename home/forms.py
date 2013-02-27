@@ -35,17 +35,10 @@ class SigninForm(forms.Form):
                                     )
         super(SigninForm, self).__init__(*args, **kwargs)
     
-    username         = forms.CharField(
-                                       label=(u'User Name'),
-                                       required=True,
-                                       )
-
-    password         = forms.CharField(
-                                       label=(u'Password'),
-                                       widget=forms.PasswordInput(render_value=False),
-                                       required=True,
-                                       min_length=6,
-                                       )
+    username = forms.CharField(label=(u'User Name'), required=True)
+    password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False), required=True,
+                               min_length=6
+                              )
 
     
     class Meta:

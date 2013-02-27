@@ -25,163 +25,143 @@
 {% endblock %}
 {% block container %}
 <!-- Begin Intern Edit Form -->
-      <form class="form-horizontal" action='' method="POST">
-        
-		<div id="legend">
-          <legend class="">Edit Profile</legend>
-        </div>
+    <form class="form-horizontal" action='' method="POST">
+    <div id="legend">
+        <legend class="">Edit Profile</legend>
+    </div>
 		
-	{% if intern %}	
-		<div class="control-group">
-          <!-- Name -->
-          <label class="control-label" for="name">Name:</label>
-          <div class="controls">
-			<a href="#" id="name">{{ user.get_profile.name }}</a>
-          </div>
-        </div>
-		
-		<div class="control-group">
-          <!-- School -->
-          <label class="control-label" for="school">School:</label>
-          <div class="controls">
-			<a href="#" id="school">{{ user.get_profile.school }}</a>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <!-- Graduation Date -->
-          <label class="control-label" for="graduation_date">Graduation Date:</label>
-          <div class="controls">
-			<a href="#" id="graduation_date" type="datepicker">{{ user.get_profile.graduation_date }}</a>
-          </div>
-        </div>
-		
-		<div class="control-group">
-          <!-- Major -->
-          <label class="control-label" for="major">Major:</label>
-          <div class="controls">
-			<a href="#" id="major">{{ user.get_profile.major }}</a>
-          </div>
-        </div>
-		
-		<!--
-		<div class="control-group">
-          <!-- Username --/>
-          <label class="control-label"  for="username">Username:</label>
-          <div class="controls">
-			<font color="ff0000">{{ intern.username }}</font>
-          </div>
-        </div>
-		-->
-		
-		<div class="control-group">
-          <!-- Email -->
-          <label class="control-label" for="email">Email:</label>
-          <div class="controls">
-			<a href="#" id="email">{{ intern.email }}</a>
-          </div>
-        </div>
-	  {% endif%}
-	  
-	  {% if company %}
-		<div class="control-group">
-          <!-- Name -->
-          <label class="control-label" for="name">Name:</label>
-          <div class="controls">
+    {% if intern %}	
+    <div class="control-group">
+        <!-- Name -->
+        <label class="control-label" for="name">Name:</label>
+        <div class="controls">
             <a href="#" id="name">{{ user.get_profile.name }}</a>
-          </div>
         </div>
+    </div>
 		
-		<div class="control-group">
-          <!-- Description -->
-          <label class="control-label" for="description">Description:</label>
-          <div class="controls">
-            <a href="#" id="description">{{ user.get_profile.description }}</a>
-          </div>
+    <div class="control-group">
+        <!-- School -->
+        <label class="control-label" for="school">School:</label>
+        <div class="controls">
+	    <a href="#" id="school">{{ user.get_profile.school }}</a>
         </div>
+    </div>
 
-        <div class="control-group">
-          <!-- Industry -->
-          <label class="control-label" for="industry">Industry:</label>
-          <div class="controls">
-            <a href="#" id="industry">{{ user.get_profile.industry }}</a>
-          </div>
+    <div class="control-group">
+        <!-- Graduation Date -->
+        <label class="control-label" for="graduation_date">Graduation Date:</label>
+        <div class="controls">
+	    <a href="#" id="graduation_date" type="datepicker">{{ user.get_profile.graduation_date }}</a>
         </div>
+    </div>
 		
-		<div class="control-group">
-          <!-- Address -->
-          <label class="control-label" for="address">Address:</label>
-          <div class="controls">
-            <a href="#" id="address">{{ user.get_profile.address }}</a>
-          </div>
+    <div class="control-group">
+        <!-- Major -->
+        <label class="control-label" for="major">Major:</label>
+        <div class="controls">
+	    <a href="#" id="major">{{ user.get_profile.major }}</a>
         </div>
+    </div>
 		
-		<div class="control-group">
-          <!-- City -->
-          <label class="control-label" for="city">City:</label>
-          <div class="controls">
-            <a href="#" id="city">{{ user.get_profile.city }}</a>
-          </div>
+    <div class="control-group">
+        <!-- Email -->
+        <label class="control-label" for="email">Email:</label>
+        <div class="controls">
+	    <a href="#" id="email">{{ intern.email }}</a>
         </div>
-		
-		<div class="control-group">
-          <!-- State -->
-          <label class="control-label" for="state">State:</label>
-          <div class="controls">
-            <a href="#" id="state">{{ user.get_profile.state }}</a>
-          </div>
-        </div>
-		
-		<div class="control-group">
-          <!-- Zip Code -->
-          <label class="control-label" for="zip">Zip Code:</label>
-          <div class="controls">
-            <a href="#" id="zip">{{ user.get_profile.zip }}</a>
-          </div>
-        </div>
-
-		<!--
-		<div class="control-group">
-          <!-- Username --/>
-          <label class="control-label" for="username">Username:</label>
-          <div class="controls">
-            <font color="ff0000">{{ company.username }}</font>
-          </div>
-        </div>
-		-->
-		
-		<div class="control-group">
-          <!-- Email -->
-          <label class="control-label"  for="email">Email:</label>
-          <div class="controls">
-            <a href="#" id="email">{{ company.email }}</a>
-          </div>
-        </div>
-		
-		<div class="control-group">
-          <!-- Contact Phone -->
-          <label class="control-label"  for="phone">Contact Phone:</label>
-          <div class="controls">
-            <a href="#" id="phone">{{ user.get_profile.phone }}</a>
-          </div>
-        </div>
-		
-		<div class="control-group">
-          <!-- Contact Email -->
-          <label class="control-label"  for="contactEmail">Contact Email:</label>
-          <div class="controls">
-            <a href="#" id="contactEmail">{{ user.get_profile.contactEmail }}</a>
-          </div>
-        </div>
-		
-		<div class="control-group">
-          <!-- Website -->
-          <label class="control-label"  for="website">Company Website:</label>
-          <div class="controls">
-            <a href="#" id="website">{{ user.get_profile.website }}</a>
-          </div>
-        </div>
-	  {% endif%}
+    </div>
+    {% endif%}
 	  
-		</form>
+    {% if company %}
+    <div class="control-group">
+        <!-- Name -->
+        <label class="control-label" for="name">Name:</label>
+        <div class="controls">
+            <a href="#" id="name">{{ user.get_profile.name }}</a>
+        </div>
+    </div>
+		
+    <div class="control-group">
+        <!-- Description -->
+        <label class="control-label" for="description">Description:</label>
+        <div class="controls">
+            <a href="#" id="description">{{ user.get_profile.description }}</a>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <!-- Industry -->
+        <label class="control-label" for="industry">Industry:</label>
+        <div class="controls">
+            <a href="#" id="industry">{{ user.get_profile.industry }}</a>
+        </div>
+    </div>
+		
+    <div class="control-group">
+        <!-- Address -->
+        <label class="control-label" for="address">Address:</label>
+        <div class="controls">
+            <a href="#" id="address">{{ user.get_profile.address }}</a>
+        </div>
+    </div>
+		
+    <div class="control-group">
+        <!-- City -->
+        <label class="control-label" for="city">City:</label>
+        <div class="controls">
+            <a href="#" id="city">{{ user.get_profile.city }}</a>
+        </div>
+    </div>
+		
+    <div class="control-group">
+        <!-- State -->
+        <label class="control-label" for="state">State:</label>
+        <div class="controls">
+            <a href="#" id="state">{{ user.get_profile.state }}</a>
+        </div>
+    </div>
+		
+    <div class="control-group">
+        <!-- Zip Code -->
+        <label class="control-label" for="zip">Zip Code:</label>
+        <div class="controls">
+            <a href="#" id="zip">{{ user.get_profile.zip }}</a>
+        </div>
+    </div>
+		
+    <div class="control-group">
+        <!-- Email -->
+        <label class="control-label"  for="email">Email:</label>
+        <div class="controls">
+            <a href="#" id="email">{{ company.email }}</a>
+        </div>
+    </div>
+		
+    <div class="control-group">
+        <!-- Contact Phone -->
+        <label class="control-label"  for="phone">Contact Phone:</label>
+        <div class="controls">
+            <a href="#" id="phone">{{ user.get_profile.phone }}</a>
+        </div>
+    </div>
+		
+    <div class="control-group">
+        <!-- Contact Email -->
+        <label class="control-label"  for="contactEmail">Contact Email:</label>
+        <div class="controls">
+            <a href="#" id="contactEmail">{{ user.get_profile.contactEmail }}</a>
+        </div>
+    </div>
+		
+    <div class="control-group">
+        <!-- Website -->
+        <label class="control-label"  for="website">Company Website:</label>
+        <div class="controls">
+            <a href="#" id="website">{{ user.get_profile.website }}</a>
+        </div>
+    </div>
+{% endif%}
+
+</form>
+
 {% endblock %}
