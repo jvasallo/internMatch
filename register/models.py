@@ -16,7 +16,7 @@ class Profile(models.Model):
     graduation_date = models.DateField(null=True)
     major = models.CharField(max_length=50, null=True)
     industry = models.CharField(max_length=50, null=True)
-    description = models.CharField(max_length=500, null=True)
+    description = models.CharField(max_length=1250, null=True)
     is_intern = models.BooleanField()
     
     def __unicode__(self):
