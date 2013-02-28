@@ -8,8 +8,11 @@ from django.contrib.contenttypes.models import ContentType
 from register.models import Profile
 
 def InternRegistration(request):
+    # means the user is logged in, redirect to their profile.
     if request.user.is_authenticated():
         return HttpResponseRedirect('/profile')
+ 
+    # if a POST request is received
     if request.method == 'POST':
         form = InternRegistrationForm(request.POST)
         if form.is_valid():
@@ -30,12 +33,14 @@ def InternRegistration(request):
             return render_to_response('register/registration.html', {'form': form}, context_instance=RequestContext(request))
     else:
         form = InternRegistrationForm()
-        context = {'form': form}
-        return render_to_response('register/registration.html', context, context_instance=RequestContext(request))
+        return render_to_response('register/registration.html', {'form': form}, context_instance=RequestContext(request))
     
 def CompanyRegistration(request):
+    # means the user is logged in, redirect to profile.
     if request.user.is_authenticated():
         return HttpResponseRedirect('/profile')
+
+    # if a POST request is received
     if request.method == 'POST':
         form = CompanyRegistrationForm(request.POST)
         if form.is_valid():
@@ -62,5 +67,4 @@ def CompanyRegistration(request):
             return render_to_response('register/registration.html', {'form': form}, context_instance=RequestContext(request))
     else:
         form = CompanyRegistrationForm()
-        context = {'form': form}
-        return render_to_response('register/registration.html', context, context_instance=RequestContext(request))
+        return render_to_response('register/registration.html', {'form': form}, context_instance=RequestContext(request))
