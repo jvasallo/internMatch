@@ -27,10 +27,11 @@ class SigninForm(forms.Form):
                                          <div class="row">
                                             <div class="span4">
                                                 <br>
-                                                <a href="{% url password_reset %}">Forgot password?</a>
-                                                <br>Create an account >>  
-                                                <a href="/register/company"> Company</a> or 
-                                                <a href="/register/intern">Intern</a>
+                                                <a href="{% url password_reset %}">Forgot password?</a><br>
+                                                <br>
+                                                <center>Not registered? Sign up today as a: 
+                                                <br>  
+                                                <a href="/register/company">Company</a> or <a href="/register/intern">Intern</a></center>
                                             </div>
                                          </div> """),
                                     )

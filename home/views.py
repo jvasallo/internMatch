@@ -9,29 +9,33 @@ from home.forms import SigninForm
 
 def index(request):
     if request.user.is_authenticated():
+        user = request.user
         profile = request.user.get_profile()
-        return render_to_response('index.html', {'user': request.user, 'profile' : profile}, context_instance=RequestContext(request))
+        return render_to_response('index.html', {'user': user, 'profile' : profile}, context_instance=RequestContext(request))
     else:
         return render_to_response('index.html', {'user': None}, context_instance=RequestContext(request))
 
 def contact(request):
     if request.user.is_authenticated():
+        user = request.user
         profile = request.user.get_profile()
-        return render_to_response('contact.html', {'user': request.user, 'profile' : profile}, context_instance=RequestContext(request))
+        return render_to_response('contact.html', {'user': user, 'profile' : profile}, context_instance=RequestContext(request))
     else:
         return render_to_response('contact.html', {'user': None}, context_instance=RequestContext(request))
 
 def about(request):
     if request.user.is_authenticated():
+        user = request.user
         profile = request.user.get_profile()
-        return render_to_response('about.html', {'user': request.user, 'profile' : profile}, context_instance=RequestContext(request))
+        return render_to_response('about.html', {'user': user, 'profile' : profile}, context_instance=RequestContext(request))
     else:
         return render_to_response('about.html', {'user': None}, context_instance=RequestContext(request))
 
 def legal(request):
     if request.user.is_authenticated():
+        user = request.user
         profile = request.user.get_profile()
-        return render_to_response('legal.html', {'user': request.user, 'profile' : profile}, context_instance=RequestContext(request))
+        return render_to_response('legal.html', {'user': user, 'profile' : profile}, context_instance=RequestContext(request))
     else:
         return render_to_response('legal.html', {'user': None}, context_instance=RequestContext(request))		
 		
@@ -41,9 +45,8 @@ def Login(request):
         if form.is_valid():
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             login(request, user)
-            profile = Profile.objects.get(user_id=user.id)
             if request.user.is_authenticated():
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/profile')
         else:
             return render_to_response('signin.html', {'form': form}, context_instance=RequestContext(request))
     else:
