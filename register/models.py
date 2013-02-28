@@ -19,6 +19,11 @@ class Profile(models.Model):
     description = models.CharField(max_length=1250, null=True)
     is_intern = models.BooleanField()
     
+    def quizResult(self):
+        q = self.user.quizresult_set.get(id=1)
+        result = q.quiz_result
+        return result
+
     def __unicode__(self):
         return self.name
     
