@@ -1,0 +1,57 @@
+{% extends 'account/base.html' %}
+{% block listdropdown %}
+                        <li class="dropdown">
+                            <a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">View Profile</a></li>
+                                <li><a href="/profile/edit">Edit Profile</a></li>
+                                <li><a href="/quiz">Take Quiz</a></li>
+                                <li><a href="/job-post">Post New Job</a></li>
+                                <li><a href="/profile/jobs">View Active Jobs</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+{% endblock %}
+{% block container %}
+	      <div class="masthead">
+	        <h3 class="muted">Company Personality: {{ userProfile.quizResult }}<br />Username: {{ user.username }} </h3>
+	        <div class="navbar">
+	          <div class="navbar-inner">
+	            <div class="container">
+	              <ul class="nav">
+	                <li class="active"><a href="/profile">Profile</a></li>
+                        <li><a href="/profile/edit">Edit Profile</a></li>
+	                <li><a href="/quiz/quiz">Retake Quiz</a></li>
+			<li><a href="/job-post">Post New Job</a></li>
+			<li><a href="/profile/jobs">Active Job Listings</a></li>
+	                <li><a href="#">Potential Applicants</a></li>
+	              </ul>
+	            </div>
+	          </div>
+	        </div><!-- /.navbar -->
+      <div class="row">
+        <div class="span8">
+          <h2>{{ userProfile.name }}</h2>
+          <h4>Industry: {{ userProfile.industry }}</h4>
+          <p>
+              <h3>Company Description:</h3>
+              {{ userProfile.description }}
+          </p>
+          <p>
+              <p>
+                  <br>
+                  <h4>Company Location:</h4>
+                  <ul>
+                  {{ userProfile.address }}<br>
+                  {{ userProfile.city }}, {{ userProfile.state }} {{ userProfile.zip }}<br>
+                  </ul>
+              </p>
+              <h4>Contact Information:</h4>
+              <ul>
+                  <b>Phone: </b> {{ userProfile.phone }}<br>
+                  <b>Email: </b> {{ userProfile.contactEmail }}<br>
+                  <b>Website: </b> <a href="{{ userProfile.website }}">{{ userProfile.website }}</a> <br>
+              </ul>
+          </p> 
+        </div> <!-- /.span8 -->
+{% endblock %}

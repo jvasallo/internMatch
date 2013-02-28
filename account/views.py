@@ -11,7 +11,7 @@ def index(request):
         user = request.user
         profile = user.get_profile()
         if profile.is_intern:
-            return render_to_response('account/profile_intern.html', {'user': user, 'userProfile': profile}, context_instance=RequestContext(request))
+            return render_to_response('account/intern_profile_index.html', {'user': user, 'userProfile': profile}, context_instance=RequestContext(request))
         else:
             return render_to_response('account/company_profile_index.html', {'user': user, 'userProfile': profile}, context_instance=RequestContext(request))
     else:
@@ -45,7 +45,7 @@ def privateInternProfile(request, intern_id):
                 requestedProfile = Profile.objects.get(pk=intern_id)
             except Profile.DoesNotExist:
                 raise Http404
-            return render_to_response('account/profile_intern.html', {'user' : user, 'userProfile' : profile, 'profile': requestedProfile}, context_instance=RequestContext(request))
+            return render_to_response('account/intern_profile.html', {'user' : user, 'userProfile' : profile, 'profile': requestedProfile}, context_instance=RequestContext(request))
     else: # redirect to home because user is not company nor intern
         return HttpResponseRedirect('/')
 
@@ -64,7 +64,7 @@ def edit(request):
     if request.user.is_authenticated():
         user = request.user
         profile = user.get_profile()
-        return render_to_response('account/edit_xeditable.html', {'user' : user, 'userProfile': profile}, context_instance=RequestContext(request))
+        return render_to_response('account/profile_edit.html', {'user' : user, 'userProfile': profile}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login')
 
