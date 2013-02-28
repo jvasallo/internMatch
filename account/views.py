@@ -1,5 +1,6 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect, HttpResponse, Http404
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from register.models import Profile
@@ -62,3 +63,32 @@ def edit(request):
             return render_to_response('account/edit_xeditable.html', {'company': user}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login')
+
+@csrf_exempt
+def update(request):
+    if request.user.is_authenticated(): # if user is logged in https://docs.djangoproject.com/en/dev/topics/forms/?from=olddocs
+        user = request.user
+        try: # try to get a profile record
+            profile = user.get_profile()
+        except Profile.DoesNotExist:
+            raise Http404
+        if request.method == 'POST': # and if request is a POST
+            if profile.is_intern:
+                print 'hello'
+            else:
+                profile.name = request.POST.get('name')
+                profile.description = request.POST.get('description')
+                profile.industry = request.POST.get('industry')
+                profile.address = request.POST.get('address')
+                profile.city = request.POST.get('city')
+                profile.state = request.POST.get('state')
+                profile.zip = request.POST.get('zip')
+                user.email = request.POST.get('email')
+                profile.phone = request.POST.get('contactPhone')
+                profile.contactEmail = request.POST.get('contactEmail')
+                profile.website = request.POST.get('companyWebsite')
+                user.save()
+                profile.save()
+            return redirect('/profile')
+    else: # else user needs to log in
+        return HttpResponseRedirect('/login') # redirect to some result page to show the "result"

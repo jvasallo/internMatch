@@ -1,64 +1,65 @@
-// turn to inline mode
-$.fn.editable.defaults.mode = 'inline';
+$(function(){
+    // turn to inline mode
+    $.fn.editable.defaults.mode = 'inline';
 
-/* // Example POST
-$('#name').editable({
+    /* // Example POST
+    $('#name').editable({
 	type: 'text',
 	pk: 1,
 	url: '/post',
 	title: 'Enter username'
-}); */
+    }); */
 
-/* // enable/disable button
-$('#enable').click(function() {
-   $('#user .editable').editable('toggleDisabled');
-}); */ 
+    /* // enable/disable button
+    $('#enable').click(function() {
+        $('#user .editable').editable('toggleDisabled');
+    }); */ 
 
-/* Both Edit Forms */
-$('#name').editable({
+    /* Both Edit Forms */
+    $('#name').editable({
 	validate: function(value) {
-		if($.trim(value) == '') return 'This field is required';
+  	    if($.trim(value) == '') return 'This field is required';
 	},
 	inputclass: 'input-large'
-});
+    });
 
-$('#email').editable({
-	validate: function(value) {
-		if($.trim(value) == '') return 'This field is required';
+    $('#email').editable({
+        validate: function(value) {
+	    if($.trim(value) == '') return 'This field is required';
 	},
 	type: 'email',
 	inputclass: 'input-large'
-});
+    });
 
-$('#skills').editable({
+    $('#skills').editable({
 	type: 'select2',
 	inputclass: 'input-large',
 	select2: {
 		tags: ['ajax','C','C++', 'CSS','Django','HTML','Java','JavaScript','JQuery','Linux','OS X','Python','Ruby','Windows'],
 		tokenSeparators: [",", " "]
 	}
-}); 
+    }); 
 
 
-/* Intern Edit Form */
-$('#school').editable({
+    /* Intern Edit Form */
+    $('#school').editable({
 	validate: function(value) {
-		if($.trim(value) == '') return 'This field is required';
+	    if($.trim(value) == '') return 'This field is required';
 	},
 	type: 'text',
 	inputclass: 'input-large'
-});
+    });
 
-$('#graduation_date').editable({
+    $('#graduation_date').editable({
 	validate: function(value) {
-		if($.trim(value) == '') return 'This field is required';
+            if($.trim(value) == '') return 'This field is required';
 	},
 	type: 'date',
 	format: 'MM dd, yyyy',
 	inputclass: 'input-medium'
-});
+    });
 
-$('#major').editable({
+    $('#major').editable({
 	type: 'select',
 	inputclass: 'input-large',
 	source: [
@@ -71,26 +72,16 @@ $('#major').editable({
 		{value: 7, text: 'Software Engineering'},
 		{value: 8, text: 'Systems Analysis'}
 	]
-});
+    });
 
-/* Company Edit Form */
-// Uses Comment Box
-$('#description').editable({
+    /* Company Edit Form */
+    // Uses Comment Box
+    $('#description').editable({
 	type: 'textarea',
 	inputclass: 'input-xxlarge'
-});
-/* // Uses WYSIWYG edit box - NOT WORKING!
-$('#description1').editable({
-	type: 'wysihtml5',
-	inputclass: 'input-xxlarge'
-});
-$('#pencil').click(function(e) {
-	e.stopPropagation();
-	e.preventDefault();
-	$('#description').editable('toggle');
-}); */
+    });
 
-$('#industry').editable({
+    $('#industry').editable({
 	type: 'select',
 	inputclass: 'input-large',
 	source: [
@@ -116,34 +107,36 @@ $('#industry').editable({
 		{value: 20, text: 'Transportation'},
 		{value: 21, text: 'Utilities'}
 	]
-});
+    });
 
-$('#address').editable({
+    $('#address').editable({
 	validate: function(value) {
-		if($.trim(value) == '') return 'This field is required';
+            if($.trim(value) == '') return 'This field is required';
 	},
 	inputclass: 'input-large'
-});
+    });
 
-$('#city').editable({
+    $('#city').editable({
 	validate: function(value) {
-		if($.trim(value) == '') return 'This field is required';
+            if($.trim(value) == '') return 'This field is required';
 	},
 	inputclass: 'input-medium'
-});
+    });
 
-var states = [];
-$.each({"AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas", "CA": "California", "CO": "Colorado", "CT": "Connecticut", "DE": "Delaware", "DC": "Dist of Columbia", "FL": "Florida", "GA": "Georgia", "HI": "Hawaii", "ID": "Idaho", "IL": "Illinois", "IN": "Indiana", "IA": "Iowa", "KS": "Kansas", "KY": "Kentucky", "LA": "Louisiana", "ME": "Maine", "MD": "Maryland", "MA": "Massachusetts", "MI": "Michigan", "MN": "Minnesota", "MS": "Mississippi", "MO": "Missouri", "MT": "Montana", "NE": "Nebraska", "NV": "Nevada", "NH": "New Hampshire", "NJ": "New Jersey", "NM": "New Mexico", "NY": "New York", "NC": "North Carolina", "ND": "North Dakota", "OH": "Ohio", "OK": "Oklahoma", "OR": "Oregon", "PA": "Pennsylvania", "RI": "Rhode Island", "SC": "South Carolina", "SD": "South Dakota", "TN": "Tennessee", "TX": "Texas", "UT": "Utah", "VT": "Vermont", "VA": "Virginia", "WA": "Washington", "WV": "West Virginia", "WI": "Wisconsin", "WY": "Wyoming"}, function(k, v) {
-	states.push({id: k, text: v});
-});
-// Working - Search/Predictive Text (type: select2.js)
-$('#state').editable({
+    var states = [];
+    $.each({"AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas", "CA": "California", "CO": "Colorado", "CT": "Connecticut", "DE": "Delaware", "DC": "Dist of Columbia", "FL": "Florida", "GA": "Georgia", "HI": "Hawaii", "ID": "Idaho", "IL": "Illinois", "IN": "Indiana", "IA": "Iowa", "KS": "Kansas", "KY": "Kentucky", "LA": "Louisiana", "ME": "Maine", "MD": "Maryland", "MA": "Massachusetts", "MI": "Michigan", "MN": "Minnesota", "MS": "Mississippi", "MO": "Missouri", "MT": "Montana", "NE": "Nebraska", "NV": "Nevada", "NH": "New Hampshire", "NJ": "New Jersey", "NM": "New Mexico", "NY": "New York", "NC": "North Carolina", "ND": "North Dakota", "OH": "Ohio", "OK": "Oklahoma", "OR": "Oregon", "PA": "Pennsylvania", "RI": "Rhode Island", "SC": "South Carolina", "SD": "South Dakota", "TN": "Tennessee", "TX": "Texas", "UT": "Utah", "VT": "Vermont", "VA": "Virginia", "WA": "Washington", "WV": "West Virginia", "WI": "Wisconsin", "WY": "Wyoming"}, function(k, v) {
+        states.push({id: k, text: v});
+    });
+
+    // Working - Search/Predictive Text (type: select2.js)
+    $('#state').editable({
 	type: 'select2',
 	inputclass: 'input-large',
 	source: states
-});
-/* // Working - No Search/Predictive Text (type: select)
-$('#state1').editable({
+    });
+
+    /* // Working - No Search/Predictive Text (type: select)
+    $('#state1').editable({
 	type: 'select',
 	inputclass: 'input-large',
 	source: [
@@ -199,35 +192,36 @@ $('#state1').editable({
 		{value: 'WI', text: 'Wisconsin'},
 		{value: 'WY', text: 'Wyoming'}
 	]
-}); */
+    }); */
 
-$('#zip').editable({
-	validate: function(value) {
-		if($.trim(value) == '') return 'This field is required';
+    $('#zip').editable({
+ 	validate: function(value) {
+            if($.trim(value) == '') return 'This field is required';
 	},
 	type: 'number'
-});
+    });
 
-$('#phone').editable({
+    $('#phone').editable({
 	validate: function(value) {
-		if($.trim(value) == '') return 'This field is required';
+            if($.trim(value) == '') return 'This field is required';
 	},
 	type: 'tel',
 	maxlength: '15',
 	inputclass: 'input-medium'
-});
+    });
 
-$('#contactEmail').editable({
+    $('#contactEmail').editable({
 	validate: function(value) {
-		if($.trim(value) == '') return 'This field is required';
+            if($.trim(value) == '') return 'This field is required';
 	},
 	type: 'email',
 	inputclass: 'input-large'
-});
+    });
 
-$('#website').editable({
+    $('#website').editable({
 	type: 'url',
 	inputclass: 'input-large'
+    });
 });
 
 function onSubmit() {
@@ -250,8 +244,11 @@ function onSubmit() {
        type: 'POST', // GET or POST
        url: '/profile/update/', // the file to call
        success: function(response) { // on success..
-           //window.location.href = "profile/";
-           alert('Success -- STATUS: 200');
+           window.location.href = "../../profile/";
        }
    });
+}
+
+function exitApp() {
+    window.location = "/profile";
 }

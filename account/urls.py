@@ -5,10 +5,11 @@ from django.views.generic import TemplateView
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
-    url(r'^$', 'account.views.index'),
-    url(r'add/$', 'account.views.add'),
-    url(r'edit/$', 'account.views.edit'),
-    url(r'company/(?P<company_id>\d+)/$', 'account.views.publicCompanyProfile'),
-    url(r'intern/(?P<intern_id>\d+)/$', 'account.views.privateInternProfile'),
+urlpatterns = patterns('account.views',
+    url(r'^$', 'index'),
+    url(r'add/$', 'add'),
+    url(r'edit/$', 'edit'),
+    url(r'update/$', 'update'),
+    url(r'company/(?P<company_id>\d+)/$', 'publicCompanyProfile'),
+    url(r'intern/(?P<intern_id>\d+)/$', 'privateInternProfile'),
 )
