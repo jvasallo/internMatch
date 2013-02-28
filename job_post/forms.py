@@ -24,8 +24,8 @@ class JobPostForm(forms.Form):
                                              Field('company_bio'),
                                              Field('required_skills'),
                                              Field('desired_skills'),
-                                             Field('state'),
                                              Field('city'),
+                                             Field('state'),
                                              Field('date_post_ends', css_class='date'),
                                              css_class='fields'
                                     ),

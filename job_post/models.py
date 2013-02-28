@@ -11,6 +11,9 @@ class JobPost(models.Model):
     headline       = models.CharField(max_length=50, null=True)
     city           = models.CharField(max_length=50, null=True)
     state          = models.CharField(max_length=50, null=True)
+
+    def formattedDate(self):
+        return self.date_post_ends.strftime("%Y-%m-%d")
     
     def getRequiredSkills(self):
         return self.skill_set.filter(type='required')

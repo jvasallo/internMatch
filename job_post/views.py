@@ -1,5 +1,6 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect, HttpResponse, Http404
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth import authenticate, login, logout
@@ -48,6 +49,44 @@ def add_job_post(form, profile):
     job_post.city = form.cleaned_data['city']
     job_post.save()
     return job_post
+
+def edit(request, job_post_id):
+    try:
+        jobpost = JobPost.objects.get(pk=job_post_id)
+    except JobPost.DoesNotExist:
+        raise Http404
+    if request.user.is_authenticated():
+        user = request.user
+        userProfile = request.user.get_profile()
+        if not userProfile.is_intern:
+            return render_to_response('job-post/edit_xeditable.html', {'company': user, 'posting' : jobpost}, context_instance=RequestContext(request))
+        else:
+            return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/login')
+
+@csrf_exempt
+def update(request):
+    if request.user.is_authenticated(): # if user is logged in https://docs.djangoproject.com/en/dev/topics/forms/?from=olddocs
+        user = request.user
+        profile = user.get_profile()
+        if request.method == 'POST': # and if request is a POST
+            try: # try to get a posting record
+                posting = JobPost.objects.get(pk=request.POST.get('id'))
+            except JobPost.DoesNotExist:
+                raise Http404
+            if not profile.is_intern:
+                posting.headline = request.POST.get('headline')
+                posting.position = request.POST.get('position')
+                posting.description = request.POST.get('description')
+                posting.company_bio = request.POST.get('company_bio')
+                posting.city = request.POST.get('city')
+                posting.state = request.POST.get('state')
+                posting.date_post_ends = request.POST.get('end_date')
+                posting.save()
+            return redirect('/profile/jobs')
+    else: # else user needs to log in
+        return HttpResponseRedirect('/login') # redirect to some result page to show the "result"
 
 def deletePost(request, job_post_id):
     try:
