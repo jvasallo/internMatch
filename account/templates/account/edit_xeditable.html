@@ -1,6 +1,6 @@
 {% extends 'account/base.html' %}
 {% block listdropdown %}
-    {% if company %}
+    {% if not userProfile.is_intern %}
                         <li class="dropdown">
                             <a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -13,12 +13,12 @@
                             </ul>
                         </li>
     {% endif %}
-    {% if intern %}
+    {% if userProfile.is_intern %}
                         <li class="dropdown">
-                            <a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+                            <a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/profile">View Profile</a></li>
-								<li><a href="/profile/edit">Edit Profile</a></li>
+				<li><a href="/profile/edit">Edit Profile</a></li>
                                 <li><a href="/quiz">Take Quiz</a></li>
                                 <li><a href="/logout">Logout</a></li>
                             </ul>
@@ -26,9 +26,9 @@
     {% endif %}
 {% endblock %}
 {% block container %}
-    {% if company %}
+    {% if not userProfile.is_intern %}
               <div class="masthead">
-                <h3 class="muted">Company Personality: Creative {{ profile.quizResult }}<br />Username: {{ company.username }} </h3>
+                <h3 class="muted">Company Personality: {{ userProfile.quizResult }}<br />Username: {{ user.username }} </h3>
                 <div class="navbar">
                   <div class="navbar-inner">
                     <div class="container">
@@ -50,92 +50,92 @@
         <legend class=""><b>Edit Profile</b></legend>
     </div>
 		
-    {% if intern %}	
+    {% if userProfile.is_intern %}	
 	<!-- Begin Intern Edit Form -->
 	<div>
 		<!-- table table-striped table-hover table-bordered table-nonfluid -->
 		<table class="table table-striped table-bordered table-nonfluid"> 
-			<tbody>
-                <tr>
-					<td class="label-column" style="vertical-align:middle">Name:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="name">{{ user.get_profile.name }}</a></td>
-                </tr>
-                <tr>
-					<td class="label-column" style="vertical-align:middle">School:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="school">{{ user.get_profile.school }}</a></td>
-                </tr>
-                <tr>
-					<td class="label-column" style="vertical-align:middle">Graduation Date:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="graduation_date">{{ user.get_profile.graduation_date }}</a></td>
-                </tr>
-                <tr>
-					<td class="label-column" style="vertical-align:middle">Major:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="major">{{ user.get_profile.major }}</a></td>
-                </tr>
-				<tr>
-					<td class="label-column" style="vertical-align:middle">Email:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="email">{{ user.email }}</a></td>
-                </tr>
-				<tr>
-					<td class="label-column" style="vertical-align:middle">Skills:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="skills">{{ profile.skills }}</a></td>
-                </tr>
-			</tbody>
+		    <tbody>
+                        <tr>
+	  		    <td class="label-column" style="vertical-align:middle">Name:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="name">{{ userProfile.name }}</a></td>
+                        </tr>
+                        <tr>
+			    <td class="label-column" style="vertical-align:middle">School:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="school">{{ userProfile.school }}</a></td>
+                        </tr>
+                        <tr>
+		 	    <td class="label-column" style="vertical-align:middle">Graduation Date:</td>
+		  	    <td class="field-column" style="vertical-align:middle"><a href="#" id="graduation_date">{{ userProfile.graduation_date }}</a></td>
+                        </tr>
+                        <tr> 
+			    <td class="label-column" style="vertical-align:middle">Major:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="major">{{ userProfile.major }}</a></td>
+                        </tr>
+			<tr>
+			    <td class="label-column" style="vertical-align:middle">Email:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="email">{{ user.email }}</a></td>
+                        </tr>
+			<tr>
+			    <td class="label-column" style="vertical-align:middle">Skills:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="skills">{{ profile.skills }}</a></td>
+                        </tr>
+		    </tbody>
 		</table>
 	</div>
     {% endif%}
 	  
-    {% if company %}
+    {% if not userProfile.is_intern %}
 	<!-- Begin Company Edit Form -->
 	<div>
 		<!-- table table-striped table-hover table-bordered table-nonfluid -->
 		<table class="table table-striped table-bordered table-nonfluid"> 
-			<tbody>
-                <tr>
-					<td class="label-column" style="vertical-align:middle">Name:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="name">{{ user.get_profile.name }}</a></td>
-                </tr>
-                <tr>
-					<td class="label-column" style="vertical-align:middle">Description:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="description">{{ user.get_profile.description }}</a></td>
-                </tr>
-                <tr>
-					<td class="label-column" style="vertical-align:middle">Industry:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="industry">{{ user.get_profile.industry }}</a></td>
-                </tr>
-                <tr>
-					<td class="label-column" style="vertical-align:middle">Address:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="address">{{ user.get_profile.address }}</a></td>
-                </tr>
-				<tr>
-					<td class="label-column" style="vertical-align:middle">City:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="city">{{ user.get_profile.city }}</a></td>
-                </tr>
-				<tr>
-					<td class="label-column" style="vertical-align:middle">State:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="state">{{ user.get_profile.state }}</a></td>
-                </tr>
-				<tr>
-					<td class="label-column" style="vertical-align:middle">Zip Code:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="zip">{{ user.get_profile.zip }}</a></td>
-                </tr>
-				<tr>
-					<td class="label-column" style="vertical-align:middle">Email:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="email">{{ user.email }}</a></td>
-                </tr>
-				<tr>
-					<td class="label-column" style="vertical-align:middle">Contact Phone:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="phone">{{ user.get_profile.phone }}</a></td>
-                </tr>
-				<tr>
-					<td class="label-column" style="vertical-align:middle">Contact Email:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="contactEmail">{{ user.get_profile.contactEmail }}</a></td>
-                </tr>
-				<tr>
-					<td class="label-column" style="vertical-align:middle">Company Website:</td>
-					<td class="field-column" style="vertical-align:middle"><a href="#" id="website">{{ user.get_profile.website }}</a></td>
-                </tr>
-			</tbody>
+		    <tbody>
+                        <tr>
+			    <td class="label-column" style="vertical-align:middle">Name:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="name">{{ userProfile.name }}</a></td>
+                        </tr>
+                        <tr>
+			    <td class="label-column" style="vertical-align:middle">Description:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="description">{{ userProfile.description }}</a></td>
+                        </tr>
+                        <tr>
+		 	    <td class="label-column" style="vertical-align:middle">Industry:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="industry">{{ userProfile.industry }}</a></td>
+                        </tr>
+                        <tr>
+			    <td class="label-column" style="vertical-align:middle">Address:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="address">{{ userProfile.address }}</a></td>
+                        </tr>
+		        <tr>
+			    <td class="label-column" style="vertical-align:middle">City:</td>
+		  	    <td class="field-column" style="vertical-align:middle"><a href="#" id="city">{{ userProfile.city }}</a></td>
+                        </tr>
+		        <tr>
+			    <td class="label-column" style="vertical-align:middle">State:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="state">{{ userProfile.state }}</a></td>
+                        </tr>
+	 	        <tr>
+			    <td class="label-column" style="vertical-align:middle">Zip Code:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="zip">{{ userProfile.zip }}</a></td>
+                        </tr>
+		        <tr>
+			    <td class="label-column" style="vertical-align:middle">Email:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="email">{{ user.email }}</a></td>
+                        </tr>
+		        <tr>
+			    <td class="label-column" style="vertical-align:middle">Contact Phone:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="phone">{{ userProfile.phone }}</a></td>
+                        </tr>
+		        <tr>
+			    <td class="label-column" style="vertical-align:middle">Contact Email:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="contactEmail">{{ userProfile.contactEmail }}</a></td>
+                        </tr>
+		        <tr>
+			    <td class="label-column" style="vertical-align:middle">Company Website:</td>
+			    <td class="field-column" style="vertical-align:middle"><a href="#" id="website">{{ userProfile.website }}</a></td>
+                        </tr>
+		    </tbody>
 		</table>
 	</div>
 {% endif%}

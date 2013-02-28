@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = patterns('account.views',
     url(r'^$', 'index'),
-    url(r'add/$', 'add'),
+    url(r'^account/$', 'account'),
     url(r'edit/$', 'edit'),
     url(r'update/$', 'update'),
     url(r'jobs/$', 'jobs'),

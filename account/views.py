@@ -9,42 +9,50 @@ from job_post.models import JobPost
 def index(request):
     if request.user.is_authenticated():
         user = request.user
-        userProfile = request.user.get_profile()
-        if userProfile.is_intern:
-            return render_to_response('account/profile_intern.html', {'intern': user, 'profile': userProfile}, context_instance=RequestContext(request))
+        profile = user.get_profile()
+        if profile.is_intern:
+            return render_to_response('account/profile_intern.html', {'user': user, 'userProfile': profile}, context_instance=RequestContext(request))
         else:
-            return render_to_response('account/profile_company.html', {'company': user, 'profile': userProfile}, context_instance=RequestContext(request))
+            return render_to_response('account/company_profile_index.html', {'user': user, 'userProfile': profile}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login')
 
 def publicCompanyProfile(request, company_id):
     try: # try to get a profile record
-        companyProfile = Profile.objects.get(pk=company_id)
+        requestedProfile = Profile.objects.get(pk=company_id)
     except Profile.DoesNotExist:
         raise Http404
-    if companyProfile.is_intern: # if the companyProfile retrieved is flagged as an intern....
+
+    if requestedProfile.is_intern:
         return HttpResponseRedirect('/')
-    else: # else we have an actual company profile so display it.
-        return render_to_response('account/profile_company.html', {'company': companyProfile}, context_instance=RequestContext(request))
+    else:
+        if request.user.is_authenticated():
+            user = request.user
+            profile = user.get_profile()
+            return render_to_response('account/company_profile.html', {'user' : user, 'userProfile' : profile, 'profile': requestedProfile}, context_instance=RequestContext(request))
+        else:
+            return render_to_response('account/company_profile.html', {'user' : None, 'profile': requestedProfile}, context_instance=RequestContext(request))
+
 
 def privateInternProfile(request, intern_id):
     if request.user.is_authenticated():
-        userProfile = request.user.get_profile()
-        if userProfile.is_intern: # interns can't view profile pages
+        user = request.user
+        profile = user.get_profile()
+        if profile.is_intern: # interns can't view profile pages
             return HttpResponseRedirect('/')    
         else: # request to view profile is coming from company
             try:
-                internProfile = Profile.objects.get(pk=intern_id)
+                requestedProfile = Profile.objects.get(pk=intern_id)
             except Profile.DoesNotExist:
                 raise Http404
-            return render_to_response('account/profile_intern.html', {'intern': internProfile}, context_instance=RequestContext(request))
+            return render_to_response('account/profile_intern.html', {'user' : user, 'userProfile' : profile, 'profile': requestedProfile}, context_instance=RequestContext(request))
     else: # redirect to home because user is not company nor intern
         return HttpResponseRedirect('/')
 
-def add(request):
+def account(request):
     if request.user.is_authenticated():
         user = request.user
-        userProfile = request.user.get_profile()
+        profile = user.get_profile()
         if userProfile.is_intern:
             return render_to_response('account/add.html', {'intern': user}, context_instance=RequestContext(request))
         else:
@@ -55,11 +63,8 @@ def add(request):
 def edit(request):
     if request.user.is_authenticated():
         user = request.user
-        userProfile = request.user.get_profile()
-        if userProfile.is_intern:
-            return render_to_response('account/edit_xeditable.html', {'intern': user}, context_instance=RequestContext(request))
-        else:
-            return render_to_response('account/edit_xeditable.html', {'company': user}, context_instance=RequestContext(request))
+        profile = user.get_profile()
+        return render_to_response('account/edit_xeditable.html', {'user' : user, 'userProfile': profile}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login')
 
@@ -96,17 +101,18 @@ def jobs(request):
     if request.user.is_authenticated():
         try:
             user = request.user
-	    profile = request.user.get_profile()
+	    profile = user.get_profile()
         except Profile.DoesNotExist:
             raise Http404
-
-        if not profile.is_intern:
+       
+        # only companies can post jobs, interns go away...
+        if profile.is_intern:
+            return redirect('/profile')
+        else:
             try:
                 postings = profile.jobpost_set.all() 
             except Exception:
                 postings = None
-            return render_to_response('account/company_jobs.html', {'company': user, 'profile': profile, 'postings': postings}, context_instance=RequestContext(request))
-        else:
-            return redirect('/profile')
+            return render_to_response('account/company_profile_jobs.html', {'user': user, 'userProfile': profile, 'postings': postings}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login') # redirect to login page        
