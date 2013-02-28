@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import RequestContext
 from quiz.models import Quiz, QuizResult
 
@@ -42,6 +42,6 @@ def submit(request):
                 user_quizresult = QuizResult.create(quiz, user)  # init a null quiz result
                 quizData = str(request.POST.get('quizString')) 
                 user_quizresult.collectQuizData(quizData)
-            return HttpResponseRedirect('quiz/complete/') # redirect to a thank you page or something
+            return redirect('/quiz/complete')
     else: # else user needs to log in
         return HttpResponseRedirect('/login') # redirect to some result page to show the "result"

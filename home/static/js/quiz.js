@@ -22,10 +22,9 @@ function onSubmit() {
        data: {'quizID' : 1, 
               'quizString' : quizData},
        type: 'POST', // GET or POST
-       url: 'submit/', // the file to call
+       url: '../submit/', // the file to call
        success: function(response) { // on success..
-           window.location.href = "quiz/complete";
-           //alert('Success -- STATUS: 200');
+           window.location.href = '/quiz/complete';
        }
    });
 }
