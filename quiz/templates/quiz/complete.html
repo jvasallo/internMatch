@@ -1,8 +1,9 @@
 {% extends 'quiz/base.html' %}
 {% block container %}    
     <div class="hero-unit">
-        <h2>That's it! Your done!</h2>
-        <p>Check out your profile, begin searching for opportunities!</p>
+        <h2>That's it! You are done!</h2>
+        <h4>Based on your quiz, you are a {{ profile.quizResult }}! </h4>
+        <p>Check out your profile, begin searching for like-minded opportunities!</p>
         <p><a href="/profile" class="btn btn-primary btn-large">My Profile</a></p>
     </div>
 {% endblock %}

@@ -6,7 +6,8 @@ from quiz.models import Quiz, QuizResult
 
 def index(request):
     if request.user.is_authenticated():
-        return render_to_response('quiz/index.html', {'user': request.user}, context_instance=RequestContext(request))
+        user = request.user
+        return render_to_response('quiz/index.html', {'user': user}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login')
 
@@ -20,7 +21,9 @@ def quiz(request):
 
 def complete(request):
     if request.user.is_authenticated():
-        return render_to_response('quiz/complete.html', {'user': request.user}, context_instance=RequestContext(request))
+        user = request.user
+        profile = user.get_profile()
+        return render_to_response('quiz/complete.html', {'profile' : profile, 'user': user}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login')
 
