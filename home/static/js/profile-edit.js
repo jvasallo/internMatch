@@ -1,17 +1,18 @@
-//turn to inline mode
+// turn to inline mode
 $.fn.editable.defaults.mode = 'inline';
 
-// $('#name').editable({
-	// type: 'text',
-	// pk: 1,
-	// url: '/post',
-	// title: 'Enter username'
-// });
+/* // Example POST
+$('#name').editable({
+	type: 'text',
+	pk: 1,
+	url: '/post',
+	title: 'Enter username'
+}); */
 
-//enable / disable
-// $('#enable').click(function() {
-   // $('#user .editable').editable('toggleDisabled');
-// }); 
+/* // enable/disable button
+$('#enable').click(function() {
+   $('#user .editable').editable('toggleDisabled');
+}); */ 
 
 /* Both Edit Forms */
 $('#name').editable({
@@ -20,6 +21,7 @@ $('#name').editable({
 	},
 	inputclass: 'input-large'
 });
+
 $('#email').editable({
 	validate: function(value) {
 		if($.trim(value) == '') return 'This field is required';
@@ -27,6 +29,7 @@ $('#email').editable({
 	type: 'email',
 	inputclass: 'input-large'
 });
+
 $('#skills').editable({
 	type: 'select2',
 	inputclass: 'input-large',
@@ -36,6 +39,7 @@ $('#skills').editable({
 	}
 }); 
 
+
 /* Intern Edit Form */
 $('#school').editable({
 	validate: function(value) {
@@ -44,6 +48,7 @@ $('#school').editable({
 	type: 'text',
 	inputclass: 'input-large'
 });
+
 $('#graduation_date').editable({
 	validate: function(value) {
 		if($.trim(value) == '') return 'This field is required';
@@ -52,6 +57,7 @@ $('#graduation_date').editable({
 	format: 'MM dd, yyyy',
 	inputclass: 'input-medium'
 });
+
 $('#major').editable({
 	type: 'select',
 	inputclass: 'input-large',
@@ -68,10 +74,22 @@ $('#major').editable({
 });
 
 /* Company Edit Form */
+// Uses Comment Box
 $('#description').editable({
-	type: 'text',
-	inputclass: 'input-xlarge'
+	type: 'textarea',
+	inputclass: 'input-xxlarge'
 });
+/* // Uses WYSIWYG edit box - NOT WORKING!
+$('#description1').editable({
+	type: 'wysihtml5',
+	inputclass: 'input-xxlarge'
+});
+$('#pencil').click(function(e) {
+	e.stopPropagation();
+	e.preventDefault();
+	$('#description').editable('toggle');
+}); */
+
 $('#industry').editable({
 	type: 'select',
 	inputclass: 'input-large',
@@ -99,12 +117,14 @@ $('#industry').editable({
 		{value: 21, text: 'Utilities'}
 	]
 });
+
 $('#address').editable({
 	validate: function(value) {
 		if($.trim(value) == '') return 'This field is required';
 	},
 	inputclass: 'input-large'
 });
+
 $('#city').editable({
 	validate: function(value) {
 		if($.trim(value) == '') return 'This field is required';
@@ -122,8 +142,7 @@ $('#state').editable({
 	inputclass: 'input-large',
 	source: states
 });
-
-// Working - No Search/Predictive Text (type: select)
+/* // Working - No Search/Predictive Text (type: select)
 $('#state1').editable({
 	type: 'select',
 	inputclass: 'input-large',
@@ -180,67 +199,7 @@ $('#state1').editable({
 		{value: 'WI', text: 'Wisconsin'},
 		{value: 'WY', text: 'Wyoming'}
 	]
-});
-
-/*
-$('#state1').editable({
-	type: 'select',
-	inputclass: 'input-large',
-	source: [
-		{value: 1, text: 'Alabama'},
-		{value: 2, text: 'Alaska'},
-		{value: 3, text: 'Arizona'},
-		{value: 4, text: 'Arkansas'},
-		{value: 5, text: 'California'},
-		{value: 6, text: 'Colorado'},
-		{value: 7, text: 'Connecticut'},
-		{value: 8, text: 'Delaware'},
-		{value: 9, text: 'Dist of Columbia'},
-		{value: 10, text: 'Florida'},
-		{value: 11, text: 'Georgia'},
-		{value: 12, text: 'Hawaii'},
-		{value: 13, text: 'Idaho'},
-		{value: 14, text: 'Illinois'},
-		{value: 15, text: 'Indiana'},
-		{value: 16, text: 'Iowa'},
-		{value: 17, text: 'Kansas'},
-		{value: 18, text: 'Kentucky'},
-		{value: 19, text: 'Louisiana'},
-		{value: 20, text: 'Maine'},
-		{value: 21, text: 'Maryland'},
-		{value: 22, text: 'Massachusetts'},
-		{value: 23, text: 'Michigan'},
-		{value: 24, text: 'Minnesota'},
-		{value: 25, text: 'Mississippi'},
-		{value: 26, text: 'Missouri'},
-		{value: 27, text: 'Montana'},
-		{value: 28, text: 'Nebraska'},
-		{value: 29, text: 'Nevada'},
-		{value: 30, text: 'New Hampshire'},
-		{value: 31, text: 'New Jersey'},
-		{value: 32, text: 'New Mexico'},
-		{value: 33, text: 'New York'},
-		{value: 34, text: 'North Carolina'},
-		{value: 35, text: 'North Dakota'},
-		{value: 36, text: 'Ohio'},
-		{value: 37, text: 'Oklahoma'},
-		{value: 38, text: 'Oregon'},
-		{value: 39, text: 'Pennsylvania'},
-		{value: 40, text: 'Rhode Island'},
-		{value: 41, text: 'South Carolina'},
-		{value: 42, text: 'South Dakota'},
-		{value: 43, text: 'Tennessee'},
-		{value: 44, text: 'Texas'},
-		{value: 45, text: 'Utah'},
-		{value: 46, text: 'Vermont'},
-		{value: 47, text: 'Virginia'},
-		{value: 48, text: 'Washington'},
-		{value: 49, text: 'West Virginia'},
-		{value: 50, text: 'Wisconsin'},
-		{value: 51, text: 'Wyoming'}
-	]
-});
-*/
+}); */
 
 $('#zip').editable({
 	validate: function(value) {
@@ -248,14 +207,16 @@ $('#zip').editable({
 	},
 	type: 'number'
 });
+
 $('#phone').editable({
 	validate: function(value) {
 		if($.trim(value) == '') return 'This field is required';
 	},
-	type: 'number',
-	maxlength: '11',
+	type: 'tel',
+	maxlength: '15',
 	inputclass: 'input-medium'
 });
+
 $('#contactEmail').editable({
 	validate: function(value) {
 		if($.trim(value) == '') return 'This field is required';
@@ -263,6 +224,7 @@ $('#contactEmail').editable({
 	type: 'email',
 	inputclass: 'input-large'
 });
+
 $('#website').editable({
 	type: 'url',
 	inputclass: 'input-large'
