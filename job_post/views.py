@@ -19,7 +19,7 @@ def JobPosting(request):
                 job_post = add_job_post(form,profile)
                 add_skills(request.POST.getlist('desired_skills')[0].split(','), job_post, 'desired')
                 add_skills(request.POST.getlist('required_skills')[0].split(','), job_post, 'required')
-                return HttpResponseRedirect('/profile')
+                return HttpResponseRedirect('/profile/jobs')
             else:
                 return render_to_response('job-post.html', {'form': form}, context_instance=RequestContext(request))
         else:

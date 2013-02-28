@@ -17,10 +17,10 @@
             <div class="span8">
                 <h2>{{ jobpost.headline }}</h2>
                 <br>
-                <i>Posted on: {{ jobpost.dateposted }}</i>
+                <i>Posted on: {{ jobpost.date_posted }}</i>
                 <p>
                 <h3>Company Information:</h3>
-                {{ jobpost.company }} - {{ job.post.city }}, {{ jobpost.state }}
+                <a href="/profile/company/{{jobpost.company.id}}">{{ jobpost.company }}</a> - {{ jobpost.city }}, {{ jobpost.state }}
                 <h3>Job Description:</h3>
                 {{ jobpost.description }}
                 <h3>Required Skills</h3>

@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from register.models import Profile
+from job_post.models import JobPost
 
 def index(request):
     if request.user.is_authenticated():
@@ -56,10 +57,8 @@ def edit(request):
         user = request.user
         userProfile = request.user.get_profile()
         if userProfile.is_intern:
-            #return render_to_response('account/edit_html.html', {'intern': user}, context_instance=RequestContext(request))
             return render_to_response('account/edit_xeditable.html', {'intern': user}, context_instance=RequestContext(request))
         else:
-            #return render_to_response('account/edit_html.html', {'company': user}, context_instance=RequestContext(request))
             return render_to_response('account/edit_xeditable.html', {'company': user}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login')
@@ -92,3 +91,22 @@ def update(request):
             return redirect('/profile')
     else: # else user needs to log in
         return HttpResponseRedirect('/login') # redirect to some result page to show the "result"
+
+def jobs(request):
+    if request.user.is_authenticated():
+        try:
+            user = request.user
+	    profile = request.user.get_profile()
+        except Profile.DoesNotExist:
+            raise Http404
+
+        if not profile.is_intern:
+            try:
+                postings = profile.jobpost_set.all() 
+            except Exception:
+                postings = None
+            return render_to_response('account/company_jobs.html', {'company': user, 'profile': profile, 'postings': postings}, context_instance=RequestContext(request))
+        else:
+            return redirect('/profile')
+    else:
+        return HttpResponseRedirect('/login') # redirect to login page        
