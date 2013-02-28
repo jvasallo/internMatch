@@ -25,6 +25,7 @@
 {% endblock %}
 {% block container %}
     <form class="form-horizontal" action='' method="POST">
+    {% csrf_token %}
     <div id="legend">
         <legend class=""><b>Edit Profile</b></legend>
     </div>
@@ -114,19 +115,15 @@
 					<td class="label-column">Company Website:</td>
 					<td class="field-column"><a href="#" id="website">{{ user.get_profile.website }}</a></td>
                 </tr>
-				<tr>
-					<td class="label-column">Skills:</td>
-					<td class="field-column"><a href="#" id="skills">{{ profile.skills }}</a></td>
-                </tr>
 			</tbody>
 		</table>
 	</div>
 {% endif%}
 
-		<div class="save-edits">  
-			<!-- Save and Cancel button -->
-			<button class="btn btn-success save-edit">Save</button>
-			<button class="btn">Cancel</button>  
-        </div>
+      <div class="form-actions">
+        <!-- Submit and Cancel buttons -->
+        <button onclick="onSubmit()" id="update-profile" class="btn btn-success save-edit" value="Submit">Save</button>
+        <button onclick="exitApp()" class="btn">Cancel</button>
+      </div>
 </form>
 {% endblock %}
