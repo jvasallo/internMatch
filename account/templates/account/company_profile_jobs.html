@@ -54,9 +54,13 @@
                 </div>
 
                 <a href="/job-post/{{ posting.id }}"><h3>{{ posting.headline }}</h3></a>
-	        <p><b>Location: </b> {{ posting.city }}, {{ posting.state }}
+
+	        {% if posting.city and posting.state %}<p><b>Location: </b> {{ posting.city }}, {{ posting.state }}	 
 	        <br>
-	        {{ posting.position }}
+	        {% endif %}
+	        <b>Position: </b> {{ posting.position }}
+	        <br>
+	        <b>Date Posting Ends: </b> {{ posting.date_post_ends }}
                 <br>
                 <br>
                 <a href="/job-post/{{ posting.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal" data-toggle='modal'><i class="icon-trash"></i> Delete</a>
