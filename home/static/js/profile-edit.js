@@ -229,3 +229,29 @@ $('#website').editable({
 	type: 'url',
 	inputclass: 'input-large'
 });
+
+function onSubmit() {
+   var editableObjects = $('.editable');
+   var n = editableObjects.length; // total quiz items
+
+   $.ajax({ // create an AJAX call...
+       data: {'name' : editableObjects[0].text,
+              'description' : editableObjects[1].text,
+              'industry' : editableObjects[2].text,
+              'address' : editableObjects[3].text,
+              'city' : editableObjects[4].text,
+              'state' : editableObjects[5].text,
+              'zip' : editableObjects[6].text,
+              'email' : editableObjects[7].text,
+              'contactPhone' : editableObjects[8].text,
+              'contactEmail' : editableObjects[9].text,
+              'companyWebsite' : editableObjects[10].text
+              },
+       type: 'POST', // GET or POST
+       url: '/profile/update/', // the file to call
+       success: function(response) { // on success..
+           //window.location.href = "profile/";
+           alert('Success -- STATUS: 200');
+       }
+   });
+}
