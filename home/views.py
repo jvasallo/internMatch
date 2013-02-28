@@ -9,25 +9,29 @@ from home.forms import SigninForm
 
 def index(request):
     if request.user.is_authenticated():
-        return render_to_response('index.html', {'user': request.user}, context_instance=RequestContext(request))
+        profile = request.user.get_profile()
+        return render_to_response('index.html', {'user': request.user, 'profile' : profile}, context_instance=RequestContext(request))
     else:
         return render_to_response('index.html', {'user': None}, context_instance=RequestContext(request))
 
 def contact(request):
     if request.user.is_authenticated():
-        return render_to_response('contact.html', {'user': request.user}, context_instance=RequestContext(request))
+        profile = request.user.get_profile()
+        return render_to_response('contact.html', {'user': request.user, 'profile' : profile}, context_instance=RequestContext(request))
     else:
         return render_to_response('contact.html', {'user': None}, context_instance=RequestContext(request))
 
 def about(request):
     if request.user.is_authenticated():
-        return render_to_response('about.html', {'user': request.user}, context_instance=RequestContext(request))
+        profile = request.user.get_profile()
+        return render_to_response('about.html', {'user': request.user, 'profile' : profile}, context_instance=RequestContext(request))
     else:
         return render_to_response('about.html', {'user': None}, context_instance=RequestContext(request))
 
 def legal(request):
     if request.user.is_authenticated():
-        return render_to_response('legal.html', {'user': request.user}, context_instance=RequestContext(request))
+        profile = request.user.get_profile()
+        return render_to_response('legal.html', {'user': request.user, 'profile' : profile}, context_instance=RequestContext(request))
     else:
         return render_to_response('legal.html', {'user': None}, context_instance=RequestContext(request))		
 		
