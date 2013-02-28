@@ -49,6 +49,20 @@ def add_job_post(form, profile):
     job_post.save()
     return job_post
 
+def deletePost(request, job_post_id):
+    try:
+        jobpost = JobPost.objects.get(pk=job_post_id)
+    except JobPost.DoesNotExist:
+        raise Http404
+    if request.user.is_authenticated():
+       if jobpost.company.id == request.user.id:
+           jobpost.delete()
+           return HttpResponseRedirect('/profile/jobs')
+       else:
+           return HttpResponseRedirect('/') 
+    else:
+        return HttpResponseRedirect('/login')
+
 def add_skills(skills, job_post, type):
     for s in skills:
         skill = Skill()

@@ -17,7 +17,7 @@ class JobPost(models.Model):
     
     def getDesiredSkills(self):
         return self.skill_set.filter(type='desired')
-    
+
     def __unicode__(self):
         return self.headline
     
