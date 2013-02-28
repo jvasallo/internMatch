@@ -15,21 +15,22 @@ class SigninForm(forms.Form):
         self.helper.form_method = 'post'
         self.helper.form_action = '/login'
         self.helper.layout = Layout(
-                                    HTML("""<h2 class="form-signin-heading">Please sign in</h2>"""),
+                                    HTML("""<h2 class="form-signin-heading">Sign In</h2>"""),
                                     Fieldset(
                                                 HTML("""<h2 class="form-signin-heading">Please sign in</h2>"""),
                                                 'username',
                                                 'password',
                                     ),
-                                    ButtonHolder(Submit('submit', 'Sign In', css_class='btn btn-large btn-primary')),
+									#HTML("""<a href="{% url password_reset %}">Forgot password?</a>"""),
+                                    ButtonHolder(Submit('submit', 'Sign In', css_class='btn btn-medium btn-primary')),
                                     HTML("""
                                          <div class="row">
                                             <div class="span4">
                                                 <br>
-                                                Not registered?
-                                                <br>Sign up as a 
-                                                <a href="/register/company">company</a> or an
-                                                <a href="/register/intern">intern</a>
+                                                <a href="{% url password_reset %}">Forgot password?</a>
+                                                <br>Create an account >>  
+                                                <a href="/register/company"> Company</a> or 
+                                                <a href="/register/intern">Intern</a>
                                             </div>
                                          </div> """),
                                     )
