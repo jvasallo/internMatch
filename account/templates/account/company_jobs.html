@@ -37,13 +37,34 @@
                   </div>
                 </div><!-- /.navbar -->
       </div>
+
       <div class="row">
         <div class="span8">
 	    {% for posting in postings %}
+                <div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="deleteModalLabel">Confirm Delete</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                        <b>Are you sure you wish to delete this Job Post?</b><br>
+                        <i>This action is irreversible!</i>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/job-post/{{ posting.id }}/delete" class="btn btn-danger"><i class="icon-trash"></i> Confirm</a>
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    </div>
+                </div>
+
                 <a href="/job-post/{{ posting.id }}"><h3>{{ posting.headline }}</h3></a>
-	        <p><a href="/profile/company/{{ posting.company.id }}"><b>{{ posting.company.name }}</b></a> - {{ posting.city }}, {{ posting.state }}
+	        <p><b>Location: </b> {{ posting.city }}, {{ posting.state }}
 	        <br>
 	        {{ posting.position }}
+                <br>
+                <br>
+                <a href="#"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal" data-toggle='modal'><i class="icon-trash"></i> Delete</a>
                 </p>
 	        <hr>
 	    {% endfor %}
