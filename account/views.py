@@ -63,6 +63,16 @@ def settings(request):
     else:
         return HttpResponseRedirect('/login')
 
+def deactivate(request):
+    if request.user.is_authenticated():
+        user = request.user
+        if user.is_active:
+            user.is_active = False
+            user.save()
+        return HttpResponseRedirect('/logout')
+    else:
+        return HttpResponseRedirect('/login')
+
 def edit(request):
     if request.user.is_authenticated():
         user = request.user
