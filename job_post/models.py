@@ -1,5 +1,6 @@
 from django.db import models
 from register.models import Profile
+import datetime
 
 class JobPost(models.Model):
     date_posted    = models.DateField()
@@ -11,6 +12,12 @@ class JobPost(models.Model):
     headline       = models.CharField(max_length=50, null=True)
     city           = models.CharField(max_length=50, null=True)
     state          = models.CharField(max_length=50, null=True)
+
+    def active(self):
+        if self.date_post_ends > datetime.date.today():
+            return True
+        else:
+            return False
 
     def formattedDate(self):
         return self.date_post_ends.strftime("%Y-%m-%d")
