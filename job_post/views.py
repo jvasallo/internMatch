@@ -22,10 +22,10 @@ def JobPosting(request):
                 add_skills(request.POST.getlist('required_skills')[0].split(','), job_post, 'required')
                 return HttpResponseRedirect('/profile/jobs')
             else:
-                return render_to_response('job-post.html', {'form': form}, context_instance=RequestContext(request))
+                return render_to_response('job-post/job_post.html', {'form': form}, context_instance=RequestContext(request))
         else:
             form = JobPostForm()
-            return render_to_response('job-post.html', {'form': form}, context_instance=RequestContext(request))
+            return render_to_response('job-post/job_post.html', {'form': form}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/register/company')
 
@@ -34,7 +34,7 @@ def detail(request, job_post_id):
         jobpost = JobPost.objects.get(pk=job_post_id)
     except JobPost.DoesNotExist:
         raise Http404
-    return render_to_response('job-post/detail.html', {'jobpost': jobpost}, context_instance=RequestContext(request))
+    return render_to_response('job-post/job_detail.html', {'jobpost': jobpost}, context_instance=RequestContext(request))
 
 def add_job_post(form, profile):
     job_post = JobPost()
@@ -59,7 +59,7 @@ def edit(request, job_post_id):
         user = request.user
         userProfile = request.user.get_profile()
         if not userProfile.is_intern:
-            return render_to_response('job-post/edit_xeditable.html', {'company': user, 'posting' : jobpost}, context_instance=RequestContext(request))
+            return render_to_response('job-post/job_edit.html', {'company': user, 'posting' : jobpost}, context_instance=RequestContext(request))
         else:
             return HttpResponseRedirect('/')
     else:
