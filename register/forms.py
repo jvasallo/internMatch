@@ -86,8 +86,11 @@ class InternRegistrationForm(forms.Form):
 
     name = forms.CharField(label=(u'Name'), required=True)
     school = forms.CharField(label=(u'School'), required=True)
-    graduation_date = forms.DateField(label=(u'Graduation Date'), required=True)   
     major = forms.ChoiceField(label=(u'Major'), choices=MAJORS, required=True)
+    graduation_date = forms.DateField(label=(u'Graduation Date'), required=True)   
+    city = forms.CharField(label=(u'City'), required=True)
+    state = forms.ChoiceField(label=(u'State'), choices=STATES, required=True)
+    description = forms.CharField(label=(u'Optional Additional Info'), widget=forms.Textarea, max_length=1250, required=False)
     username = forms.CharField(label=(u'User Name'), required=True)
     email = forms.EmailField(label=(u'Email Address'), required=True)
     password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False), required=True, min_length=6)
