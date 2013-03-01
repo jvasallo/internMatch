@@ -46,6 +46,10 @@ def Login(request):
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             login(request, user)
             if request.user.is_authenticated():
+                user = request.user
+                if not user.is_active:
+                    user.is_active = True
+                    user.save()
                 return HttpResponseRedirect('/profile')
         else:
             return render_to_response('signin.html', {'form': form}, context_instance=RequestContext(request))
