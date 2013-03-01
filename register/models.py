@@ -20,7 +20,7 @@ class Profile(models.Model):
     is_intern = models.BooleanField()
     
     def quizResult(self):
-        q = self.user.quizresult_set.get(id=1)
+        q = self.user.quizresult_set.get()
         result = q.quiz_result
         return result
 
