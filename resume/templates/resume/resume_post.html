@@ -32,6 +32,24 @@
     </div>
 
     <div class="container">
+              <div class="masthead">
+                <h3 class="muted">Company Personality: Creative {{ profile.quizResult }}<br />Username: {{ company.username }} </h3>
+                <div class="navbar">
+                  <div class="navbar-inner">
+                    <div class="container">
+                      <ul class="nav">
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/profile/edit">Edit Profile</a></li>
+                        <li><a href="/quiz/quiz">Retake Quiz</a></li>
+                        <li class="active"><a href="/job-post">Post New Job</a></li>
+                        <li><a href="/profile/jobs">Active Job Listings</a></li>
+                        <li><a href="/search">Potential Applicants</a></li>
+                        <li><a href="/profile/settings"><i class="icon-cog"></i> Account Settings</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div><!-- /.navbar -->
+
     {% load crispy_forms_tags %}
         {% crispy form %}
 	</div>
@@ -49,7 +67,7 @@
 				'Required Skills'+
 			'</label><div class="controls"><input id="id_required_skills" type="text" class="textinput textInput" name="required_skills"> </div></div>';
 			
-            $('.dateinput').datepicker();
+            $('.date').datepicker();
             $('.add-des-skill').on('click', function() {
             	$('.fields').append(addDesSkill);
             });
@@ -58,3 +76,11 @@
             });
         });
 </script>
+
+    <hr>
+    <footer>
+        <p>&copy; Intern|Match Inc. All rights reserved. <a href="/legal">Terms of Service</a></p>
+    </footer>
+
+</body>
+</html>
