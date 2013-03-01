@@ -3,7 +3,7 @@ import os
 
 PROJECT_ROOT = os.path.dirname(__file__)
 
-DEBUG = False
+DEBUG = True
 if DEBUG:
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = 1025
