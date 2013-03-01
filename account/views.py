@@ -49,14 +49,11 @@ def privateInternProfile(request, intern_id):
     else: # redirect to home because user is not company nor intern
         return HttpResponseRedirect('/')
 
-def account(request):
+def settings(request):
     if request.user.is_authenticated():
         user = request.user
         profile = user.get_profile()
-        if userProfile.is_intern:
-            return render_to_response('account/add.html', {'intern': user}, context_instance=RequestContext(request))
-        else:
-            return render_to_response('account/add.html', {'company': user}, context_instance=RequestContext(request))
+        return render_to_response('account/profile_settings.html', {'user': user, 'userProfile' : profile}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login')
 
@@ -64,7 +61,7 @@ def edit(request):
     if request.user.is_authenticated():
         user = request.user
         profile = user.get_profile()
-        return render_to_response('account/profile_edit.html', {'user' : user, 'userProfile': profile}, context_instance=RequestContext(request))
+        return render_to_response('account/profile_edit.html', {'user' : user, 'userProfile' : profile}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login')
 

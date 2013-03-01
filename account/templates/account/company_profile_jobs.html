@@ -27,6 +27,7 @@
                         <li><a href="/job-post">Post New Job</a></li>
                         <li class="active"><a href="/profile/jobs">Active Job Listings</a></li>
                         <li><a href="#">Potential Applicants</a></li>
+                        <li><a href="#"><i class="icon-cog"></i> Account Settings</a></li>
                       </ul>
                     </div>
                   </div>
@@ -35,37 +36,79 @@
 
       <div class="row">
         <div class="span8">
+            <h3>Active Jobs</h3>
 	    {% for posting in postings %}
-                <div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="deleteModalLabel">Confirm Delete</h3>
+                {% if posting.active %}
+                    <div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="deleteModalLabel">Confirm Delete</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                            <b>Are you sure you wish to delete this Job Post?</b><br>
+                            <i>This action is irreversible!</i>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/job-post/{{ posting.id }}/delete" class="btn btn-danger"><i class="icon-trash"></i> Confirm</a>
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <p>
-                        <b>Are you sure you wish to delete this Job Post?</b><br>
-                        <i>This action is irreversible!</i>
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="/job-post/{{ posting.id }}/delete" class="btn btn-danger"><i class="icon-trash"></i> Confirm</a>
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                    </div>
-                </div>
+                    <a href="/job-post/{{ posting.id }}"><h3>{{ posting.headline }}</h3></a>
 
-                <a href="/job-post/{{ posting.id }}"><h3>{{ posting.headline }}</h3></a>
-
-	        {% if posting.city and posting.state %}<p><b>Location: </b> {{ posting.city }}, {{ posting.state }}	 
-	        <br>
-	        {% endif %}
-	        <b>Position: </b> {{ posting.position }}
-	        <br>
-	        <b>Date Posting Ends: </b> {{ posting.date_post_ends }}
-                <br>
-                <br>
-                <a href="/job-post/{{ posting.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal" data-toggle='modal'><i class="icon-trash"></i> Delete</a>
-                </p>
-	        <hr>
+  	            {% if posting.city and posting.state %}
+                    <p>
+                        <b>Location: </b> {{ posting.city }}, {{ posting.state }}	 
+  	            <br>
+	            {% endif %}
+	            <b>Position: </b> {{ posting.position }}
+	            <br>
+	            <b>Date Posting Ends: </b> {{ posting.date_post_ends }}
+                    <br>
+                    <br>
+                    <a href="/job-post/{{ posting.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal" data-toggle='modal'><i class="icon-trash"></i> Delete</a>
+                    </p>
+	            <hr>
+                {% endif %}
 	    {% endfor %}
+            <br>
+            <h3>Inactive Jobs</h3>
+            {% for posting in postings %}
+                {% if not posting.active %}
+                    <div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="deleteModalLabel">Confirm Delete</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                            <b>Are you sure you wish to delete this Job Post?</b><br>
+                            <i>This action is irreversible!</i>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/job-post/{{ posting.id }}/delete" class="btn btn-danger"><i class="icon-trash"></i> Confirm</a>
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                        </div>
+                    </div>
+                    <a href="/job-post/{{ posting.id }}"><h3>{{ posting.headline }}</h3></a>
+
+                    {% if posting.city and posting.state %}
+                    <p>
+                        <b>Location: </b> {{ posting.city }}, {{ posting.state }}        
+                    <br>
+                    {% endif %}
+                    <b>Position: </b> {{ posting.position }}
+                    <br>
+                    <b>Date Posting Ends: </b> {{ posting.date_post_ends }}
+                    <br>
+                    <br>
+                    <a href="/job-post/{{ posting.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal" data-toggle='modal'><i class="icon-trash"></i> Delete</a>
+                    </p>
+                    <hr>
+                {% endif %}
+            {% endfor %}
+
         </div>
 {% endblock %}
