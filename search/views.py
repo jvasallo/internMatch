@@ -15,8 +15,12 @@ def index(request):
                 postingList = JobPost.objects.all()
                 postings = []
                 for eachPosting in postingList:
-                    if eachPosting.company.quizResult() == userProfile.quizResult():
-                        postings.append(eachPosting)
+                    try:
+                        postingCompany = User.objects.get(id=eachPosting.company.id)
+                        if postingCompany.is_active and eachPosting.company.quizResult() == userProfile.quizResult():
+                            postings.append(eachPosting)
+                    except Exception:
+                        print 'skip'
             except Exception:
                 postings = None 
             return render_to_response('search/job_search.html', {'user': user, 'userProfile' : userProfile, 'postings': postings}, context_instance=RequestContext(request))
@@ -26,7 +30,8 @@ def index(request):
                 userProfileList = []
                 interns = []
                 for eachUser in userList:
-                    userProfileList.append(eachUser.get_profile())
+                    if eachUser.is_active:
+                        userProfileList.append(eachUser.get_profile())
                 for eachProfile in userProfileList:
                     if eachProfile.is_intern and eachProfile.quizResult() == userProfile.quizResult():
                         interns.append(eachProfile)
@@ -34,5 +39,13 @@ def index(request):
                 interns = None
             return render_to_response('search/intern_search.html', {'user': user, 'userProfile' : userProfile, 'interns' : interns}, context_instance=RequestContext(request))
     else:
-        postings = JobPost.objects.all()
+        postingList = JobPost.objects.all()
+        postings = []
+        for eachPosting in postingList:
+            try:
+                postingCompany = User.objects.get(id=eachPosting.company.id)
+                if postingCompany.is_active:
+                    postings.append(eachPosting)        
+            except Exception:
+                print 'skip'
         return render_to_response('search/job_search.html', {'user': None, 'postings': postings}, context_instance=RequestContext(request))
