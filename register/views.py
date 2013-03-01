@@ -24,8 +24,11 @@ def InternRegistration(request):
             profile = user.get_profile()
             profile.name = form.cleaned_data['name']
             profile.school = form.cleaned_data['school']
-            profile.graduation_date = form.cleaned_data['graduation_date']
             profile.major = form.cleaned_data['major']
+            profile.graduation_date = form.cleaned_data['graduation_date']
+            profile.city = form.cleaned_data['city']
+            profile.state = form.cleaned_data['state']
+            profile.description = form.cleaned_data['description']
             profile.is_intern = True           
             profile.save()
             return HttpResponseRedirect('/quiz')
