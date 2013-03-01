@@ -20,27 +20,28 @@ def index(request):
 def publicCompanyProfile(request, company_id):
     try: # try to get a profile record
         requestedProfile = Profile.objects.get(pk=company_id)
+        requestedUser = User.objects.get(id=requestedProfile.user.id)
     except Profile.DoesNotExist:
         raise Http404
 
-    if requestedProfile.is_intern:
-        return HttpResponseRedirect('/')
-    else:
+    if not requestedProfile.is_intern and requestedUser.is_active:
         if request.user.is_authenticated():
             user = request.user
             profile = user.get_profile()
             return render_to_response('account/company_profile.html', {'user' : user, 'userProfile' : profile, 'profile': requestedProfile}, context_instance=RequestContext(request))
         else:
             return render_to_response('account/company_profile.html', {'user' : None, 'profile': requestedProfile}, context_instance=RequestContext(request))
-
+    else:
+        return HttpResponseRedirect('/')
 
 def privateInternProfile(request, intern_id):
     try:
         requestedProfile = Profile.objects.get(user_id=intern_id)
+        requestedUser = User.objects.get(id=requestedProfile.user.id)
     except Profile.DoesNotExist:
         raise Http404
 
-    if requestedProfile.is_intern:
+    if requestedProfile.is_intern and requestedUser.is_active:
         if request.user.is_authenticated():
             user = request.user
             profile = user.get_profile()
