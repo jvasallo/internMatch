@@ -1,6 +1,6 @@
 {% extends 'search/base.html' %}
 {% block listdropdown %}
-    {% if company %}
+    {% if not userProfile.is_intern %}
                         <li class="dropdown">
                             <a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -12,7 +12,7 @@
     {% endif %}
 {% endblock %}
 {% block signinbutton %}
-    {% if company = None %}
+    {% if user = none %}
                 <p class="navbar-text pull-right"><a href="/login" class="navbar-link">Login</a></p>
     {% endif %}
 {% endblock %}
@@ -65,50 +65,26 @@
           </div>
         </div>
         <div class="span9 well">
-          <a href="?"><h3>Joel Vasallo</h3></a>
-          <p><a href="?" target="_blank"><b>DePaul University</b></a> - Chicago, IL
-          <br>
-          You get to do a bunch of cool stuff! We are a super creative company, and are always looking for new interns to help catch pesky roadrunners.</p>
-          <hr>
-
-          <a href="?"><h3>David Kingman</h3></a>
-          <p><a href="?" target="_blank"><b>DePaul University</b></a> - Chicago, IL
-          <br>
-          You get to do a bunch of cool stuff! We are a super creative company, and are always looking for new interns to help catch pesky roadrunners.</p>
-          <hr>
-
-          <a href="?"><h3>Juan Carlos Escobar</h3></a>
-          <p><a href="?" target="_blank"><b>DePaul University</b></a> - Chicago, IL
-          <br>
-          You get to do a bunch of cool stuff! We are a super creative company, and are always looking for new interns to help catch pesky roadrunners.</p>
-          <hr>
-
-          <a href="?"><h3>Harold Breztlauf</h3></a>
-          <p><a href="?" target="_blank"><b>DePaul University</b></a> - Chicago, IL
-          <br>
-          You get to do a bunch of cool stuff! We are a super creative company, and are always looking for new interns to help catch pesky roadrunners.</p>
-          <hr>
-
-          <h5>[company.job[0].name]</h5>
-          <br>
-          [company.name] - [company.location]
-          <br>
-          [company.job.description]
-          <hr>
-
-          <div class="pagination pagination-centered">
-              <ul>
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
-          </div>
+          {% if interns %}
+              {% for intern in interns %}
+                  <a href="/profile/intern/{{ intern.id }}"><h3>{{ intern.name }}</h3></a>
+                  <p>
+                      <b>Major:</b> {{ intern.major }}
+                      <br>
+                      <b>University:</b> {{ intern.school }} 
+                      <br>
+                      <b>Anticipated Graduation Date:</b> {{ intern.graduation_date }}
+                      <br>
+                      <b>Current Location:</b> {{ intern.city }}, {{ intern.state }}
+                  </p>
+                  <hr>
+              {% endfor %}
+          {% else %}
+          <p> 
+          Drats...there appears to be no one that fits your criteria at this time. However, check back soon! Hundreds of users sign up everyday!
+          </p>
+          {% endif %}
         </div>
-
       </div> <!-- End Row -->
     </div> <!-- End Container -->
 {% endblock %}

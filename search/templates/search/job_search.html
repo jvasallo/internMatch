@@ -1,6 +1,6 @@
 {% extends 'search/base.html' %}
 {% block listdropdown %}
-    {% if isAuth %}
+    {% if userProfile %}
                         <li class="dropdown">
                             <a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -12,7 +12,7 @@
     {% endif %}
 {% endblock %}
 {% block signinbutton %}
-    {% if not isAuth %}
+    {% if not userProfile %}
                 <p class="navbar-text pull-right"><a href="/login" class="navbar-link">Login</a></p>
     {% endif %}
 {% endblock %}
@@ -63,26 +63,21 @@
 		</div>
 	    </div>
 	    <div class="span9 well">
-	        {% for posting in postings %}
-                    <a href="/job-post/{{ posting.id }}"><h3>{{ posting.headline }}</h3></a>
-		    <p><a href="/profile/company/{{ posting.company.id }}"><b>{{ posting.company.name }}</b></a> - {{ posting.city }}, {{ posting.state }}
-		    <br>
-		    {{ posting.position }}
+                {% if postings %}
+	            {% for posting in postings %}
+                        <a href="/job-post/{{ posting.id }}"><h3>{{ posting.headline }}</h3></a>
+		        <p>
+                            <a href="/profile/company/{{ posting.company.id }}"><b>{{ posting.company.name }}</b></a> - {{ posting.city }}, {{ posting.state }}
+		            <br>
+		            {{ posting.position }}
+                        </p>
+		        <hr>
+  		    {% endfor %}
+                {% else %}
+                    <p>
+                    Drats...there appears to be no one that fits your criteria at this time. However, check back soon! Hundreds of users sign up everyday!
                     </p>
-		    <hr>
-		{% endfor %}
-										
-		<div class="pagination pagination-centered">
-                    <ul>
-		        <li><a href="#">&laquo;</a></li>
-  		        <li><a href="#">1</a></li>
-		        <li><a href="#">2</a></li>
-		        <li><a href="#">3</a></li>
-		        <li><a href="#">4</a></li>
-		        <li><a href="#">5</a></li>
-		        <li><a href="#">&raquo;</a></li>
-		    </ul>
-		</div>
+                {% endif %}
 	    </div>
         </div><!-- End Row-->
     </div><!-- End Container -->
