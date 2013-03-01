@@ -28,6 +28,8 @@ def ResumePosting(request):
     else:
         return HttpResponseRedirect('/register/intern')
 
+def edit(request):
+    return HttpResponseRedirect('/')
 #def detail(request, resume_post_id):
 #    try:
 #        resumepost = JobPost.objects.get(pk=resume_post_id)
