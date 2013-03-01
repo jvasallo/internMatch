@@ -26,8 +26,8 @@
                         <li><a href="/quiz/quiz">Retake Quiz</a></li>
                         <li><a href="/job-post">Post New Job</a></li>
                         <li class="active"><a href="/profile/jobs">Active Job Listings</a></li>
-                        <li><a href="#">Potential Applicants</a></li>
-                        <li><a href="#"><i class="icon-cog"></i> Account Settings</a></li>
+                        <li><a href="/search">Potential Applicants</a></li>
+                        <li><a href="/profile/settings"><i class="icon-cog"></i> Account Settings</a></li>
                       </ul>
                     </div>
                   </div>
@@ -37,7 +37,8 @@
       <div class="row">
         <div class="span8">
             <h3>Active Jobs</h3>
-	    {% for posting in postings %}
+            {% if postings %}
+	        {% for posting in postings %}
                 {% if posting.active %}
                     <div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                         <div class="modal-header">
@@ -70,11 +71,22 @@
                     <a href="/job-post/{{ posting.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal" data-toggle='modal'><i class="icon-trash"></i> Delete</a>
                     </p>
 	            <hr>
+                {% else %}
+                    <p>
+                        Looks like you don't have any active jobs! Create some new ones, or reactivate some inactive ones!
+                    </p>
                 {% endif %}
-	    {% endfor %}
+	        {% endfor %}
+            {% else %}
+                <p>
+                    Looks like you don't have any active jobs! Create some new ones, or reactivate some inactive ones!
+                </p>
+            {% endif %}
+
             <br>
             <h3>Inactive Jobs</h3>
-            {% for posting in postings %}
+            {% if postings %}
+                {% for posting in postings %}
                 {% if not posting.active %}
                     <div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                         <div class="modal-header">
@@ -107,8 +119,17 @@
                     <a href="/job-post/{{ posting.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal" data-toggle='modal'><i class="icon-trash"></i> Delete</a>
                     </p>
                     <hr>
+                {% else %}
+                    <p>
+                    Looks like you don't have any inactive jobs at this time! Awesome!
+                    </p>
                 {% endif %}
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+               <p>
+                   Looks like you don't have any inactive jobs at this time! Awesome!
+               </p>
+            {% endif %}
 
         </div>
 {% endblock %}

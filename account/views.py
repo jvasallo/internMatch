@@ -35,17 +35,23 @@ def publicCompanyProfile(request, company_id):
 
 
 def privateInternProfile(request, intern_id):
-    if request.user.is_authenticated():
-        user = request.user
-        profile = user.get_profile()
-        if profile.is_intern: # interns can't view profile pages
-            return HttpResponseRedirect('/')    
-        else: # request to view profile is coming from company
-            try:
-                requestedProfile = Profile.objects.get(pk=intern_id)
-            except Profile.DoesNotExist:
-                raise Http404
-            return render_to_response('account/intern_profile.html', {'user' : user, 'userProfile' : profile, 'profile': requestedProfile}, context_instance=RequestContext(request))
+    try:
+        requestedProfile = Profile.objects.get(user_id=intern_id)
+    except Profile.DoesNotExist:
+        raise Http404
+
+    if requestedProfile.is_intern:
+        if request.user.is_authenticated():
+            user = request.user
+            profile = user.get_profile()
+            if profile.is_intern and requestedProfile.id == profile.id: # intern can view his own page
+                return render_to_response('account/intern_profile.html', {'user' : user, 'userProfile' : profile, 'profile': requestedProfile}, context_instance=RequestContext(request))
+            elif profile.is_intern: # interns can't view profile pages
+                return HttpResponseRedirect('/')    
+            else: # request to view profile is coming from company
+                return render_to_response('account/intern_profile.html', {'user' : user, 'userProfile' : profile, 'profile': requestedProfile}, context_instance=RequestContext(request))
+        else: # redirect to login because user is not signed in.
+            return HttpResponseRedirect('/login')
     else: # redirect to home because user is not company nor intern
         return HttpResponseRedirect('/')
 

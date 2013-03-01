@@ -28,53 +28,42 @@
 {% block container %}	
     {% if user and userProfile.is_intern %}
         {% if profile.id == userProfile.id %}
-	      <div class="masthead">
-	        <h3 class="muted">My Personality: {{ userProfile.quizResults }}</h3>
-	        <div class="navbar">
-	          <div class="navbar-inner">
-	            <div class="container">
-	              <ul class="nav">
-	                <li class="active"><a href="#">My Profile</a></li>
-	                <li><a href="#">My Personality</a></li>
-	                <li><a href="#">Search History</a></li>
-	                <li><a href="#">My Applications</a></li>
-	                <li><a href="#">Resume</a></li>
-	                <li><a href="#">Notifications</a></li>
-	              </ul>
-	            </div>
-	          </div>
-	        </div><!-- /.navbar -->
+              <div class="masthead">
+                <h3 class="muted">My Personality: {{ userProfile.quizResult }}<br />Username: {{ user.username }} </h3>
+                <div class="navbar">
+                  <div class="navbar-inner">
+                    <div class="container">
+                      <ul class="nav">
+                        <li class="active"><a href="/profile">Profile</a></li>
+                        <li><a href="/profile/edit">Edit Profile</a></li>
+                        <li><a href="/quiz/quiz">Retake Quiz</a></li>
+                        <li><a href="/job-post">Resume</a></li>
+                        <li><a href="/profile/jobs">Edit Resume</a></li>
+                        <li><a href="/search">Potential Matches</a></li>
+                        <li><a href="/profile/settings"><i class="icon-cog"></i> Account Settings</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div><!-- /.navbar -->
+      {% endif %}
       </div>
+    {% else %}
       <div class="row">
         <div class="span8">
-	  <h2>{{ profile.user }}</h2>
-	  <p>Major: {{ profile.major   }}</p>
+	  <h2>{{ profile.name }}</h2>
+	  <p>Major: {{ profile.major }}</p>
 	  <p>
             <h3>Professional Summary:</h3>
-            Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
           </p>
 	  <p>
             <h3>Personality type:</h3>
-            Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
           </p>
 	  <p>
             <h3>Skills:</h3>
-            <ul>
-	      <li>Python</li>
-	      <li>Java</li>
-	      <li>System Analysis</li>
-	      <li>Data Analytics</li>
-	    </ul>
 	  </p>
           <p>
             <h3>Experience</h3>
-            <ul>
-       	      <li>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</li>
-	      <li>Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</li>
-	      <li>Etiam porta sem malesuada magna mollis euismod.</li>
-	    </ul>
           </p>
         </div> <!-- /.span8 -->
-        {% endif %}
     {% endif %}
 {% endblock %}
