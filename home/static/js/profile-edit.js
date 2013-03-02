@@ -70,15 +70,6 @@ $(function(){
 		{value: 8, text: 'Systems Analysis'}
 	]
     });
-	
-	$('#skills').editable({
-	type: 'select2',
-	inputclass: 'input-large',
-	select2: {
-		tags: ['ajax','C','C++', 'CSS','Django','HTML','Java','JavaScript','JQuery','Linux','OS X','Python','Ruby','Windows'],
-		tokenSeparators: [",", " "]
-	}
-    }); 
 
     /* Company Edit Form */
     // Uses Comment Box
