@@ -18,6 +18,9 @@ class Profile(models.Model):
     industry = models.CharField(max_length=50, null=True)
     description = models.CharField(max_length=1250, null=True)
     is_intern = models.BooleanField()
+
+    def formattedDate(self):
+        return self.graduation_date.strftime("%Y-%m-%d")
     
     def quizResult(self):
         q = self.user.quizresult_set.get()
