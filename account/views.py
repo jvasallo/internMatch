@@ -97,7 +97,6 @@ def update(request):
                 profile.graduation_date = request.POST.get('graduation_date')
                 profile.major = request.POST.get('major')
                 user.email = request.POST.get('email')
-                profile.skills = request.POST.get('skills')
                 profile.description = request.POST.get('description')
                 user.save()
                 profile.save()
