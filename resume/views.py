@@ -30,7 +30,30 @@ def ResumePosting(request):
 
 def edit(request):
     return HttpResponseRedirect('/')
-#def detail(request, resume_post_id):
+
+
+def detail(request, resume_post_id):
+    try:
+        requestedProfile = Profile.objects.get(user_id=resume_post_id)
+        requestedUser = User.objects.get(id=requestedProfile.user.id)
+    except Profile.DoesNotExist:
+        raise Http404
+
+    if requestedProfile.is_intern and requestedUser.is_active:
+        if request.user.is_authenticated():
+            user = request.user
+            profile = user.get_profile()
+            if profile.is_intern and requestedProfile.id == profile.id: # intern can view his own page
+                return render_to_response('resume/intern_profile.html', {'user' : user, 'userProfile' : profile, 'profile': requestedProfile}, context_instance=RequestContext(request))
+            elif profile.is_intern: # interns can't view resume pages
+                return HttpResponseRedirect('/')
+            else: # request to view resume is coming from company
+                return render_to_response('resume/intern_profile.html', {'user' : user, 'userProfile' : profile, 'profile': requestedProfile}, context_instance=RequestContext(request))
+        else: # redirect to login because user is not signed in.
+            return HttpResponseRedirect('/login')
+    else: # redirect to home because user is not company nor intern
+        return HttpResponseRedirect('/')
+
 #    try:
 #        resumepost = JobPost.objects.get(pk=resume_post_id)
 #    except JobPost.DoesNotExist:
@@ -58,12 +81,3 @@ def add_skill(skills, resume, type):
         skill.resume = resume
         skill.type = type
         skill.save()
-
-def add_activity(activities, resume, type):
-    for s in skills:
-        skill = Skill()
-        skill.name = s
-        skill.resume = resume
-        skill.type = type
-        skill.save()
-
