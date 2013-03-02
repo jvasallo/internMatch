@@ -15,9 +15,6 @@ class Resume(models.Model):
     def getSkills(self):
 	return self.skill_set.all()
 
-    def getActivities(self):
-        return self.activy_set.all()
-     
     def __unicode__(self):
         return self.intern
 
@@ -42,13 +39,6 @@ class Experience(models.Model):
     def __unicode__(self):
         return self.title
 
-class Activity(models.Model):
-    intern = models.ForeignKey('register.Profile', null=True)      # activity could belong to intern
-    name = models.CharField(max_length=50,null=True)
-
-    def __unicode__(self):
-        return self.name
-    
 class Reference(models.Model):
     name = models.CharField(max_length=50,null=True)
     relationship = models.CharField(max_length=50, null=True)
