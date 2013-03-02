@@ -226,8 +226,7 @@ function onSubmitIntern() {
               'graduation_date' : editableObjects[2].text,
               'major' : editableObjects[3].text,
               'email' : editableObjects[4].text,
-              'skills' : editableObjects[5].text,
-			  'description' : editableObjects[6].text
+			  'description' : editableObjects[5].text
               },
        type: 'POST', // GET or POST
        url: '/profile/update/', // the file to call
