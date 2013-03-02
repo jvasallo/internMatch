@@ -35,19 +35,11 @@
               <h3>Major:</h3> 
               {{ userProfile.major }}
           </p>
-              <h3>Graduation Date:</h3>
+            <h3>Graduation Date:</h3>
               {{ userProfile.graduation_date }}
-	  <p>
+			<p>
             <h3>Professional Summary:</h3>
-          </p>
-	  <p>
-            <h3>Personality type:</h3>
-          </p>
-	  <p>
-            <h3>Skills:</h3>
-	  </p>
-          <p>
-            <h3>Experience</h3>
+			  {{ userProfile.description }}
           </p>
         </div> <!-- /.span8 -->
 {% endblock %}

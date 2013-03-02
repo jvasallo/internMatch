@@ -30,16 +30,11 @@ $(function(){
 	type: 'email',
 	inputclass: 'input-large'
     });
-
-    $('#skills').editable({
-	type: 'select2',
-	inputclass: 'input-large',
-	select2: {
-		tags: ['ajax','C','C++', 'CSS','Django','HTML','Java','JavaScript','JQuery','Linux','OS X','Python','Ruby','Windows'],
-		tokenSeparators: [",", " "]
-	}
-    }); 
-
+	
+	$('#description').editable({ // used as experience field for intern profile
+	type: 'textarea',
+	inputclass: 'input-xxlarge'
+    });
 
     /* Intern Edit Form */
     $('#school').editable({
@@ -55,8 +50,10 @@ $(function(){
             if($.trim(value) == '') return 'This field is required';
 	},
 	type: 'date',
-	format: 'MM dd, yyyy',
-	inputclass: 'input-medium'
+	format: 'yyyy-mm-dd',
+	datepicker: {
+		weekstart: 1
+	}
     });
 
     $('#major').editable({
@@ -73,14 +70,18 @@ $(function(){
 		{value: 8, text: 'Systems Analysis'}
 	]
     });
+	
+	$('#skills').editable({
+	type: 'select2',
+	inputclass: 'input-large',
+	select2: {
+		tags: ['ajax','C','C++', 'CSS','Django','HTML','Java','JavaScript','JQuery','Linux','OS X','Python','Ruby','Windows'],
+		tokenSeparators: [",", " "]
+	}
+    }); 
 
     /* Company Edit Form */
     // Uses Comment Box
-    $('#description').editable({
-	type: 'textarea',
-	inputclass: 'input-xxlarge'
-    });
-
     $('#industry').editable({
 	type: 'select',
 	inputclass: 'input-large',
@@ -224,9 +225,30 @@ $(function(){
     });
 });
 
+// Intern Update
+function onSubmitIntern() {
+   var editableObjects = $('.editable');
+
+   $.ajax({ // create an AJAX call...
+       data: {'name' : editableObjects[0].text,
+              'school' : editableObjects[1].text,
+              'graduation_date' : editableObjects[2].text,
+              'major' : editableObjects[3].text,
+              'email' : editableObjects[4].text,
+              'skills' : editableObjects[5].text,
+			  'description' : editableObjects[6].text
+              },
+       type: 'POST', // GET or POST
+       url: '/profile/update/', // the file to call
+       success: function(response) { // on success..
+           window.location.href = "../../profile/";
+       }
+   });
+}
+
+// Company Update
 function onSubmit() {
    var editableObjects = $('.editable');
-   var n = editableObjects.length; // total quiz items
 
    $.ajax({ // create an AJAX call...
        data: {'name' : editableObjects[0].text,

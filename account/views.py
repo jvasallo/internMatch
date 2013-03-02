@@ -92,7 +92,15 @@ def update(request):
             raise Http404
         if request.method == 'POST': # and if request is a POST
             if profile.is_intern:
-                print 'hello'
+                profile.name = request.POST.get('name')
+                profile.school = request.POST.get('school')
+                profile.graduation_date = request.POST.get('graduation_date')
+                profile.major = request.POST.get('major')
+                user.email = request.POST.get('email')
+                profile.skills = request.POST.get('skills')
+                profile.description = request.POST.get('description')
+                user.save()
+                profile.save()
             else:
                 profile.name = request.POST.get('name')
                 profile.description = request.POST.get('description')

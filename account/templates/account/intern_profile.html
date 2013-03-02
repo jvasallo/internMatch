@@ -60,6 +60,7 @@
                     </p>
                     <p>
                     <h3>Experience</h3>
+					{{ profile.description}}
                     </p>
                   </div> <!-- /.span8 -->
       {% endif %}
@@ -69,17 +70,12 @@
 	  <h2>{{ profile.name }}</h2>
 	  <p>Major: {{ profile.major }}</p>
 	  <p>
-            <h3>Professional Summary:</h3>
-          </p>
-	  <p>
-            <h3>Personality type:</h3>
-          </p>
-	  <p>
-            <h3>Skills:</h3>
-	  </p>
-          <p>
-            <h3>Experience</h3>
-          </p>
+        <h3>Professional Summary:</h3>
+      </p>
+        <p>
+        <h3>Activities</h3>
+		{{ profile.description }}
+        </p>
         </div> <!-- /.span8 -->
     {% endif %}
 {% endblock %}
