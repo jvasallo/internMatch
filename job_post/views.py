@@ -48,6 +48,7 @@ def add_job_post(form, profile):
     job_post.company_bio = form.cleaned_data['company_bio']
     job_post.state = form.cleaned_data['state']
     job_post.city = form.cleaned_data['city']
+    job_post.url = form.cleaned_data['url']
     job_post.save()
     return job_post
 
@@ -78,7 +79,7 @@ def update(request):
             except JobPost.DoesNotExist:
                 raise Http404
             if not profile.is_intern:
-#                import pdb; pdb.set_trace()
+                import pdb; pdb.set_trace()
                 posting.headline = request.POST.get('headline')
                 posting.position = request.POST.get('position')
                 posting.description = request.POST.get('description')
@@ -86,6 +87,7 @@ def update(request):
                 posting.city = request.POST.get('city')
                 posting.state = request.POST.get('state')
                 posting.date_post_ends = request.POST.get('end_date')
+                posting.url = request.POST.get('url')
                 add_skills(request.POST.getlist('desired')[0].split(','), posting, 'desired')
                 add_skills(request.POST.getlist('required')[0].split(','), posting, 'required')
                 posting.save()

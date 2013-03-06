@@ -21,7 +21,7 @@ class SigninForm(forms.Form):
                                                 'username',
                                                 'password',
                                     ),
-									#HTML("""<a href="{% url password_reset %}">Forgot password?</a>"""),
+									#HTML("""<a href="{% url password_reset %}">Forgot password?</a>"""), 
                                     ButtonHolder(Submit('submit', 'Sign In', css_class='btn btn-medium btn-primary')),
                                     HTML("""
                                          <div class="row">
@@ -29,9 +29,9 @@ class SigninForm(forms.Form):
                                                 <br>
                                                 <a href="{% url password_reset %}">Forgot password?</a><br>
                                                 <br>
-                                                <center>Not registered? Sign up today as a: 
+                                                Not registered? Sign up today as a: 
                                                 <br>  
-                                                <a href="/register/company">Company</a> or <a href="/register/intern">Intern</a></center>
+                                                <a href="/register/company">Company</a> or <a href="/register/intern">Intern</a>
                                             </div>
                                          </div> """),
                                     )

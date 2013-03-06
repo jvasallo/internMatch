@@ -66,11 +66,11 @@ class JobPostForm(forms.Form):
     city            = forms.CharField(          
                                                label=(u'City'),
                                                widget=forms.TextInput(attrs={'class':'span6'}),
-                                               required=False,)
+                                               required=True,)
     state           = forms.CharField(          
                                                label=(u'State'),
                                                widget=forms.TextInput(attrs={'class':'span6'}),
-                                               required=False,)
+                                               required=True,)
     url             = forms.URLField(          label=(u'Company application url'),
                                                widget=forms.TextInput(attrs={'class':'span6'}),
                                                required=False)

@@ -10,8 +10,9 @@ class JobPost(models.Model):
     company_bio    = models.TextField(max_length=250, null=True)
     position       = models.CharField(max_length=50)
     headline       = models.CharField(max_length=50, null=True)
-    city           = models.CharField(max_length=50, null=True)
-    state          = models.CharField(max_length=50, null=True)
+    city           = models.CharField(max_length=50)
+    state          = models.CharField(max_length=50)
+    url            = models.URLField(max_length=200)
 
     def active(self):
         if self.date_post_ends > datetime.date.today():

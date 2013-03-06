@@ -1,43 +1,65 @@
 {% extends 'job-post/base.html' %}
 {% block listdropdown %}
-    {% if isAuth %}
-                        <li class="dropdown">
-                            <a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/profile">Edit Profile</a></li>
-                                <li><a href="/quiz">Take Quiz</a></li>
-                                <li><a href="/logout">Logout</a></li>
-                            </ul>
-                        </li>
-    {% endif %}
+{% if isAuth %}
+<li class="dropdown">
+	<a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+	<ul class="dropdown-menu">
+		<li>
+			<a href="/profile">Edit Profile</a>
+		</li>
+		<li>
+			<a href="/quiz">Take Quiz</a>
+		</li>
+		<li>
+			<a href="/logout">Logout</a>
+		</li>
+	</ul>
+</li>
+{% endif %}
 {% endblock %}
+
 {% block container %}
-    {% if jobpost %}
-        <div class="row">
-            <div class="span8">
-                <h2>{{ jobpost.headline }}</h2>
-                <br>
-                <i>Posted on: {{ jobpost.date_posted }}</i>
-                <p>
-                <h3>Company Information:</h3>
-                <a href="/profile/company/{{jobpost.company.id}}">{{ jobpost.company }}</a> - {{ jobpost.city }}, {{ jobpost.state }}
-                <h3>Company Bio</h3>
-                {{ jobpost.company_bio }}
-                <h3>Job Description:</h3>
-                {{ jobpost.description }}
-                <h3>Required Skills</h3>
-                <ul>
-                {% for reqSkill in jobpost.getRequiredSkills %}
-                    <li>{{ reqSkill.name }}</li>
-                {% endfor %}               
-                </ul>
-                <h3>Desired Skills</h3>
-                <ul>
-                {% for reqSkill in jobpost.getDesiredSkills %}
-                    <li>{{ reqSkill.name }}</li>
-                {% endfor %}   
-                </ul>
-                </p>
-            </div> <!-- /.span8 -->
-    {% endif %}
-{% endblock %}
+{% if jobpost %}
+<div class="row">
+	<div class="span8">
+		<h2>{{ jobpost.headline }}</h2>
+		<br>
+		<i>Posted on: {{ jobpost.date_posted }}</i>
+		<p>
+			<h3>Company Information:</h3>
+			<a href="/profile/company/{{jobpost.company.id}}">{{ jobpost.company }}</a> - {{ jobpost.city }}, {{ jobpost.state }} 
+			{% if jobpost.company_bio %}
+			<h3>Company Bio</h3>
+			{{ jobpost.company_bio }}
+			{% endif %}
+			<h3>Job Description:</h3>
+			{{ jobpost.description }}
+			{% if jobpost.getRequiredSkills|length > 0 %}
+			<h3>Required Skills</h3>
+			{% endif %}
+			<ul>
+				{% for reqSkill in jobpost.getRequiredSkills %}
+				<li>
+					{{ reqSkill.name }}
+				</li>
+				{% endfor %}
+			</ul>
+			{% if jobpost.getDesiredSkills|length > 0 %} 
+			<h3>Desired Skills</h3>
+			{% endif %}
+			<ul>
+				{% for reqSkill in jobpost.getDesiredSkills %}
+				<li>
+					{{ reqSkill.name }}
+				</li>
+				{% endfor %}
+			</ul>
+		</p>
+		{% if jobpost.url %}
+		<a href="{{ jobpost.url }}" class="btn btn-primary">Apply Now<a>
+		{% else %} <a class="btn btn-primary">Apply Now<a>
+		{% endif %}
+	</div>
+	<!-- /.span8 -->
+	{% endif %}
+	{% endblock %}

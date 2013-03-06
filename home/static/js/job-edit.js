@@ -35,7 +35,11 @@ $(function(){
         type: 'textarea',
         inputclass: 'input-xxlarge'
     });
-
+    
+    $('#url').editable({
+        type: 'textarea',
+        inputclass: 'input-xxlarge'
+    });
 
     $('#city').editable({
 	validate: function(value) {
@@ -53,7 +57,10 @@ $(function(){
     $('#state').editable({
 	type: 'select2',
 	inputclass: 'input-large',
-	source: states
+	source: states,
+	validate: function(value) {
+            if($.trim(value) == '') return 'This field is required';
+	},
     });
 
     $('#end_date').editable({
@@ -83,7 +90,8 @@ function onSubmit() {
               'desired' : editableObjects[5].text == 'Empty' ? '' : editableObjects[5].text,
               'city' : editableObjects[6].text == 'Empty' ? '' : editableObjects[6].text,
               'state' : editableObjects[7].text == 'Empty' ? '' : editableObjects[7].text,
-              'end_date' : editableObjects[8].text == 'Empty' ? '' : editableObjects[8].text,
+              'url' : editableObjects[8].text == 'Empty' ? '' : editableObjects[8].text,
+              'end_date' : editableObjects[9].text == 'Empty' ? '' : editableObjects[9].text,
               },
        type: 'POST', // GET or POST
        url: '/job-post/update/', // the file to call

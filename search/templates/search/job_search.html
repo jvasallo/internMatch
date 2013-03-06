@@ -67,7 +67,11 @@
 	            {% for posting in postings %}
                         <a href="/job-post/{{ posting.id }}"><h3>{{ posting.headline }}</h3></a>
 		        <p>
-                            <a href="/profile/company/{{ posting.company.id }}"><b>{{ posting.company.name }}</b></a> - {{ posting.city }}, {{ posting.state }}
+                            <a href="/profile/company/{{ posting.company.id }}"><b>{{ posting.company.name }}</b></a>
+                            {% if posting.city and posting.state %} - {{ posting.city }}, {{ posting.state }} 
+                            {% elif posting.city and not posting.state %} - {{ posting.city }}
+                            {% elif posting.state and not posting.city %} - {{ posting.state }}
+                            {% endif %}
 		            <br>
 		            {{ posting.position }}
                         </p>
