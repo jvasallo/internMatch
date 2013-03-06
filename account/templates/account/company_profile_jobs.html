@@ -71,10 +71,6 @@
                     <a href="/job-post/{{ posting.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal" data-toggle='modal'><i class="icon-trash"></i> Delete</a>
                     </p>
 	            <hr>
-                {% else %}
-                    <p>
-                        Looks like you don't have any active jobs! Create some new ones, or reactivate some inactive ones!
-                    </p>
                 {% endif %}
 	        {% endfor %}
             {% else %}
@@ -117,7 +113,8 @@
                     <br>
                     <br>
                     </br>
-                    <a href="/job-post/{{ posting.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal" data-toggle='modal'><i class="icon-trash"></i> Delete <b class="alert"> Click edit to update and repost</b></a>
+                    <a href="/job-post/{{ posting.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal" data-toggle='modal'><i class="icon-trash"></i> Delete </a> 
+                    <b class="alert"> Click edit to update and repost</b>
                    </p>
                     <hr>
                 

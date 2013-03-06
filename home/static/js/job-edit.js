@@ -73,17 +73,17 @@ function onSubmit() {
    var editableObjects = $('.editable');
    var postingid = document.getElementById('postingid').value;
    var n = editableObjects.length; // total quiz items
-   $.ajax({ // create an AJAX call...
+   $.ajax({ // If the field is empty send '', instead of 'Empty', which will get saved in the respective database fields
        data: {'id' : postingid,
-              'headline' : editableObjects[0].text,
-              'position' : editableObjects[1].text,
-              'description' : editableObjects[2].text,
-              'company_bio' : editableObjects[3].text,
-              'required' : editableObjects[4].text,
-              'desired' : editableObjects[5].text,
-              'city' : editableObjects[6].text,
-              'state' : editableObjects[7].text,
-              'end_date' : editableObjects[8].text
+              'headline' : editableObjects[0].text == 'Empty' ? '' : editableObjects[0].text,
+              'position' : editableObjects[1].text == 'Empty' ? '' : editableObjects[1].text,
+              'description' : editableObjects[2].text == 'Empty' ? '' : editableObjects[2].text,
+              'company_bio' : editableObjects[3].text == 'Empty' ? '' : editableObjects[3].text,
+              'required' : editableObjects[4].text == 'Empty' ? '' : editableObjects[4].text,
+              'desired' : editableObjects[5].text == 'Empty' ? '' : editableObjects[5].text,
+              'city' : editableObjects[6].text == 'Empty' ? '' : editableObjects[6].text,
+              'state' : editableObjects[7].text == 'Empty' ? '' : editableObjects[7].text,
+              'end_date' : editableObjects[8].text == 'Empty' ? '' : editableObjects[8].text,
               },
        type: 'POST', // GET or POST
        url: '/job-post/update/', // the file to call

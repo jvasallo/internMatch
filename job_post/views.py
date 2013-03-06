@@ -30,6 +30,7 @@ def JobPosting(request):
         return HttpResponseRedirect('/register/company')
 
 def detail(request, job_post_id):
+#    import pdb; pdb.set_trace()
     try:
         jobpost = JobPost.objects.get(pk=job_post_id)
     except JobPost.DoesNotExist:
@@ -51,6 +52,7 @@ def add_job_post(form, profile):
     return job_post
 
 def edit(request, job_post_id):
+#    import pdb; pdb.set_trace()
     try:
         jobpost = JobPost.objects.get(pk=job_post_id)
     except JobPost.DoesNotExist:
@@ -76,6 +78,7 @@ def update(request):
             except JobPost.DoesNotExist:
                 raise Http404
             if not profile.is_intern:
+#                import pdb; pdb.set_trace()
                 posting.headline = request.POST.get('headline')
                 posting.position = request.POST.get('position')
                 posting.description = request.POST.get('description')
@@ -83,6 +86,8 @@ def update(request):
                 posting.city = request.POST.get('city')
                 posting.state = request.POST.get('state')
                 posting.date_post_ends = request.POST.get('end_date')
+                add_skills(request.POST.getlist('desired')[0].split(','), posting, 'desired')
+                add_skills(request.POST.getlist('required')[0].split(','), posting, 'required')
                 posting.save()
             return redirect('/profile/jobs')
     else: # else user needs to log in
@@ -104,8 +109,9 @@ def deletePost(request, job_post_id):
 
 def add_skills(skills, job_post, type):
     for s in skills:
-        skill = Skill()
-        skill.name = s
-        skill.job_post = job_post
-        skill.type = type
-        skill.save()
+        if(len(s)):
+            skill = Skill()
+            skill.name = s
+            skill.job_post = job_post
+            skill.type = type
+            skill.save()
