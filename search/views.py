@@ -5,9 +5,10 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 from quiz.models import QuizResult
 from job_post.models import JobPost
+from datetime import date
 
 def index(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated() and request.method == 'GET':
         user = request.user
         userProfile = request.user.get_profile()
         if userProfile.is_intern:
@@ -22,8 +23,9 @@ def index(request):
                     except Exception:
                         print 'skip'
             except Exception:
-                postings = None 
-            return render_to_response('search/job_search.html', {'user': user, 'userProfile' : userProfile, 'postings': postings}, context_instance=RequestContext(request))
+                postings = None
+            context = {'user': user, 'userProfile' : userProfile, 'postings': postings}
+            return render_to_response('search/job_search.html', context, context_instance=RequestContext(request))
         else:
             try:
                 userList = User.objects.all()

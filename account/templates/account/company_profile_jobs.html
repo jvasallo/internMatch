@@ -113,16 +113,14 @@
                     {% endif %}
                     <b>Position: </b> {{ posting.position }}
                     <br>
-                    <b>Date Posting Ends: </b> {{ posting.date_post_ends }}
+                    <b>Date Posting Ended: </b> {{ posting.date_post_ends }}     
                     <br>
                     <br>
-                    <a href="/job-post/{{ posting.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal" data-toggle='modal'><i class="icon-trash"></i> Delete</a>
-                    </p>
+                    </br>
+                    <a href="/job-post/{{ posting.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal" data-toggle='modal'><i class="icon-trash"></i> Delete <b class="alert"> Click edit to update and repost</b></a>
+                   </p>
                     <hr>
-                {% else %}
-                    <p>
-                    Looks like you don't have any inactive jobs at this time! Awesome!
-                    </p>
+                
                 {% endif %}
                 {% endfor %}
             {% else %}

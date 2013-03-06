@@ -1,0 +1,370 @@
+[
+	{
+		"pk": 1,
+		"model": "auth.user",
+		"fields": {
+			"username": "administrator",
+			"first_name": "",
+			"last_name": "",
+			"is_active": true,
+			"is_superuser": true,
+			"is_staff": true,
+			"last_login": "2013-03-06T06:54:06.656Z",
+			"groups": [],
+			"user_permissions": [],
+			"password": "pbkdf2_sha256$10000$1i8Zv5JUpkRy$MdLes7c5BTJNrTvNBkNV124qRJ8+HpqOnUVfvhUcVtE=",
+			"email": "d@d.com",
+			"date_joined": "2013-03-06T06:54:06.656Z"
+		}
+	}, {
+		"pk": 2,
+		"model": "auth.user",
+		"fields": {
+			"username": "dkingman",
+			"first_name": "",
+			"last_name": "",
+			"is_active": true,
+			"is_superuser": false,
+			"is_staff": false,
+			"last_login": "2013-03-06T07:00:20.863Z",
+			"groups": [],
+			"user_permissions": [],
+			"password": "pbkdf2_sha256$10000$UGubRseeC4rK$Lq+w3vPuTJAAq+ug6iEfXRkFodMt85ZSKhb4nhBZe4M=",
+			"email": "asdf@asdf.com",
+			"date_joined": "2013-03-06T07:00:20.588Z"
+		}
+	}, {
+		"pk": 3,
+		"model": "auth.user",
+		"fields": {
+			"username": "king",
+			"first_name": "",
+			"last_name": "",
+			"is_active": true,
+			"is_superuser": false,
+			"is_staff": false,
+			"last_login": "2013-03-06T07:00:49.882Z",
+			"groups": [],
+			"user_permissions": [],
+			"password": "pbkdf2_sha256$10000$RLSRLQkrjbCB$Jv3GPPjGNBW8yYGeryUuPFB9+UkTh6qkV6aJF90oI0Y=",
+			"email": "king@king.com",
+			"date_joined": "2013-03-06T07:00:49.596Z"
+		}
+	}, {
+		"pk": "e0cad4ba883560cbea1cd351945b1262",
+		"model": "sessions.session",
+		"fields": {
+			"expire_date": "2013-03-20T07:00:49.889Z",
+			"session_data": "NjJhYjJmNjMyNTEwZjU1ZTYxMTEwOGRiYjJlYWFmNDMyZDQ2YWRhNDqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQRLA3Uu\n"
+		}
+	}, {
+		"pk": 1,
+		"model": "sites.site",
+		"fields": {
+			"domain": "example.com",
+			"name": "example.com"
+		}
+	}, {
+		"pk": 1,
+		"model": "register.profile",
+		"fields": {
+			"website": null,
+			"city": null,
+			"school": null,
+			"name": null,
+			"zip": null,
+			"graduation_date": null,
+			"industry": null,
+			"major": null,
+			"contactEmail": null,
+			"phone": null,
+			"state": null,
+			"user": 1,
+			"address": null,
+			"is_intern": false,
+			"description": null
+		}
+	}, {
+		"pk": 2,
+		"model": "register.profile",
+		"fields": {
+			"website": "",
+			"city": "Chicago",
+			"school": null,
+			"name": "Google",
+			"zip": "60606",
+			"graduation_date": null,
+			"industry": "Agriculture",
+			"major": null,
+			"contactEmail": "a@d.com",
+			"phone": "123456789",
+			"state": "IL",
+			"user": 2,
+			"address": "1 Google Drive",
+			"is_intern": false,
+			"description": ""
+		}
+	}, {
+		"pk": 3,
+		"model": "register.profile",
+		"fields": {
+			"website": null,
+			"city": "Chicago",
+			"school": "Depaul",
+			"name": "David",
+			"zip": null,
+			"graduation_date": "2013-03-14",
+			"industry": null,
+			"major": "Applied Network Systems",
+			"contactEmail": null,
+			"phone": null,
+			"state": "IL",
+			"user": 3,
+			"address": null,
+			"is_intern": true,
+			"description": ""
+		}
+	}, {
+		"pk": 1,
+		"model": "quiz.quiz",
+		"fields": {
+			"question": "Drag and drop the qualites that fit you from best (top) to worst (bottom):"
+		}
+	}, {
+		"pk": 1,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Creative",
+			"option_value": 1,
+			"quiz": 1
+		}
+	}, {
+		"pk": 2,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Problem Solver",
+			"option_value": 2,
+			"quiz": 1
+		}
+	}, {
+		"pk": 3,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Good Listener",
+			"option_value": 3,
+			"quiz": 1
+		}
+	}, {
+		"pk": 4,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Oral/Verbal Communication",
+			"option_value": 4,
+			"quiz": 1
+		}
+	}, {
+		"pk": 5,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Writing Skills",
+			"option_value": 5,
+			"quiz": 1
+		}
+	}, {
+		"pk": 6,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Flexibility",
+			"option_value": 6,
+			"quiz": 1
+		}
+	}, {
+		"pk": 7,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "People Skills",
+			"option_value": 7,
+			"quiz": 1
+		}
+	}, {
+		"pk": 8,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Punctual",
+			"option_value": 8,
+			"quiz": 1
+		}
+	}, {
+		"pk": 9,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Accurate",
+			"option_value": 9,
+			"quiz": 1
+		}
+	}, {
+		"pk": 10,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Efficient",
+			"option_value": 10,
+			"quiz": 1
+		}
+	}, {
+		"pk": 11,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Multi-Tasker",
+			"option_value": 11,
+			"quiz": 1
+		}
+	}, {
+		"pk": 12,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Analytical",
+			"option_value": 12,
+			"quiz": 1
+		}
+	}, {
+		"pk": 13,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Ability to Plan",
+			"option_value": 13,
+			"quiz": 1
+		}
+	}, {
+		"pk": 14,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Skilled Researcher",
+			"option_value": 14,
+			"quiz": 1
+		}
+	}, {
+		"pk": 15,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Reflective",
+			"option_value": 15,
+			"quiz": 1
+		}
+	}, {
+		"pk": 16,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Leadership",
+			"option_value": 16,
+			"quiz": 1
+		}
+	}, {
+		"pk": 17,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Teamwork",
+			"option_value": 17,
+			"quiz": 1
+		}
+	}, {
+		"pk": 18,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Stamina",
+			"option_value": 18,
+			"quiz": 1
+		}
+	}, {
+		"pk": 19,
+		"model": "quiz.option",
+		"fields": {
+			"option_name": "Fast-Paced Worker",
+			"option_value": 19,
+			"quiz": 1
+		}
+	}, {
+		"pk": 1,
+		"model": "job_post.jobpost",
+		"fields": {
+			"company_bio": "Empty",
+			"date_post_ends": "2013-03-14",
+			"description": "Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description",
+			"city": "Empty",
+			"headline": "Experienced web developer",
+			"company": 2,
+			"state": "Empty",
+			"position": "Software Engineer",
+			"date_posted": "2013-03-06"
+		}
+	}, {
+		"pk": 2,
+		"model": "job_post.jobpost",
+		"fields": {
+			"company_bio": "Empty",
+			"date_post_ends": "2013-03-14",
+			"description": "Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description",
+			"city": "Empty",
+			"headline": "Experienced web developer",
+			"company": 2,
+			"state": "Empty",
+			"position": "Software Engineer",
+			"date_posted": "2013-03-06"
+		}
+	}, {
+		"pk": 3,
+		"model": "job_post.jobpost",
+		"fields": {
+			"company_bio": "Empty",
+			"date_post_ends": "2013-03-14",
+			"description": "Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description",
+			"city": "Empty",
+			"headline": "Experienced web developer",
+			"company": 2,
+			"state": "Empty",
+			"position": "Software Engineer",
+			"date_posted": "2013-03-06"
+		}
+	}, {
+		"pk": 4,
+		"model": "job_post.jobpost",
+		"fields": {
+			"company_bio": "Empty",
+			"date_post_ends": "2013-03-14",
+			"description": "Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description",
+			"city": "Empty",
+			"headline": "Experienced web developer",
+			"company": 2,
+			"state": "Empty",
+			"position": "Software Engineer",
+			"date_posted": "2013-03-06"
+		}
+	}, {
+		"pk": 5,
+		"model": "job_post.jobpost",
+		"fields": {
+			"company_bio": "Empty",
+			"date_post_ends": "2013-03-14",
+			"description": "Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description",
+			"city": "Empty",
+			"headline": "Experienced web developer",
+			"company": 2,
+			"state": "Empty",
+			"position": "Software Engineer",
+			"date_posted": "2013-03-06"
+		}
+	}, {
+		"pk": 6,
+		"model": "job_post.jobpost",
+		"fields": {
+			"company_bio": "Empty",
+			"date_post_ends": "2013-03-14",
+			"description": "Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description Job Description",
+			"city": "Empty",
+			"headline": "Experienced web developer",
+			"company": 2,
+			"state": "Empty",
+			"position": "Software Engineer",
+			"date_posted": "2013-03-06"
+		}
+	}
+]
