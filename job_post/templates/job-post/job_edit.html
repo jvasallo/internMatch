@@ -112,8 +112,9 @@
 						<td class="field-column" style="vertical-align:middle"><a href="#" id="url">{{ posting.url }}</a></td>
 					</tr>
 					<tr>
-						<td class="label-column" style="vertical-align:middle">Date Post Ends:</td>
-						<td class="field-column" style="vertical-align:middle"><a href="#" id="end_date">{{ posting.formattedDate }}</a></td>
+						<td class="label-column" style="vertical-align:middle">Date Post Ends: </td>
+						<td class="field-column" style="vertical-align:middle"><a href="#" id="end_date">{{ posting.formattedDate }} </a>
+							{% if not active %} <b class="alert alert-error">  Update to repost!</b></td> {% endif %}
 					</tr>
 
 				</tbody>

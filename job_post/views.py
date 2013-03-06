@@ -30,12 +30,12 @@ def JobPosting(request):
         return HttpResponseRedirect('/register/company')
 
 def detail(request, job_post_id):
-#    import pdb; pdb.set_trace()
     try:
         jobpost = JobPost.objects.get(pk=job_post_id)
     except JobPost.DoesNotExist:
         raise Http404
-    return render_to_response('job-post/job_detail.html', {'jobpost': jobpost}, context_instance=RequestContext(request))
+    context = {'jobpost': jobpost}
+    return render_to_response('job-post/job_detail.html', context, context_instance=RequestContext(request))
 
 def add_job_post(form, profile):
     job_post = JobPost()
@@ -53,7 +53,6 @@ def add_job_post(form, profile):
     return job_post
 
 def edit(request, job_post_id):
-#    import pdb; pdb.set_trace()
     try:
         jobpost = JobPost.objects.get(pk=job_post_id)
     except JobPost.DoesNotExist:
@@ -62,7 +61,10 @@ def edit(request, job_post_id):
         user = request.user
         userProfile = request.user.get_profile()
         if not userProfile.is_intern:
-            return render_to_response('job-post/job_edit.html', {'company': user, 'posting' : jobpost}, context_instance=RequestContext(request))
+            active =  False if jobpost.date_post_ends < date.today() else True
+
+            context = {'company': user, 'posting' : jobpost, 'active': active}
+            return render_to_response('job-post/job_edit.html', context, context_instance=RequestContext(request))
         else:
             return HttpResponseRedirect('/')
     else:
@@ -79,7 +81,7 @@ def update(request):
             except JobPost.DoesNotExist:
                 raise Http404
             if not profile.is_intern:
-                import pdb; pdb.set_trace()
+#                import pdb; pdb.set_trace()
                 posting.headline = request.POST.get('headline')
                 posting.position = request.POST.get('position')
                 posting.description = request.POST.get('description')

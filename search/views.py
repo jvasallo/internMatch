@@ -13,6 +13,7 @@ def index(request):
         userProfile = request.user.get_profile()
         if userProfile.is_intern:
             try:
+                postings = JobPost.objects.filter(date_post_ends__gte=datetime.date.today())[:1]
                 postingList = JobPost.objects.all()
                 postings = []
                 for eachPosting in postingList:
