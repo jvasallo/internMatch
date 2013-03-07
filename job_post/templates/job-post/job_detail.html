@@ -1,23 +1,35 @@
 {% extends 'job-post/base.html' %}
 {% block listdropdown %}
-{% if isAuth %}
-<li class="dropdown">
-	<a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
-	<ul class="dropdown-menu">
-		<li>
-			<a href="/profile">Edit Profile</a>
-		</li>
-		<li>
-			<a href="/quiz">Take Quiz</a>
-		</li>
-		<li>
-			<a href="/logout">Logout</a>
-		</li>
-	</ul>
-</li>
+{% if user and userProfile.is_intern %}
+                        <li class="dropdown">
+                            <a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">View Profile</a></li>
+                                <li><a href="/profile/edit">Edit Profile</a></li>
+                                <li><a href="/quiz">Take Quiz</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+{% endif %}
+{% if user and not userProfile.is_intern %}
+                        <li class="dropdown">
+                            <a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">View Profile</a></li>
+                                <li><a href="/profile/edit">Edit Profile</a></li>
+                                <li><a href="/quiz">Take Quiz</a></li>
+                                <li><a href="/job-post">Post New Job</a></li>
+                                <li><a href="/profile/jobs">View Active Jobs</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
 {% endif %}
 {% endblock %}
-
+{% block signinbutton %}
+    {% if user = None %}
+                <p class="navbar-text pull-right"><a href="/login" class="navbar-link">Login</a></p>
+    {% endif %}
+{% endblock %}
 {% block container %}
 {% if jobpost %}
 <div class="row">
@@ -56,8 +68,9 @@
 			</ul>
 		</p>
 		{% if jobpost.url %}
-		<a href="{{ jobpost.url }}" class="btn btn-primary">Apply Now<a>
-		{% else %} <a class="btn btn-primary">Apply Now<a>
+		<a href="{{ jobpost.url }}" target="_blank" class="btn btn-primary">Apply Now</a>
+		{% else %} 
+                <a href="mailto:{{ jobpost.company.contactEmail }}?Subject=Application%20for%20{{ jobpost.headline }}" class="btn btn-primary">Apply Now</a>
 		{% endif %}
 	</div>
 	<!-- /.span8 -->

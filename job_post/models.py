@@ -20,6 +20,11 @@ class JobPost(models.Model):
         else:
             return False
 
+    def fixUrl(self):
+        if self.url:
+  	    if "http://" not in self.url:
+                return "http://%s" % self.url
+
     def formattedDate(self):
         return self.date_post_ends.strftime("%Y-%m-%d")
     

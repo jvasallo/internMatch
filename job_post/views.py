@@ -11,30 +11,36 @@ from datetime import date
 
 def JobPosting(request):
     if request.user.is_authenticated():
-        profile = request.user.get_profile()
-        if profile.is_intern:
+        user = request.user
+        userProfile = request.user.get_profile()
+        if userProfile.is_intern:
             return HttpResponseRedirect('/profile')
         form = JobPostForm(request.POST)
         if request.method == 'POST':
             if form.is_valid():
-                job_post = add_job_post(form,profile)
+                job_post = add_job_post(form,userProfile)
                 add_skills(request.POST.getlist('desired_skills')[0].split(','), job_post, 'desired')
                 add_skills(request.POST.getlist('required_skills')[0].split(','), job_post, 'required')
                 return HttpResponseRedirect('/profile/jobs')
             else:
-                return render_to_response('job-post/job_post.html', {'form': form}, context_instance=RequestContext(request))
+                return render_to_response('job-post/job_post.html', {'user': user, 'userProfile': userProfile, 'form': form}, context_instance=RequestContext(request))
         else:
             form = JobPostForm()
-            return render_to_response('job-post/job_post.html', {'form': form}, context_instance=RequestContext(request))
+            return render_to_response('job-post/job_post.html', {'user': user, 'userProfile': userProfile, 'form': form}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/register/company')
 
 def detail(request, job_post_id):
+    user = None
+    userProfile = None
+    if request.user.is_authenticated():
+	user = request.user
+        userProfile = user.get_profile()
     try:
         jobpost = JobPost.objects.get(pk=job_post_id)
     except JobPost.DoesNotExist:
         raise Http404
-    context = {'jobpost': jobpost}
+    context = {'user': user, 'userProfile': userProfile, 'jobpost': jobpost}
     return render_to_response('job-post/job_detail.html', context, context_instance=RequestContext(request))
 
 def add_job_post(form, profile):
@@ -44,11 +50,12 @@ def add_job_post(form, profile):
     job_post.date_posted = date.today()
     job_post.position = form.cleaned_data['position']
     job_post.description = form.cleaned_data['description']
-    job_post.headline = form.cleaned_data['headline']
+    ob_post.headline = form.cleaned_data['headline']
     job_post.company_bio = form.cleaned_data['company_bio']
     job_post.state = form.cleaned_data['state']
     job_post.city = form.cleaned_data['city']
     job_post.url = form.cleaned_data['url']
+    job_post.url = job_post.fixUrl()
     job_post.save()
     return job_post
 
@@ -90,6 +97,7 @@ def update(request):
                 posting.state = request.POST.get('state')
                 posting.date_post_ends = request.POST.get('end_date')
                 posting.url = request.POST.get('url')
+                posting.url = posting.fixUrl()
                 add_skills(request.POST.getlist('desired')[0].split(','), posting, 'desired')
                 add_skills(request.POST.getlist('required')[0].split(','), posting, 'required')
                 posting.save()

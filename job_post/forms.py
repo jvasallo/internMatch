@@ -67,7 +67,7 @@ class JobPostForm(forms.Form):
                                                label=(u'City'),
                                                widget=forms.TextInput(attrs={'class':'span6'}),
                                                required=True,)
-    state           = forms.CharField(          
+    state           = forms.CharField(         
                                                label=(u'State'),
                                                widget=forms.TextInput(attrs={'class':'span6'}),
                                                required=True,)
