@@ -58,10 +58,7 @@ def Login(request):
         return render_to_response('signin.html', {'form': form}, context_instance=RequestContext(request))
 
 def Forgot(request):
-    if request.user.is_authenticated():
-        return HttpResponseRedirect('/')
-    else:
-        return HttpResponseRedirect('/')
+    return render_to_response('forgot.html', {'user': request.user}, context_instance=RequestContext(request))
 
 def Logout(request):
     if request.user.is_authenticated():

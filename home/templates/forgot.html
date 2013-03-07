@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block listdropdown %}
+    {% if user %}
+        {% if profile.is_intern %}
+                        <li class="dropdown">
+                            <a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">View Profile</a></li>
+                                <li><a href="/profile/edit">Edit Profile</a></li>
+                                <li><a href="/quiz">Take Quiz</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+        {% else %}
+                        <li class="dropdown">
+                            <a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">View Profile</a></li>
+                                <li><a href="/profile/edit">Edit Profile</a></li>
+                                <li><a href="/quiz">Take Quiz</a></li>
+                                <li><a href="/job-post">Post New Job</a></li>
+                                <li><a href="/profile/jobs">View Active Jobs</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+{% block signinbutton %}
+    {% if user = None %}
+                <p class="navbar-text pull-right"><a href="/login" class="navbar-link">Login</a></p>
+    {% endif %}
+{% endblock %}
+{% block container %}
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Forgot your password?</h2>
+        <br />
+        <p>Enter your email address you used to sign up with Intern Match:</p>
+        <input type="text" placeholder="Enter your email address">
+        <br />
+        <a href="#forgotModal" role="button" class="btn" data-toggle="modal">Submit</a>
+      </form>
+
+      <div id="forgotModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="forgotLabel" aria-hidden="true">
+          <div class="modal-header">
+              <h3 id="forgotLabel">Email has been sent!</h3>
+          </div>
+          <div class="modal-body">
+              <p>A recovery email has been sent to your account to recover your account. Please allow up to 24 hours to pass before trying again. Please also check your spam folder!</p>
+          </div>
+          <div class="modal-footer">
+              <a href="/" class="btn btn-primary">Return Home</a>
+          </div>
+      </div>
+{% endblock %}

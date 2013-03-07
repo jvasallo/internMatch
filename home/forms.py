@@ -27,7 +27,7 @@ class SigninForm(forms.Form):
                                          <div class="row">
                                             <div class="span4">
                                                 <br>
-                                                <a href="{% url password_reset %}">Forgot password?</a><br>
+                                                <a href="/forgot">Forgot password?</a><br>
                                                 <br>
                                                 Not registered? Sign up today as a: 
                                                 <br>  
