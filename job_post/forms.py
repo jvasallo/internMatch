@@ -21,6 +21,7 @@ class JobPostForm(forms.Form):
                                              Field('headline'),
                                              Field('position'),
                                              Field('description'),
+					     Field('url'),
                                              Field('company_bio'),
                                              Field('required_skills'),
                                              Field('desired_skills'),
@@ -71,7 +72,7 @@ class JobPostForm(forms.Form):
                                                label=(u'State'),
                                                widget=forms.TextInput(attrs={'class':'span6'}),
                                                required=True,)
-    url             = forms.URLField(          label=(u'Company application url'),
+    url             = forms.URLField(          label=(u'Company Application URL'),
                                                widget=forms.TextInput(attrs={'class':'span6'}),
                                                required=False)
         

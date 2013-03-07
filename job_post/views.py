@@ -54,8 +54,9 @@ def add_job_post(form, profile):
     job_post.company_bio = form.cleaned_data['company_bio']
     job_post.state = form.cleaned_data['state']
     job_post.city = form.cleaned_data['city']
-    job_post.url = form.cleaned_data['url']
-    job_post.url = job_post.fixUrl()
+    if form.cleaned_data['url']:
+        job_post.url = form.cleaned_data['url']
+        job_post.url = job_post.fixUrl()
     job_post.save()
     return job_post
 
