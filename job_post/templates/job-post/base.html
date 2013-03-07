@@ -101,6 +101,7 @@
     </footer>
 
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery-ui-1.10.0.custom.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-transition.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
@@ -116,5 +117,24 @@
     <script src="{{ STATIC_URL }}js/bootstrap-editable.min.js"></script> 
     <script src="{{ STATIC_URL }}js/job-edit.js"></script>
     <script src="{{ STATIC_URL }}js/select2.js"></script>
+
+    <script>
+        $(function() {
+                        var addDesSkill = '<div id="div_id_desired_skills" class="control-group"><label for="id_desired_skills" class="control-label ">'+
+                                'Desired Skills'+
+                        '</label><div class="controls"><input id="id_desired_skills" type="text" class="textinput textInput" name="desired_skills"> </div></div>';
+                        var addReqSkill = '<div id="div_id_required_skills" class="control-group"><label for="id_required_skills" class="control-label ">'+
+                                'Required Skills'+
+                        '</label><div class="controls"><input id="id_required_skills" type="text" class="textinput textInput" name="required_skills"> </div></div>';
+                        
+            $('.date').datepicker();
+            $('.add-des-skill').on('click', function() {
+                $('.fields').append(addDesSkill);
+            });
+            $('.add-req-skill').on('click', function() {
+                $('.fields').append(addReqSkill);
+            });
+        });
+    </script>
 </body>
 </html>

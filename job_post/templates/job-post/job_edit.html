@@ -1,6 +1,6 @@
 {% extends 'job-post/base.html' %}
 {% block listdropdown %}
-{% if company %}
+{% if user %}
 <li class="dropdown">
 	<a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
 	<ul class="dropdown-menu">
@@ -27,11 +27,11 @@
 {% endif %}
 {% endblock %}
 {% block container %}
-{% if company %}
+{% if user %}
 <div class="masthead">
-	<h3 class="muted">Company Personality: Creative {{ profile.quizResult }}
+	<h3 class="muted">Company Personality: {{ userProfile.quizResult }}
 	<br />
-	Username: {{ company.username }} </h3>
+	Username: {{ user.username }} </h3>
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container">
@@ -90,13 +90,11 @@
 					</tr>
 					<tr>
 						<td class="label-column" style="vertical-align:middle">Required Skills - Enter a comma separated list</td>
-						<td class="field-column" style="vertical-align:middle"><a href="#" id="required"> {% for reqSkill in posting.getRequiredSkills %}
-						{{ reqSkill.name }},
-						{% endfor %} </a></td>
+						<td class="field-column" style="vertical-align:middle"><a href="#" id="required">{{ posting.getReqSkillList }}</a></td>
 					</tr>
 					<tr>
 						<td class="label-column" style="vertical-align:middle">Desired Skills - Enter a comma separated list</td>
-						<td class="field-column" style="vertical-align:middle"><a href="#" id="desired"> {% for desSkill in posting.getDesiredSkills %}{{ desSkill.name }},{% endfor %} </a></td>
+						<td class="field-column" style="vertical-align:middle"><a href="#" id="desired"> {{ posting.getDesSkillList }} </a></td>
 					</tr>
 					<tr>
 						<td class="label-column" style="vertical-align:middle">City:</td>
@@ -109,7 +107,7 @@
 					<tr>
 					<tr>
 						<td class="label-column" style="vertical-align:middle">Url:</td>
-						<td class="field-column" style="vertical-align:middle"><a href="#" id="url">{{ posting.url }}</a></td>
+						<td class="field-column" style="vertical-align:middle"><a href="#" id="url">{% if posting.url %} {{ posting.url }} {% endif %}</a></td>
 					</tr>
 					<tr>
 						<td class="label-column" style="vertical-align:middle">Date Post Ends: </td>

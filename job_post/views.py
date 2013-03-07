@@ -50,7 +50,7 @@ def add_job_post(form, profile):
     job_post.date_posted = date.today()
     job_post.position = form.cleaned_data['position']
     job_post.description = form.cleaned_data['description']
-    ob_post.headline = form.cleaned_data['headline']
+    job_post.headline = form.cleaned_data['headline']
     job_post.company_bio = form.cleaned_data['company_bio']
     job_post.state = form.cleaned_data['state']
     job_post.city = form.cleaned_data['city']
@@ -69,8 +69,7 @@ def edit(request, job_post_id):
         userProfile = request.user.get_profile()
         if not userProfile.is_intern:
             active =  False if jobpost.date_post_ends < date.today() else True
-
-            context = {'company': user, 'posting' : jobpost, 'active': active}
+            context = {'user': user, 'userProfile': userProfile, 'posting' : jobpost, 'active': active}
             return render_to_response('job-post/job_edit.html', context, context_instance=RequestContext(request))
         else:
             return HttpResponseRedirect('/')
@@ -88,7 +87,7 @@ def update(request):
             except JobPost.DoesNotExist:
                 raise Http404
             if not profile.is_intern:
-#                import pdb; pdb.set_trace()
+                #import pdb; pdb.set_trace()
                 posting.headline = request.POST.get('headline')
                 posting.position = request.POST.get('position')
                 posting.description = request.POST.get('description')
@@ -96,10 +95,15 @@ def update(request):
                 posting.city = request.POST.get('city')
                 posting.state = request.POST.get('state')
                 posting.date_post_ends = request.POST.get('end_date')
-                posting.url = request.POST.get('url')
-                posting.url = posting.fixUrl()
-                add_skills(request.POST.getlist('desired')[0].split(','), posting, 'desired')
-                add_skills(request.POST.getlist('required')[0].split(','), posting, 'required')
+                if request.POST.get('url') != '':
+                    posting.url = request.POST.get('url')
+                    posting.url = posting.fixUrl()
+                if request.POST.get('desired') != posting.getDesSkillList():
+                    posting.skill_set.filter(type='desired').delete()
+                    add_skills(request.POST.getlist('desired')[0].split(','), posting, 'desired')
+                if request.POST.get('required') != posting.getReqSkillList():
+                    posting.skill_set.filter(type='required').delete()
+                    add_skills(request.POST.getlist('required')[0].split(','), posting, 'required')
                 posting.save()
             return redirect('/profile/jobs')
     else: # else user needs to log in

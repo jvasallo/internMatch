@@ -12,7 +12,7 @@ class JobPost(models.Model):
     headline       = models.CharField(max_length=50, null=True)
     city           = models.CharField(max_length=50)
     state          = models.CharField(max_length=50)
-    url            = models.URLField(max_length=200)
+    url            = models.URLField(max_length=200, null=True)
 
     def active(self):
         if self.date_post_ends > datetime.date.today():
@@ -21,18 +21,33 @@ class JobPost(models.Model):
             return False
 
     def fixUrl(self):
-        if self.url:
-  	    if "http://" not in self.url:
-                return "http://%s" % self.url
+  	if "http://" not in self.url:
+            return "http://%s" % self.url
+        else:
+            return self.url
 
     def formattedDate(self):
         return self.date_post_ends.strftime("%Y-%m-%d")
     
     def getRequiredSkills(self):
         return self.skill_set.filter(type='required')
-    
+
+    def getReqSkillList(self):
+        skillList = []
+        for eachSkill in self.skill_set.filter(type='required'):
+            skillList.append(eachSkill.name)
+        skills = ",".join(skillList)
+        return skills
+
     def getDesiredSkills(self):
         return self.skill_set.filter(type='desired')
+
+    def getDesSkillList(self):
+        skillList = []
+        for eachSkill in self.skill_set.filter(type='desired'):
+            skillList.append(eachSkill.name)
+        skills = ",".join(skillList)
+        return skills
 
     def __unicode__(self):
         return self.headline
@@ -40,9 +55,9 @@ class JobPost(models.Model):
     
 class Skill(models.Model):
     name              = models.CharField(max_length=50,null=True)
-    type              = models.CharField(max_length=15,null=False) # desired or required skill
+    type              = models.CharField(max_length=15,null=True) # desired or required skill
     job_post          = models.ForeignKey('JobPost', null=True)    # skill could be part of job_post 
-    intern            = models.ForeignKey('register.Profile', null=True)      # skill could belong to intern
+    profile           = models.ForeignKey(Profile, null=True)      # skill could belong to intern
     
     def __unicode__(self):
         return self.name
