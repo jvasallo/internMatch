@@ -9,6 +9,60 @@ from job_post.forms import JobPostForm
 from job_post.models import JobPost, Skill
 from datetime import date
 
+# reverse lookup state list...
+states = {'Alabama': 'AL',   
+        'Alaska': 'AK',   
+        'Arizona': 'AZ',   
+        'Arkansas': 'AR',   
+        'California': 'CA',   
+        'Colorado': 'CO',   
+        'Connecticut': 'CT',   
+        'Delaware': 'DE',   
+        'Dist of Columbia': 'DC',   
+        'Florida': 'FL',   
+        'Georgia': 'GA',   
+        'Hawaii': 'HI',   
+        'Idaho': 'ID',   
+        'Illinois': 'IL',   
+        'Indiana': 'IN',
+        'Iowa': 'IA',   
+        'Kansas':'KS',   
+        'Kentucky':'KY',   
+        'Louisiana': 'LA',   
+        'Maine': 'ME',   
+        'Maryland':'MD',   
+        'Massachusetts':'MA',    
+        'Michigan': 'MI',   
+        'Minnesota': 'MN',   
+        'Mississippi': 'MS',   
+        'Missouri': 'MO',   
+        'Montana': 'MT',   
+        'Nebraska': 'NE',   
+        'Nevada': 'NV',   
+        'New Hampshire': 'NH',   
+        'New Jersey': 'NJ',   
+        'New Mexico': 'NM', 
+        'New York': 'NY', 
+        'North Carolina': 'NC', 
+        'North Dakota': 'ND',   
+        'Ohio': 'OH',   
+        'Oklahoma': 'OK',   
+        'Oregon': 'OR',   
+        'Pennsylvania': 'PA',   
+        'Rhode Island': 'RI',   
+        'South Carolina': 'SC',   
+        'South Dakota': 'SD',   
+        'Tennessee': 'TN',   
+        'Texas': 'TX',   
+        'Utah': 'UT',   
+        'Vermont': 'VT',   
+        'Virginia': 'VA',   
+        'Washington': 'WA',   
+        'West Virginia': 'WV',   
+        'Wisconsin': 'WI',
+        'Wyoming': 'WY' }
+
+
 def JobPosting(request):
     if request.user.is_authenticated():
         user = request.user
@@ -94,7 +148,8 @@ def update(request):
                 posting.description = request.POST.get('description')
                 posting.company_bio = request.POST.get('company_bio')
                 posting.city = request.POST.get('city')
-                posting.state = request.POST.get('state')
+                if request.POST.get('state') in states:
+                    posting.state = states[request.POST.get('state')]
                 posting.date_post_ends = request.POST.get('end_date')
                 if request.POST.get('url') != '':
                     posting.url = request.POST.get('url')
