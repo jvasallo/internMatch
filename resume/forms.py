@@ -5,23 +5,27 @@ from register.models import Profile
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML, Field, MultiField, Button
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML, Field, MultiField, Button, Div
     
-class ResumeFormm(forms.Form):
+class ReferenceForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_class = 'form-horizontal resume'
         self.helper.form_method = 'post'
         self.helper.form_action = ''
 
-        self.helper.layout = Layout(Fieldset('Enter any references',
+        self.helper.layout = Layout(Div(
+                                    HTML("""<h2 class="form-job-post-heading">Add References Form</h2>"""),
+                                    Fieldset(
+                                             'Enter relevant information',
                                              Field('name'),
                                              Field('relationship'),
                                              Field('email'),
-                                    ButtonHolder(Button('button', 'Add Another Reference', css_class='btn btn-large btn-primary add-reference')),
-                                    ButtonHolder(Submit('submit', 'Save', css_class='btn btn-large btn-primary'))
+                                             css_class='fields'
+                                    ),
+                                    ButtonHolder(Submit('submit', 'Save', css_class='btn btn-large btn-primary')),css_class="span10")
                                     )
-        super(ResumeForm, self).__init__(*args, **kwargs)
+        super(ReferenceForm, self).__init__(*args, **kwargs)
  
     name = forms.CharField(label=(u'Reference Name'), required=False,)
     relationship = forms.CharField(label=(u'Relationship to Reference'), required=False,)

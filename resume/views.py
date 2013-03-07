@@ -4,8 +4,7 @@ from django.template import RequestContext
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.contenttypes.models import ContentType
-from job_post.forms import JobPostForm
-from job_post.models import Skill
+from resume.forms import ReferenceForm
 from datetime import date
 
 def ResumePosting(request):
@@ -13,7 +12,7 @@ def ResumePosting(request):
         profile = request.user.get_profile()
         if not profile.is_intern:
             return HttpResponseRedirect('/profile')
-        form = ResumePostForm(request.POST)
+        form = ReferenceForm(request.POST)
         if request.method == 'POST':
             if form.is_valid():
                 resume_post = add_resume(form, profile)
@@ -21,10 +20,10 @@ def ResumePosting(request):
                 add_skill(request.POST.getlist('secondary_skills'), resume_post, 'desired')
                 return HttpResponseRedirect('/profile')
             else:
-                return render_to_response('resume/resume-form.html', {'form': form}, context_instance=RequestContext(request))
+                return render_to_response('resume/resume_post.html', {'form': form}, context_instance=RequestContext(request))
         else:
-            form = ResumePostForm()
-            return render_to_response('resume/resume-form.html', {'form': form}, context_instance=RequestContext(request))
+            form = ReferenceForm()
+            return render_to_response('resume/resume_post.html', {'form': form}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/register/intern')
 

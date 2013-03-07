@@ -1,5 +1,6 @@
-{% extends 'job-post/base.html' %}
+{% extends 'account/base.html' %}
 {% block listdropdown %}
+    {% if userProfile.is_intern %}
                         <li class="dropdown">
                             <a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -9,9 +10,10 @@
                                 <li><a href="/logout">Logout</a></li>
                             </ul>
                         </li>
+    {% endif %}
 {% endblock %}
 {% block container %}
-              <div class="masthead">
+                <div class="masthead">
                 <h3 class="muted">My Personality: {{ userProfile.quizResult }}<br />Username: {{ user.username }} </h3>
                 <div class="navbar">
                   <div class="navbar-inner">
@@ -20,15 +22,41 @@
                         <li><a href="/profile">Profile</a></li>
                         <li><a href="/profile/edit">Edit Profile</a></li>
                         <li><a href="/quiz/quiz">Retake Quiz</a></li>
-                        <li class="active"><a href="/references/add">Add Reference</a></li>
+                        <li><a href="/references/add">Add Reference</a></li>
                         <li><a href="/references">View References</a></li>
                         <li><a href="/search">Potential Matches</a></li>
-                        <li><a href="/profile/companies">Browse Companies</a></li>
+                        <li class="active"><a href="/profile/companies">Browse Companies</a></li>
                         <li><a href="/profile/settings"><i class="icon-cog"></i> Account Settings</a></li>
                       </ul>
                     </div>
                   </div>
                 </div><!-- /.navbar -->
-    {% load crispy_forms_tags %}
-        {% crispy form %}
+
+      </div>
+
+      <div class="row">
+        <div class="span8">
+            {% if companies %}
+	        {% for company in companies %}
+                    {% if company.user.is_active and not company.user.is_superuser %}
+                        <a href="/profile/company/{{ company.id }}"><h3>{{ company.name }}</h3></a>
+  	                {% if company.city and company.state %}
+                            <p><b>Location: </b> {{ company.city }}, {{ company.state }}	 
+     	                    <br>
+  	                {% endif %}
+	                <b>Industry: </b> {{ company.industry }}
+  	                <br>
+                        {% if company.website %}
+  	                    <b>Company Website: </b> {{ company.website }}
+                        {% endif %}
+                        </p>
+                        <hr>
+                    {% endif %}
+	        {% endfor %}
+            {% else %}
+                <p>
+                    Looks like there are no companies at the time. Drat! Check back soon, we are still growing!
+                </p>
+            {% endif %}
+        </div>
 {% endblock %}
