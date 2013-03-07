@@ -143,6 +143,7 @@ INSTALLED_APPS = (
     'quiz',
     'account',
     'job_post',
+    'resume',
     #'registration',
     'search',
     'crispy_forms',

@@ -31,7 +31,7 @@ $(function(){
 	inputclass: 'input-large'
     });
 	
-	$('#description').editable({ // used as experience field for intern profile
+    $('#description').editable({ // used as experience field for intern profile
 	type: 'textarea',
 	inputclass: 'input-xxlarge'
     });
@@ -70,6 +70,12 @@ $(function(){
 		{value: 8, text: 'Systems Analysis'}
 	]
     });
+
+    $('#skills').editable({
+        type: 'textarea',
+        inputclass: 'input-xxlarge'
+    });
+
 
     /* Company Edit Form */
     // Uses Comment Box
@@ -167,7 +173,8 @@ function onSubmitIntern() {
               'graduation_date' : editableObjects[2].text,
               'major' : editableObjects[3].text,
               'email' : editableObjects[4].text,
-  	      'description' : editableObjects[5].text
+  	      'description' : editableObjects[5].text,
+              'skills' : editableObjects[6].text
               },
        type: 'POST', // GET or POST
        url: '/profile/update/', // the file to call

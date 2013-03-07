@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from register.models import Profile
-from job_post.models import JobPost
+from job_post.models import JobPost, Skill
 
 def index(request):
     if request.user.is_authenticated():
@@ -98,6 +98,9 @@ def update(request):
                 profile.major = request.POST.get('major')
                 user.email = request.POST.get('email')
                 profile.description = request.POST.get('description')
+                if request.POST.get('skills') != profile.getSkillList():
+                    profile.skill_set.all().delete()
+                    add_skills(request.POST.getlist('skills')[0].split(','), profile)
                 user.save()
                 profile.save()
             else:
@@ -137,3 +140,28 @@ def jobs(request):
             return render_to_response('account/company_profile_jobs.html', {'user': user, 'userProfile': profile, 'postings': postings}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/login') # redirect to login page        
+
+def companies(request):
+    if request.user.is_authenticated():
+        try:
+            user = request.user
+            profile = user.get_profile()
+        except Profile.DoesNotExist:
+            raise Http404
+
+        try:
+	    companies = Profile.objects.filter(is_intern=False)
+        except Exception:
+            companies = None
+        return render_to_response('account/intern_profile_companies.html', {'user': user, 'userProfile': profile, 'companies': companies}, context_instance=RequestContext(request))
+    else:
+        return HttpResponseRedirect('/login') # redirect to login page     
+
+def add_skills(skills, profile):
+    for s in skills:
+        if(len(s)):
+            skill = Skill()
+            skill.name = s
+            skill.profile = profile
+            skill.save()
+

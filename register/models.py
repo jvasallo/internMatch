@@ -27,20 +27,27 @@ class Profile(models.Model):
         result = q.quiz_result
         return result
 
-    def skills(self):
-        return self.skill_set.filter(profile=self)
+    def getSkills(self):
+        return self.skill_set.all()
+
+    def getSkillList(self):
+        skillList = []
+        for eachSkill in self.skill_set.all():
+            skillList.append(eachSkill.name)
+        skills = ",".join(skillList)
+        return skills
 
     def __unicode__(self):
         return self.name
     
     
-    def create_profile_callback(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-   #    else:
-   #        Profile.objects.update(user=instance)
+def create_profile_callback(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+#    else:
+#        Profile.objects.update(user=instance)
 
 
-    post_save.connect(create_profile_callback, sender=User)
+post_save.connect(create_profile_callback, sender=User)
 
 

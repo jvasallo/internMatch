@@ -54,8 +54,8 @@
                         <li><a href="/profile">Profile</a></li>
                         <li class="active"><a href="/profile/edit">Edit Profile</a></li>
                         <li><a href="/quiz/quiz">Retake Quiz</a></li>
-                        <li><a href="/resume">Resume</a></li>
-                        <li><a href="/resume/edit">Edit Resume</a></li>
+                        <li><a href="/references/add">Add Reference</a></li>
+                        <li><a href="/references">View References</a></li>
                         <li><a href="/search">Potential Matches</a></li>
                         <li><a href="/profile/settings"><i class="icon-cog"></i> Account Settings</a></li>
                       </ul>
@@ -91,14 +91,18 @@
 			    <td class="label-column" style="vertical-align:middle">Major:</td>
 			    <td class="field-column" style="vertical-align:middle"><a href="#" id="major">{{ userProfile.major }}</a></td>
             </tr>
-			<tr>
+	    <tr>
 			    <td class="label-column" style="vertical-align:middle">Email:</td>
 			    <td class="field-column" style="vertical-align:middle"><a href="#" id="email">{{ user.email }}</a></td>
             </tr>
-			<tr>
+	    <tr>
 			    <td class="label-column" style="vertical-align:middle">Experience:</td>
 			    <td class="field-column" style="vertical-align:middle"><a href="#" id="description">{{ userProfile.description }}</a></td>
             </tr>			
+            <tr>
+                            <td class="label-column" style="vertical-align:middle">Skills - Enter a comma separated list</td>
+                            <td class="field-column" style="vertical-align:middle"><a href="#" id="skills"> {{ userProfile.getSkillList }} </a></td>
+            </tr>
 		    </tbody>
 		</table>
 	</div>

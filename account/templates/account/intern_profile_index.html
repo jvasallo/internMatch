@@ -20,9 +20,10 @@
                         <li class="active"><a href="/profile">Profile</a></li>
                         <li><a href="/profile/edit">Edit Profile</a></li>
                         <li><a href="/quiz/quiz">Retake Quiz</a></li>
-                        <li><a href="/resume">Resume</a></li>
-                        <li><a href="/resume/edit">Edit Resume</a></li>
+                        <li><a href="/references/add">Add Reference</a></li>
+                        <li><a href="/references">View References</a></li>
                         <li><a href="/search">Potential Matches</a></li>
+                        <li><a href="/profile/companies">Browse Companies</a></li>
                         <li><a href="/profile/settings"><i class="icon-cog"></i> Account Settings</a></li>
 	              </ul>
 	            </div>
@@ -31,15 +32,32 @@
       </div>
       <div class="row">
         <div class="span8">
-	  <p>
-              <h3>Major:</h3> 
-              {{ userProfile.major }}
-          </p>
-            <h3>Graduation Date:</h3>
-              {{ userProfile.graduation_date }}
-			<p>
-            <h3>Professional Summary:</h3>
-			  {{ userProfile.description }}
-          </p>
+                    <h2>{{ userProfile.name }}</h2>
+                    <p>
+                    <h3>Scholarly Information</h3>
+                    <h4>University:</h4>
+                    {{ userProfile.school }}
+                    <h4>Major:</h4>
+                    {{ userProfile.major }}
+                    <h4>Anticipated Graduation Date:</h4>
+                    {{ userProfile.graduation_date }}
+                    </p>
+                    <p>
+                    <h3>Location:</h3>
+                    I currently live in {{ userProfile.city }}, {{ userProfile.state }}.
+                    </p>
+                    <p>
+                    <h3>Professional Summary:</h3>
+                    {{ userProfile.description}}
+                    </p>
+                    <p>
+                    <h3>Skills:</h3>
+                    {% for skill in userProfile.getSkills %}
+                    <li>
+                        {{ skill.name }}
+                    </li>
+                    {% endfor %}
+                    </p>
+                    <h3>References:</h3>
         </div> <!-- /.span8 -->
 {% endblock %}

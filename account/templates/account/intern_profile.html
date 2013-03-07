@@ -37,9 +37,10 @@
                         <li class="active"><a href="/profile">Profile</a></li>
                         <li><a href="/profile/edit">Edit Profile</a></li>
                         <li><a href="/quiz/quiz">Retake Quiz</a></li>
-                        <li><a href="/resume">Resume</a></li>
-                        <li><a href="/resume/edit">Edit Resume</a></li>
+                        <li><a href="/references/add">Add Reference</a></li>
+                        <li><a href="/references">View References</a></li>
                         <li><a href="/search">Potential Matches</a></li>
+                        <li><a href="/profile/companies">Browse Companies</a></li>
                         <li><a href="/profile/settings"><i class="icon-cog"></i> Account Settings</a></li>
                       </ul>
                     </div>
@@ -48,20 +49,33 @@
                 <div class="row">
                   <div class="span8">
                     <h2>{{ profile.name }}</h2>
-                    <p>Major: {{ profile.major }}</p>
                     <p>
-                    <h3>Professional Summary:</h3>
+                    <h3>Scholarly Information</h3>
+		    <h4>University:</h4>
+                    {{ profile.school }}
+                    <h4>Major:</h4>
+                    {{ profile.major }}
+                    <h4>Anticipated Graduation Date:</h4>
+                    {{ profile.graduation_date }}
                     </p>
                     <p>
-                    <h3>Personality type:</h3>
+                    <h3>Location:</h3>
+                    I currently live in {{ profile.city }}, {{ profile.state }}.
+                    </p>
+                    <p>
+                    <h3>Professional Summary:</h3>
+                    {{ profile.description}}
                     </p>
                     <p>
                     <h3>Skills:</h3>
+                    {% for skill in profile.getSkills %}
+                    <li>
+                        {{ skill.name }}
+                    </li>
+                    {% endfor %}
                     </p>
-                    <p>
-                    <h3>Experience</h3>
-					{{ profile.description}}
-                    </p>
+                    <h3>References:</h3>
+                    <a href="mailto:{{ profile.user.email }}?Subject=Internship%20Opportunity%20From%20{{ userProfile.name }}" class="btn btn-primary">Contact Me!</a>
                   </div> <!-- /.span8 -->
       {% endif %}
     {% else %}
