@@ -20,12 +20,12 @@
     <div class="container-fluid">
         <div class="row-fluid">
 	    <div class="span12 well">
-                <h1>Search Results <small>[search term]</small></h1>
+                <h1>Search Results <small>{{search_terms.keyword}} {% if search_terms.location and search_terms.keyword %}, {% endif %} {{search_terms.location}}</small></h1>
 		    <form class="search-form">
 		    Seeking:
-		    <input type="text" class="input-large" id="skills" data-provide="typeahead" data-items="4" placeholder="Enter job title or keyword">
+		    <input type="text" class="input-large" id="skills" data-provide="typeahead" data-items="4" placeholder="Enter job title or keyword" name="keyword"/>
 		    in
-		    <input type="text" class="input-large" id="city" data-provide="typeahead" data-items="2" placeholder="City, State, or Zip Code">
+		    <input type="text" class="input-large" id="city" data-provide="typeahead" data-items="2" placeholder="City, State, or Zip Code" name="location">
 		    <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i> Search	</button>
                     </form>
             </div>

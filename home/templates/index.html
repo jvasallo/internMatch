@@ -35,11 +35,11 @@
     <div class="hero-unit">
         <h1><span class="first">In</span><span class="second">te</span><span class="third">rn</span><span class="forth">|</span><span class="fifth">Ma</span><span class="sixth">tc</span><span class="seventh">h</span></h1>
         <br />
-        <form class="search-form" method="="GET">
-            Seeking: <input type="text" class="input-large" id="skills" data-provide="typeahead" data-items="4" placeholder="Enter job title or keyword">
-            in <input type="text" class="input-large" id="city" data-provide="typeahead" data-items="2" placeholder="City, State, or Zip Code">
+        <form class="search-form" method="get" action="/search">
+            Seeking: <input type="text" class="input-large" id="skills" data-provide="typeahead" data-items="4" placeholder="Enter job title or keyword" name="keyword"/>
+            in <input type="text" class="input-large" id="city" data-provide="typeahead" data-items="2" placeholder="City, State, or Zip Code" name="location"/>
             <br />
-            <a href="/search" type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i> Search</a>
+            <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i> Search</button>
         </form>
     {% if user = None %}
         <p>What are you waiting for? Sign up today and get personalized matches!</p>   
