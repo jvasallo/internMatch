@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Intern | Match Home Page</title>
+    <link href="{{ STATIC_URL }}css/bootstrap2.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet">
+    <style type="text/css">
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+    .search-form {
+      background-color:#000000;
+      color:#FFFFFF;
+      padding-top:15px;
+      padding-bottom:20px;
+    }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/">Intern | Match</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        {% block listdropdown %}{% endblock %}
+                    </ul>
+                    {% block signinbutton %}{% endblock %}
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+    {% block container %}{% endblock %}
+
+    <hr>
+    <footer>
+    <p>&copy; Intern|Match Inc. All rights reserved. <a href="/legal">Terms of Service</a></p> 
+    </footer>
+ 
+    </div> <!-- /container -->
+
+    <!-- Le javascript -->
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-transition.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-dropdown.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-scrollspy.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-tab.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-tooltip.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-popover.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-button.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-collapse.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-carousel.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-typeahead.js"></script>
+    <script>  
+        var subjects = ['PHP', 'Python', 'Django', 'MySQL', 'SQL', 'PostgreSQL', 'HTML', 'CSS', 'HTML5', 'CSS3', 'JSON'];   
+        var city = ['Chicago, IL', 'Schaumburg, IL', 'Niles, IL', 'Detroit, MI', 'Milwaukee, WI'];
+        $('#skills').typeahead({source: subjects})  
+        $('#city').typeahead({source: city})
+    </script>
+</body>
+</html>
