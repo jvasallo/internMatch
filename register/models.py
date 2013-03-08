@@ -26,6 +26,9 @@ class Profile(models.Model):
         q = self.user.quizresult_set.get()
         result = q.quiz_result
         return result
+    
+    def getReferences(self):
+	return self.reference_set.all()    
 
     def getSkills(self):
         return self.skill_set.all()

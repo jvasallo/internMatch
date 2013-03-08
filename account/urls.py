@@ -13,6 +13,7 @@ urlpatterns = patterns('account.views',
     url(r'update/$', 'update'),
     url(r'companies/$', 'companies'),
     url(r'jobs/$', 'jobs'),
+    url(r'references/$', 'references'),
     url(r'company/(?P<company_id>\d+)/$', 'publicCompanyProfile'),
     url(r'intern/(?P<intern_id>\d+)/$', 'privateInternProfile'),
 )
