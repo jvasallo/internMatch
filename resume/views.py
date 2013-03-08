@@ -5,9 +5,10 @@ from django.contrib.auth.models import User, Permission
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.contenttypes.models import ContentType
 from resume.forms import ReferenceForm
+from resume.models import Reference
 from datetime import date
 
-def ResumePosting(request):
+def ReferencePosting(request):
     if request.user.is_authenticated():
         profile = request.user.get_profile()
         if not profile.is_intern:
@@ -15,68 +16,24 @@ def ResumePosting(request):
         form = ReferenceForm(request.POST)
         if request.method == 'POST':
             if form.is_valid():
-                resume_post = add_resume(form, profile)
-                add_skill(request.POST.getlist('main_skills'), resume_post, 'required')
-                add_skill(request.POST.getlist('secondary_skills'), resume_post, 'desired')
+                reference_post = add_reference(form, profile)
                 return HttpResponseRedirect('/profile')
             else:
-                return render_to_response('resume/resume_post.html', {'form': form}, context_instance=RequestContext(request))
+                return render_to_response('resume/reference_post.html', {'form': form}, context_instance=RequestContext(request))
         else:
             form = ReferenceForm()
-            return render_to_response('resume/resume_post.html', {'form': form}, context_instance=RequestContext(request))
+            return render_to_response('resume/reference_post.html', {'form': form}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/register/intern')
 
 def edit(request):
     return HttpResponseRedirect('/')
 
-
-def detail(request, resume_post_id):
-    try:
-        requestedProfile = Profile.objects.get(user_id=resume_post_id)
-        requestedUser = User.objects.get(id=requestedProfile.user.id)
-    except Profile.DoesNotExist:
-        raise Http404
-
-    if requestedProfile.is_intern and requestedUser.is_active:
-        if request.user.is_authenticated():
-            user = request.user
-            profile = user.get_profile()
-            if profile.is_intern and requestedProfile.id == profile.id: # intern can view his own page
-                return render_to_response('resume/intern_profile.html', {'user' : user, 'userProfile' : profile, 'profile': requestedProfile}, context_instance=RequestContext(request))
-            elif profile.is_intern: # interns can't view resume pages
-                return HttpResponseRedirect('/')
-            else: # request to view resume is coming from company
-                return render_to_response('resume/intern_profile.html', {'user' : user, 'userProfile' : profile, 'profile': requestedProfile}, context_instance=RequestContext(request))
-        else: # redirect to login because user is not signed in.
-            return HttpResponseRedirect('/login')
-    else: # redirect to home because user is not company nor intern
-        return HttpResponseRedirect('/')
-
-#    try:
-#        resumepost = JobPost.objects.get(pk=resume_post_id)
-#    except JobPost.DoesNotExist:
-#        raise Http404
-#    return render_to_response('resume-post/detail.html', {'resumepost': resumepost}, context_instance=RequestContext(request))
-
-def add_resume(form, profile):
-    resume = ResumePost()
-    resume.summary = form.cleaned_data['summary']
-    resume.date_post_ends = form.cleaned_data['start_date']
-    resume.date_posted = date.today()
-    resume_post.position = form.cleaned_data['position']
-    resume_post.description = form.cleaned_data['description']
-    resume_post.headline = form.cleaned_data['headline']
-    resume_post.company_bio = form.cleaned_data['company_bio']
-    resume_post.state = form.cleaned_data['state']
-    resume_post.city = form.cleaned_data['city']
-    resume_post.save()
-    return resume_post
-
-def add_skill(skills, resume, type):
-    for s in skills:
-        skill = Skill()
-        skill.name = s
-        skill.resume = resume
-        skill.type = type
-        skill.save()
+def add_reference(form, profile):
+    reference = Reference()
+    reference.profile = profile
+    reference.name = form.cleaned_data['name']
+    reference.relationship = form.cleaned_data['relationship']
+    reference.email = form.cleaned_data['email']
+    reference.save()
+    return reference
