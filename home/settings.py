@@ -148,6 +148,7 @@ INSTALLED_APPS = (
     'search',
     'crispy_forms',
     'home',
+	'password_reset',
     #'haystack'
 )
 
