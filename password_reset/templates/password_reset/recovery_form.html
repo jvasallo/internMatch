@@ -4,10 +4,10 @@
 
 {% block title %}{% trans "Password recovery" %}{% endblock %}
 
-{% block content %}
+{% block container %}
 	<form method="post" action="{{ url }}">
 		{% csrf_token %}
 		{{ form.as_p }}
-		<p><input type="submit" value="{% trans "Recover my password" %}"></p>
+		<p><input type="submit" value="{% trans "Recover Password" %}"></p>
 	</form>
 {% endblock %}

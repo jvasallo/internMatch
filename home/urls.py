@@ -19,5 +19,5 @@ urlpatterns = patterns('',
     url(r'^references/', include('resume.urls')),
     url(r'^quiz/', include('quiz.urls')),
     url(r'^search/', include('search.urls')),
-	url(r'^password_reset/', include('password_reset.urls')), 
+    url(r'^password_reset/', include('password_reset.urls')), 
 )
