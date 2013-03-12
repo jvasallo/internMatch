@@ -21,7 +21,6 @@ class SigninForm(forms.Form):
                                                 'username',
                                                 'password',
                                     ),
-									##HTML("""<a href="{% url password_reset %}">Forgot password?</a>"""), 
                                     ButtonHolder(Submit('submit', 'Sign In', css_class='btn btn-medium btn-primary')),
                                     HTML("""
                                          <div class="row">
@@ -47,9 +46,12 @@ class SigninForm(forms.Form):
         exclude = ('user',)
     
     def clean(self):
-        username = self.cleaned_data['username']
-        password = self.cleaned_data.get("password")
-        user = authenticate(username=username, password=password)
-        if user == None:
-            raise forms.ValidationError("Invalid login")        
-        return self.cleaned_data
+        try:
+            username = self.cleaned_data['username']
+            password = self.cleaned_data.get("password")
+            user = authenticate(username=username, password=password)
+            if user == None:
+                raise forms.ValidationError("Invalid login")        
+            return self.cleaned_data
+        except KeyError:
+            raise forms.ValidationError("Invalid login")
