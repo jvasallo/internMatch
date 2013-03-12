@@ -3,5 +3,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = patterns('resume.views',
     url(r'^add/$', 'ReferencePosting'),
-    url(r'^edit/$', 'edit'),
+    url(r'update/$', 'update'),
+    url(r'(?P<reference_id>\d+)/edit/$', 'edit'),
+    url(r'(?P<reference_id>\d+)/delete/$', 'delete'),
 )

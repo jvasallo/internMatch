@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -26,8 +27,54 @@ def ReferencePosting(request):
     else:
         return HttpResponseRedirect('/register/intern')
 
-def edit(request):
-    return HttpResponseRedirect('/')
+def edit(request, reference_id):
+    try:
+        reference = Reference.objects.get(pk=reference_id)
+    except JobPost.DoesNotExist:
+        raise Http404
+    if request.user.is_authenticated():
+        user = request.user
+        userProfile = request.user.get_profile()
+        if userProfile.is_intern:
+            context = {'user': user, 'userProfile': userProfile, 'reference' : reference, 'active': active}
+            return render_to_response('resume/reference_edit.html', context, context_instance=RequestContext(request))
+        else:
+            return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/login')
+
+@csrf_exempt
+def update(request):
+    if request.user.is_authenticated(): # if user is logged in https://docs.djangoproject.com/en/dev/topics/forms/?from=olddocs
+        user = request.user
+        profile = user.get_profile()
+        if request.method == 'POST': # and if request is a POST
+            try: # try to get a posting record
+                reference = Reference.objects.get(pk=request.POST.get('id'))
+            except Reference.DoesNotExist:
+                raise Http404
+            if not profile.is_intern:
+                reference.name = request.POST.get('name')
+                reference.relationship = request.POST.get('relationship')
+                reference.email = request.POST.get('email')
+                reference.save()
+            return redirect('/profile/references')
+    else: # else user needs to log in
+        return HttpResponseRedirect('/login') # redirect to some result page to show the "result"
+
+def delete(request, reference_id):
+    try:
+        reference = Reference.objects.get(pk=reference_id)
+    except Reference.DoesNotExist:
+        raise Http404
+    if request.user.is_authenticated():
+       if reference.profile == request.user.get_profile():
+           reference.delete()
+           return HttpResponseRedirect('/profile/references')
+       else:
+           return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/login')
 
 def add_reference(form, profile):
     reference = Reference()
