@@ -69,7 +69,9 @@
 	}
     </style>
 </head>
+
 <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -91,14 +93,15 @@
             </div>
         </div>
     </div>
+
     <div class="container">
     {% block container %}{% endblock %}
-    </div>
-
+	</div>
+	
     <hr>
     <footer>
-	<p>&copy; Intern|Match Inc. All rights reserved. <a href="/legal">Terms of Service</a></p> 
-    </footer>
+		<p>&copy; Intern | Match Inc. All rights reserved. <a href="/legal">Terms of Service</a></p> 
+    </footer>	
 
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-transition.js"></script>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Intern | Match Job</title>
+    <title>Intern | Match Resume</title>
 
     <link href="{{ STATIC_URL }}css/bootstrap2.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet">
@@ -69,7 +69,9 @@
 
     </style>
 </head>
+
 <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -86,17 +88,19 @@
                         <li><a href="/contact">Contact</a></li>
                         {% block listdropdown %}{% endblock %}
                     </ul>
+					
                 </div><!--/.nav-collapse -->
             </div>
         </div>
     </div>
+
     <div class="container">
     {% block container %}{% endblock %}
     </div>
 
     <hr>
     <footer>
-        <p>&copy; Intern|Match Inc. All rights reserved. <a href="/legal">Terms of Service</a></p>
+        <p>&copy; Intern | Match Inc. All rights reserved. <a href="/legal">Terms of Service</a></p>
     </footer>
 
     <script src="{{ STATIC_URL }}js/jquery.js"></script>

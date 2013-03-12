@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>Intern | Match Login</title>
-    <link href="../static/css/bootstrap-responsive.css" rel="stylesheet">
-    <style type="text/css">
+	
+    <link href="{{ STATIC_URL}}css/bootstrap-responsive.css" rel="stylesheet">
+	
+    <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
         padding-bottom: 40px;
@@ -35,28 +37,48 @@
         margin-bottom: 15px;
         padding: 7px 9px;
       }
+	.footer-signin {
+		max-width: 360px;
+		margin: 0 auto 20px;
+	}
     </style>
 </head>
-<body>
+
+<body>	
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
-	        <a class="brand" href="/">Intern | Match</a>
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/">Intern | Match</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-		        <li class="active"><a href="/">Home</a></li>
+                        <li class="active"><a href="/">Home</a></li>
                         <li><a href="/about">About</a></li>
                         <li><a href="/contact">Contact</a></li>
+                        {% block listdropdown %}{% endblock %}
                     </ul>
+                    {% block signinbutton %}{% endblock %}
                 </div><!--/.nav-collapse -->
             </div>
         </div>
     </div>
+	
     <div class="container">
-      {% block container %}{% endblock %}
-		     
-    </div> <!-- /container -->
+      {% block container %}{% endblock %}	     
+    </div>
 
+	<div class="footer-signin">
+    <hr>
+    <footer>
+		<p>&copy; Intern | Match Inc. All rights reserved. <a href="/legal">Terms of Service</a></p> 
+    </footer>
+	</div>
+	
     <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui-1.10.0.custom.css">
     <script src="{{ STATIC_URL }}js/jquery.js"></script>

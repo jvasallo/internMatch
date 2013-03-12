@@ -2,23 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Intern | Match Home Page</title>
+    <title>Intern | Match Password Reset</title>
+	
     <link href="{{ STATIC_URL }}css/bootstrap2.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet">
-    <style type="text/css">
+	
+    <style>
     body {
-      padding-top: 60px;
-      padding-bottom: 40px;
+		padding-top: 60px;
+		padding-bottom: 40px;
     }
     .search-form {
-      background-color:#000000;
-      color:#FFFFFF;
-      padding-top:15px;
-      padding-bottom:20px;
+		background-color:#000000;
+		color:#FFFFFF;
+		padding-top:15px;
+		padding-bottom:20px;
     }
     </style>
 </head>
+
 <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -40,17 +44,16 @@
             </div>
         </div>
     </div>
+
     <div class="container">
     {% block container %}{% endblock %}
-
+    	
     <hr>
     <footer>
-    <p>&copy; Intern|Match Inc. All rights reserved. <a href="/legal">Terms of Service</a></p> 
+		<p>&copy; Intern | Match Inc. All rights reserved. <a href="/legal">Terms of Service</a></p> 
     </footer>
- 
-    </div> <!-- /container -->
+	</div>
 
-    <!-- Le javascript -->
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-transition.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
