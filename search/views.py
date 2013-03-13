@@ -6,6 +6,7 @@ from django.template import RequestContext
 from quiz.models import QuizResult
 from job_post.models import JobPost
 from datetime import date
+from django.db.models import Q
 
 
 # Filter the search request by intern or company, passing along any GET parameters
@@ -19,6 +20,11 @@ def router(request):
     get_params = '?keyword=' + request.GET.get('keyword','') + '&location=' + request.GET.get('location','') + '&page=' + request.GET.get('page','1')
     response['Location'] += get_params
     return response
+
+#def getGetParams(request):
+#    result = '?'
+#    for key,value in request.GET.iteritems():
+#        result += key + '=' + value + '&'
     
     
 # intern or anonomous user search results
@@ -34,6 +40,7 @@ def intern(request):
     postings = []
 #    import pdb; pdb.set_trace()
     posting_list = getPostingsFromKeyword(keyword)
+    posting_list = getPostingsFromLocation(posting_list,location)
     posting_list = getPostingsByPage(posting_list,page)
 #    JobPost.objects.all().order_by('date_post_ends')[k:n]
     for posting in posting_list:
@@ -46,12 +53,19 @@ def intern(request):
         context = {'user': None, 'postings': postings, 'search_terms':search_terms}
     return render_to_response('search/job_search.html', context, context_instance=RequestContext(request))
     
+def getPostingsFromLocation(posting_list,location):
+#    import pdb; pdb.set_trace()
+    if posting_list and location:
+        return posting_list.filter(city__contains=location).distinct().filter(date_post_ends__gte=date.today()).order_by('date_post_ends') | posting_list.filter(state__contains=location).distinct().filter(date_post_ends__gte=date.today()).order_by('date_post_ends')
+    return posting_list
+        
+        
     
 # Get postings by page(assume ordered by date), 5 postings per page
 def getPostingsByPage(postings, page):
     per_page = 5
-    page = int(page) - 1
     if page:
+        page = int(page) - 1
         slice = per_page*page
         return postings[slice:slice+per_page]
     return postings[:per_page]
