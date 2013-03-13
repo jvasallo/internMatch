@@ -1,8 +1,10 @@
+/* makes quiz item containers sortable (jQuery) */
 $(function() {
    $( "#sortable" ).sortable();
    $( "#sortable" ).disableSelection();
 });
-     
+
+/* Quiz Submit */
 function onSubmit() {    
    var sortedQuizObjects = $('#sortable .quiz-option');
    var n = sortedQuizObjects.length; // total quiz items
@@ -29,6 +31,7 @@ function onSubmit() {
    });
 }
 
+/* Quiz Cancel */
 function exitApp() {
     window.location = "/";
 }

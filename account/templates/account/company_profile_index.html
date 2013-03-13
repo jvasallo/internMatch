@@ -34,10 +34,12 @@
         <div class="span8">
           <h2>{{ userProfile.name }}</h2>
           <h4>Industry: {{ userProfile.industry }}</h4>
+		  {% if userProfile.website|length > 0 and userProfile.description != "Empty" %}
           <p>
               <h3>Company Description:</h3>
               {{ userProfile.description }}
           </p>
+		  {% endif %}
           <p>
               <p>
                   <br>
@@ -51,7 +53,9 @@
               <ul>
                   <b>Phone: </b> {{ userProfile.phone }}<br>
                   <b>Email: </b> {{ userProfile.contactEmail }}<br>
+				  {% if userProfile.website|length > 0 and userProfile.description != "Empty" %}
                   <b>Website: </b> <a href="{{ userProfile.website }}">{{ userProfile.website }}</a> <br>
+				  {% endif %}
               </ul>
           </p> 
         </div> <!-- /.span8 -->

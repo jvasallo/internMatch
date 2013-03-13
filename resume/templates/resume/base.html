@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Intern | Match Job</title>
+    <title>Intern | Match Resume</title>
 
     <link href="{{ STATIC_URL }}css/bootstrap2.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet">
@@ -10,74 +10,89 @@
     <link href="{{ STATIC_URL }}css/select2.css" rel="stylesheet">
 
     <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      body 
+      {
+      padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
-            /* Custom container */
-	        .container-narrow {
-	          margin: 0 auto;
-	          max-width: 900px;
-	        }
-	        .container-narrow > hr {
-	          margin: 30px 0;
+
+      /* Custom container */
+      .container-narrow 
+      {
+      margin: 0 auto;
+      max-width: 900px;
       }
-	 .form-signin {
 
-	  	max-width: 300px;
-	  	padding: 10px 10px 10px;
-	  	margin: 0 auto 0px;
-	  	background-color: #0084c9;
-	  	border: 1px solid #e5e5e5;
-	  	-webkit-border-radius: 5px;
-		 -moz-border-radius: 5px;
-			  border-radius: 5px;
-	  	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-		 -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-			  box-shadow: 0 1px 2px rgba(0,0,0,.05);
-	}
-	.form-signin .form-signin-heading,
-	.form-signin .checkbox {
+      .container-narrow > hr 
+      {
+      margin: 30px 0;
+      }
 
-	  margin-bottom: 10px;
-	}
-	.form-signin input[type="text"],
-	.form-signin input[type="password"] {
-	  font-size: 12px;
-	  height: 20px;
-	  margin-bottom: 15px;
-	  padding: 7px 9px;
-	}
+      .form-signin 
+      {
+      max-width: 300px;
+      padding: 10px 10px 10px;
+      margin: 0 auto 0px;
+      background-color: #0084c9;
+      border: 1px solid #e5e5e5;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
 
-	.search-form {
-	background-color:#000000;
-	color:#FFFFFF;
-	padding-bottom:10px;
-	padding-left: 100px;
-    }
-        .label-column {
-                font-weight: bold;
-                width: 95px;
-                height: 34px;
-        }
-        .field-column {
-                padding-left: 1100px;
-                width: 335px;
-        }
-        .table-nonfluid {
-                width: auto;
-        }
+      .form-signin .form-signin-heading, .form-signin .checkbox 
+      {
+      margin-bottom: 10px;
+      }
 
+      .form-signin input[type="text"], .form-signin input[type="password"] 
+      {
+      font-size: 12px;
+      height: 20px;
+      margin-bottom: 15px;
+      padding: 7px 9px;
+      }
+
+      .search-form
+      {
+      background-color:#000000;
+      color:#FFFFFF;
+      padding-bottom:10px;
+      padding-left: 100px;
+      }
+
+      .label-column
+      {
+      font-weight: bold;
+      width: 95px;
+      height: 34px;
+      }
+
+      .field-column 
+      {
+      padding-left: 1100px;
+      width: 335px;
+      }
+
+      .table-nonfluid 
+      {
+      width: auto;
+      }
+
+      label 
+      {
+      padding-right: 20px;
+      }
     </style>
 </head>
+
 <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
-                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                </button>
                 <a class="brand" href="/">Intern | Match</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
@@ -86,17 +101,19 @@
                         <li><a href="/contact">Contact</a></li>
                         {% block listdropdown %}{% endblock %}
                     </ul>
+					
                 </div><!--/.nav-collapse -->
             </div>
         </div>
     </div>
+
     <div class="container">
     {% block container %}{% endblock %}
     </div>
 
     <hr>
     <footer>
-        <p>&copy; Intern|Match Inc. All rights reserved. <a href="/legal">Terms of Service</a></p>
+        <p>&copy; Intern | Match Inc. All rights reserved. <a href="/legal">Terms of Service</a></p>
     </footer>
 
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
@@ -113,7 +130,7 @@
     <script src="{{ STATIC_URL }}js/bootstrap-carousel.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-typeahead.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-editable.min.js"></script> 
-    <script src="{{ STATIC_URL }}js/job-edit.js"></script>
+    <script src="{{ STATIC_URL }}js/resume-edit.js"></script>
     <script src="{{ STATIC_URL }}js/select2.js"></script>
 </body>
 </html>

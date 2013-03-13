@@ -15,7 +15,7 @@ class ReferenceForm(forms.Form):
         self.helper.form_action = ''
 
         self.helper.layout = Layout(Div(
-                                    HTML("""<h2 class="form-job-post-heading">Add References Form</h2>"""),
+                                    HTML("""<h2 class="form-job-post-heading">Add Reference Form</h2>"""),
                                     Fieldset(
                                              'Enter relevant information',
                                              Field('name'),
@@ -23,13 +23,14 @@ class ReferenceForm(forms.Form):
                                              Field('email'),
                                              css_class='fields'
                                     ),
-                                    ButtonHolder(Submit('submit', 'Save', css_class='btn btn-large btn-primary')),css_class="span10")
+                                    ButtonHolder(Submit('submit', 'Save', css_class='btn btn-large btn-primary')),
+				    css_class="span10")
                                     )
         super(ReferenceForm, self).__init__(*args, **kwargs)
  
-    name = forms.CharField(label=(u'Reference Name'), required=False,)
-    relationship = forms.CharField(label=(u'Relationship to Reference'), required=False,)
-    email = forms.CharField(label=(u'Contact E-Mail'), required=False,)
+    name = forms.CharField(label=('Name'), required=False,)
+    relationship = forms.CharField(label=('Relationship'), required=False,)
+    email = forms.CharField(label=('E-Mail'), required=False,)
     
     def clean(self):
         return self.cleaned_data

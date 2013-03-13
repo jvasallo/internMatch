@@ -141,6 +141,23 @@ def jobs(request):
     else:
         return HttpResponseRedirect('/login') # redirect to login page        
 
+def references(request):
+    import pdb; pdb.set_trace()
+    if request.user.is_authenticated():
+        try:
+            user = request.user
+            profile = user.get_profile()
+        except Profile.DoesNotExist:
+            raise Http404
+        if profile.is_intern:
+            try:
+                references = profile.getReferences()
+            except Exception:
+                references = None
+            return render_to_response('account/intern_profile_references.html', {'user': user, 'userProfile': profile, 'references': references}, context_instance=RequestContext(request))
+    else:
+        return HttpResponseRedirect('/login') # redirect to login page  
+
 def companies(request):
     if request.user.is_authenticated():
         try:
