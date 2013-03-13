@@ -64,27 +64,7 @@
 			"domain": "example.com",
 			"name": "example.com"
 		}
-	}, {
-		"pk": 1,
-		"model": "register.profile",
-		"fields": {
-			"website": null,
-			"city": null,
-			"school": null,
-			"name": null,
-			"zip": null,
-			"graduation_date": null,
-			"industry": null,
-			"major": null,
-			"contactEmail": null,
-			"phone": null,
-			"state": null,
-			"user": 1,
-			"address": null,
-			"is_intern": false,
-			"description": null
-		}
-	}, {
+	},{
 		"pk": 2,
 		"model": "register.profile",
 		"fields": {

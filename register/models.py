@@ -41,7 +41,7 @@ class Profile(models.Model):
         return skills
 
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
     
     
 def create_profile_callback(sender, instance, created, **kwargs):

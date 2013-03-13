@@ -4,4 +4,5 @@ from django.views.generic import TemplateView
 urlpatterns = patterns('',
     url(r'^$', 'search.views.router'),
     url(r'^intern$', 'search.views.intern'),
+    url(r'^company$', 'search.views.company'),    
 )

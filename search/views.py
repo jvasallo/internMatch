@@ -1,12 +1,12 @@
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import get_object_or_404, render_to_response, redirect
+from datetime import date
+
+from django.shortcuts import render_to_response, redirect
 from django.contrib.auth.models import User
 from django.template import RequestContext
-from quiz.models import QuizResult
+
 from job_post.models import JobPost
-from datetime import date
-from django.db.models import Q
+from register.models import Profile
+
 
 
 # Filter the search request by intern or company, passing along any GET parameters
@@ -16,7 +16,7 @@ def router(request):
     if request.user.is_authenticated():
         user_profile = request.user.get_profile()
         if not user_profile.is_intern:
-            response = redirect('search/company')
+            response = redirect('/search/company')
     get_params = '?keyword=' + request.GET.get('keyword','') + '&location=' + request.GET.get('location','') + '&page=' + request.GET.get('page','1')
     response['Location'] += get_params
     return response
@@ -38,11 +38,9 @@ def intern(request):
     search_terms = {'keyword': keyword, 'location': location}
     page = request.GET.get('page',False)
     postings = []
-#    import pdb; pdb.set_trace()
     posting_list = getPostingsFromKeyword(keyword)
     posting_list = getPostingsFromLocation(posting_list,location)
     posting_list = getPostingsByPage(posting_list,page)
-#    JobPost.objects.all().order_by('date_post_ends')[k:n]
     for posting in posting_list:
         posting_company = User.objects.get(id=posting.company.id)
         if posting_company.is_active:
@@ -52,14 +50,50 @@ def intern(request):
     else:
         context = {'user': None, 'postings': postings, 'search_terms':search_terms}
     return render_to_response('search/job_search.html', context, context_instance=RequestContext(request))
-    
+
+def company(request):
+    if request.user.is_authenticated():
+        user_profile = request.user.get_profile()
+        if user_profile.is_intern:
+            return redirect('search/intern')
+        keyword = request.GET.get('keyword',False)
+        location = request.GET.get('location',False)
+        search_terms = {'keyword': keyword, 'location': location}
+        page = request.GET.get('page',False)
+
+        # keywords =
+        # import pdb; pdb.set_trace()
+        interns = False
+        for k in keyword.split(' '):
+            interns = getInternsFromKeyword(k.strip(','), interns)
+        for l in location.split(' '):
+            interns = getInternsFromLocation(l.strip(','), interns)
+
+        context = {'user': request.user, 'userProfile' : user_profile, 'interns' : interns, 'search_terms':search_terms}
+        return render_to_response('search/intern_search.html', context, context_instance=RequestContext(request))
+
 def getPostingsFromLocation(posting_list,location):
-#    import pdb; pdb.set_trace()
     if posting_list and location:
-        return posting_list.filter(city__contains=location).distinct().filter(date_post_ends__gte=date.today()).order_by('date_post_ends') | posting_list.filter(state__contains=location).distinct().filter(date_post_ends__gte=date.today()).order_by('date_post_ends')
+        return posting_list.filter(city__icontains=location).distinct().filter(date_post_ends__gte=date.today()).order_by('date_post_ends') | posting_list.filter(state__icontains=location).distinct().filter(date_post_ends__gte=date.today()).order_by('date_post_ends')
     return posting_list
         
-        
+def getInternsFromKeyword(keyword, interns=False):
+    # import pdb; pdb.set_trace()
+    result = Profile.objects.filter(is_intern=True).filter(user__is_active=True).filter(name__isnull=False).distinct()
+    if keyword:
+        result = Profile.objects.filter(is_intern=True).filter(skill__name__icontains=keyword).distinct()
+    if interns != False:
+        result = (result & interns).distinct()
+    return result
+
+def getInternsFromLocation(location, interns=False):
+    # import pdb; pdb.set_trace()
+    result = Profile.objects.filter(is_intern=True).filter(user__is_active=True).filter(name__isnull=False).distinct()
+    if location:
+        result = Profile.objects.filter(is_intern=True).filter(city__icontains=location).distinct() | Profile.objects.filter(is_intern=True).filter(state__icontains=location).distinct()
+    if interns != False:
+        result = (result & interns).distinct()
+    return result
     
 # Get postings by page(assume ordered by date), 5 postings per page
 def getPostingsByPage(postings, page):
@@ -72,7 +106,7 @@ def getPostingsByPage(postings, page):
 
 def getPostingsFromKeyword(keyword):
     if keyword:
-        return JobPost.objects.filter(skill__name__contains=keyword).distinct().filter(date_post_ends__gte=date.today()).order_by('date_post_ends')
+        return JobPost.objects.filter(skill__name__icontains=keyword).distinct().filter(date_post_ends__gte=date.today()).order_by('date_post_ends')
     return JobPost.objects.filter(date_post_ends__gte=date.today()).distinct().order_by('date_post_ends')
 
 
