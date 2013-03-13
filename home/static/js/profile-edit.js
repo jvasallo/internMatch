@@ -59,10 +59,14 @@ $(function(){
 		]
     });
 	
-    $('#skills').editable({ // skills field (optional)
-        type: 'textarea',
-        inputclass: 'input-xxlarge'
-    });
+	$('#skills').editable({ // skills field (optional)
+		type: 'select2',
+		inputclass: 'input-large',
+		select2: {
+			tags: [""],
+			tokenSeparators: [",", " "]
+		}
+	});
 	
     /* Company Edit Form */
     $('#industry').editable({ // industry field (required)
