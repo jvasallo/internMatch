@@ -94,6 +94,7 @@
                         <br>
                         <br>
                         <a href="/job-post/{{ posting.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal{{ posting.id }}" data-toggle='modal'><i class="icon-trash"></i> Delete</a>
+                        <b class="alert"> Click edit to update and repost</b>
                         </p>
 
                         <div id="deleteModal{{ posting.id }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -105,11 +106,12 @@
                             <p>
                             <b>Are you sure you wish to delete this Job Post?</b><br>
                             <i>This action is irreversible!</i>
-                            </p>
+                            </p> 
                         </div>
                         <div class="modal-footer">
                             <a href="/job-post/{{ posting.id }}/delete" class="btn btn-danger"><i class="icon-trash"></i> Confirm</a>
-                            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><br />
+
                         </div>
                     </div>
                     <hr>
