@@ -12,7 +12,7 @@
     {% endif %}
 {% endblock %}
 {% block signinbutton %}
-    {% if user = none %}
+    {% if user == none %}
                 <p class="navbar-text pull-right"><a href="/login" class="navbar-link">Login</a></p>
     {% endif %}
 {% endblock %}
@@ -36,33 +36,13 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3 well">
-          <b>Sort By: </b>
-          <br>
-          <div class="btn-group" data-toggle="buttons-radio">
-            <button type="button" class="btn btn-primary">Relevance</button>
-            <button type="button" class="btn btn-primary">Date Posted</button>
-          </div>
-          <br> <br>
-          <b>Compensation:</b>
-          <br>
-          <div class="btn-group" data-toggle="buttons-radio">
-            <button type="button" class="btn btn-primary">Both</button>
-            <button type="button" class="btn btn-primary">Undergraduate</button>
-            <button type="button" class="btn btn-primary">Graduate</button>
-          </div>
-          <br> <br>
-          <b>Location:</b>
-          <br>
-          <div class="btn-group">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              Chicago, IL
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li>Schaumburg, IL</li>
-              <li>Detroit, MI</li>
-            </ul>
-          </div>
+            <br>
+            <div class="btn-group" data-toggle="buttons-radio">
+                <a href="/search/company?keyword={{get_params.keyword}}&location={{get_params.location}}&page=1&personality_filter=on" class="btn {% if get_params.personality_filter == 'on' %}btn-primary{% endif %}">On</a>
+                <a href="/search/company?keyword={{get_params.keyword}}&location={{get_params.location}}&page=1&personality_filter=" class="btn {% if get_params.personality_filter != 'on' %}btn-primary{% endif %}">Off</a>
+            </div>
+            <br>
+            <br>
         </div>
         <div class="span9 well">
           {% if interns %}

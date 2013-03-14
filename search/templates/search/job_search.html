@@ -20,7 +20,7 @@
     <div class="container-fluid">
         <div class="row-fluid">
 	    <div class="span12 well">
-                <h1>Search Results <small>{{search_terms.keyword}} {% if search_terms.location and search_terms.keyword %}, {% endif %} {{search_terms.location}}</small></h1>
+                <h1>Search Results <small>{{get_params.keyword}} {% if get_params.location and get_params.keyword %}, {% endif %} {{get_params.location}}</small></h1>
 		    <form class="search-form">
 		    Seeking:
 		    <input type="text" class="input-large" id="skills" data-provide="typeahead" data-items="4" placeholder="Enter job title or keyword" name="keyword"/>
@@ -35,32 +35,15 @@
     <div class="container-fluid">
         <div class="row-fluid">
 	    <div class="span3 well">
-	        <b>Sort By: </b>
+	        <b>Personality Match Only: </b>
 		<br>
 		<div class="btn-group" data-toggle="buttons-radio">
-		    <button type="button" class="btn btn-primary">Relevance</button>
-                    <button type="button" class="btn btn-primary">Date Posted</button>
+		    <a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=1&personality_filter=on" class="btn {% if personality_filter == 'on' %}btn-primary{% endif %}">On</a>
+                    <a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=1&personality_filter=" class="btn {% if personality_filter == '' %}btn-primary{% endif %}">Off</a>
                 </div>
 		<br>
 		<br>
-		<b>Compensation:</b>
-		<br>
-		<div class="btn-group" data-toggle="buttons-radio">
-		    <button type="button" class="btn btn-primary">Both</button>
-		    <button type="button" class="btn btn-primary">Paid</button>
-       		    <button type="button" class="btn btn-primary">Unpaid</button>
-		</div>
-		<br>
-		<br>
-		<b>Location:</b>
-		<br>
-		<div class="btn-group">
-		    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> Chicago, IL <span class="caret"></span> </a>
-		    <ul class="dropdown-menu">
-    		        <li>Schaumburg, IL</li>
-		        <li>Detroit, MI</li>
-		    </ul>
-		</div>
+
 	    </div>
 	    <div class="span9 well">
                 {% if postings %}
@@ -87,11 +70,11 @@
         <div class="pagination pagination-centered">
               <ul>
                 <li><a href="#">&laquo;</a></li>
-                <li><a href="/search/intern?keyword={{search_terms.keyword}}&location={{search_terms.location}}&page=1">1</a></li>
-                <li><a href="/search/intern?keyword={{search_terms.keyword}}&location={{search_terms.location}}&page=2">2</a></li>
-                <li><a href="/search/intern?keyword={{search_terms.keyword}}&location={{search_terms.location}}&page=3">3</a></li>
-                <li><a href="/search/intern?keyword={{search_terms.keyword}}&location={{search_terms.location}}&page=4">4</a></li>
-                <li><a href="/search/intern?keyword={{search_terms.keyword}}&location={{search_terms.location}}&page=5">5</a></li>
+                <li><a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=1">1</a></li>
+                <li><a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=2">2</a></li>
+                <li><a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=3">3</a></li>
+                <li><a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=4">4</a></li>
+                <li><a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=5">5</a></li>
                 <li><a href="#">&raquo;</a></li>
               </ul>
           </div>
