@@ -17,7 +17,7 @@
 	        <h4 class="muted">	
 				Company Personality: {{ userProfile.quizResult }}<br />
 				Username: {{ user.username }}<br />
-				EIN: {{ userProfile.ein }}
+				EIN: {{ userProfile.ein }}<br />
 			</h4>
 	        <div class="navbar">
 	          <div class="navbar-inner">
@@ -37,6 +37,7 @@
       <div class="row">
         <div class="span8">
           <h2>{{ userProfile.name }}</h2>
+           <a href="/profile/company/{{ userProfile.id }}">>> View Public Profile</a>
           <h4>Industry: {{ userProfile.industry }}</h4>
 		  {% if userProfile.description %}
           <p>

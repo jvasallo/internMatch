@@ -16,4 +16,5 @@ urlpatterns = patterns('account.views',
     url(r'references/$', 'references'),
     url(r'company/(?P<company_id>\d+)/$', 'publicCompanyProfile'),
     url(r'intern/(?P<intern_id>\d+)/$', 'privateInternProfile'),
+    url(r'^password_reset/', include('password_reset.urls')),
 )

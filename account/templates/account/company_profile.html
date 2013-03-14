@@ -34,27 +34,11 @@
     {% if user and not userProfile.is_intern %}
         {% if profile.id == userProfile.id %}
 	      <div class="masthead">
-	        <h4 class="muted">
-					Company Personality: {{ userProfile.quizResult }}<br />
-					Username: {{ user.username }}<br />
-					EIN: {{ userProfile.ein }}
-			</h4>
-	        <div class="navbar">
-	          <div class="navbar-inner">
-	            <div class="container">
-	              <ul class="nav">
-	                <li class="active"><a href="/profile">Profile</a></li>
-                        <li><a href="/profile/edit">Edit Profile</a></li>
-	                <li><a href="/quiz/quiz">Retake Quiz</a></li>
-			<li><a href="/job-post">Post New Job</a></li>
-			<li><a href="/profile/jobs">Active Job Listings</a></li>
-                        <li><a href="/search">Potential Applicants</a></li>
-                        <li><a href="/profile/settings"><i class="icon-cog"></i> Account Settings</a></li>
-	              </ul>
-	            </div>
-	          </div>
-	        </div><!-- /.navbar -->
-	<div class="row">
+                <h4 class="muted">
+                    <i>Viewing as a Intern</i><br/>
+                    <a href="/profile">Back to My Profile</a>
+                </h4>
+              <div class="row">
 		<div class="span8">
 		<h2>{{ profile.name }}</h2>
 		<h4>Industry: {{ profile.industry }}</h4>
@@ -64,9 +48,6 @@
 		{{ profile.description }}
 		</p>
 		{% endif %}
-		<p>
-		<p>
-		<br>
 		<h4>Company Location:</h4>
 			<ul>
 			{{ profile.address }}<br>
@@ -82,6 +63,18 @@
 				{% endif %}
 			</ul>
 		</p>
+                <br />
+                {% if profile.getActiveJobs %}
+                    <p>
+                        <h3>Current Job Postings:</h3>
+                        <ul>
+                        {% for job in profile.getActiveJobs %}
+                            <a href="/job-post/{{ job.id }}"> {{ job.headline }}</a>
+                        {% endfor %}
+                        </ul>
+                    </p>
+                {% endif %}
+
 		</div> <!-- /.span8 -->
 	{% endif %}
     {% else %}
@@ -113,6 +106,16 @@
 					{% endif %}
 				</ul>
 			</p>
+                        {% if profile.getActiveJobs %}
+                            <p>
+                            <h4>Current Job Postings:</h4>
+                            {% for job in profile.getActiveJobs %}
+                            <a href="/job-post/{{ job.id }}"> {{ job.headline }}</a>
+                            {% endfor %}
+                            </ul>
+                        </p>
+                        {% endif %}
+
 		</div> <!-- /.span8 -->
     {% endif %}
 {% endblock %}

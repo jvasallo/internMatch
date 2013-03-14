@@ -28,7 +28,14 @@ class Profile(models.Model):
         q = self.user.quizresult_set.get()
         result = q.quiz_result
         return result
-    
+   
+    def getActiveJobs(self):
+        activeJobs = []
+        for job in self.jobpost_set.all():
+	    if job.active():
+                activeJobs.append(job)
+	return activeJobs
+     
     def getReferences(self):
 	return self.reference_set.all()    
 
