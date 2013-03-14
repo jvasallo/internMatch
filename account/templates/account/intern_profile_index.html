@@ -32,8 +32,10 @@
       </div>
       <div class="row">
         <div class="span8">
+			<!-- Intern Name -->
 			<h2>{{ userProfile.name }}</h2>
 
+			<!-- Intern School Info -->
 			<p>
 				<h3>Scholarly Information</h3>
 				<h4>University:</h4>
@@ -44,13 +46,14 @@
 				{{ userProfile.graduation_date }}
 			</p>
 
+			<!-- Intern City -->
 			<p>
 				<h3>Location:</h3>
 				I currently live in {{ userProfile.city }}, {{ userProfile.state }}.
 			</p>
 
 			<!-- Intern Professional Summary -->
-			{% if userProfile.description|length > 0 and userProfile.description != "Empty" %}
+			{% if userProfile.description %}
 			<p>
 				<h3>Professional Summary:</h3>
 				{{ userProfile.description}}
@@ -58,7 +61,7 @@
 			{% endif %}
 			
 			<!-- Intern Skills -->
-			{% if userProfile.getSkills|length > 0 and userProfile.getSkills.0.name != "Empty" %}
+			{% if userProfile.getSkills %}
 			<p>
 				<h3>Skills:</h3>
 				<ul>

@@ -34,7 +34,7 @@
         <div class="span8">
           <h2>{{ userProfile.name }}</h2>
           <h4>Industry: {{ userProfile.industry }}</h4>
-		  {% if userProfile.website|length > 0 and userProfile.description != "Empty" %}
+		  {% if userProfile.description %}
           <p>
               <h3>Company Description:</h3>
               {{ userProfile.description }}
@@ -46,14 +46,14 @@
                   <h4>Company Location:</h4>
                   <ul>
                   {{ userProfile.address }}<br>
-                  {{ userProfile.city }}, {{ userProfile.state }} {{ userProfile.zip }}<br>
+                  {{ userProfile.city }}, {{ userProfile.state }} &nbsp;{{ userProfile.zip }}<br>
                   </ul>
               </p>
               <h4>Contact Information:</h4>
               <ul>
                   <b>Phone: </b> {{ userProfile.phone }}<br>
                   <b>Email: </b> {{ userProfile.contactEmail }}<br>
-				  {% if userProfile.website|length > 0 and userProfile.description != "Empty" %}
+				  {% if userProfile.website %}
                   <b>Website: </b> <a href="{{ userProfile.website }}">{{ userProfile.website }}</a> <br>
 				  {% endif %}
               </ul>

@@ -95,10 +95,13 @@
                     <h3>Location:</h3>
                     I currently live in {{ profile.city }}, {{ profile.state }}.
                     </p>
+					{% if userProfile.description %}
                     <p>
                     <h3>Professional Summary:</h3>
                     {{ profile.description}}
                     </p>
+					{% endif %}
+					{% if userProfile.getSkills %}
                     <p>
                     <h3>Skills:</h3>
                     {% for skill in profile.getSkills %}
@@ -107,6 +110,7 @@
                     </li>
                     {% endfor %}
                     </p>
+					{% endfif %}
                     <h3>References:</h3>
                     <a href="mailto:{{ profile.user.email }}?Subject=Internship%20Opportunity%20From%20{{ userProfile.name }}" class="btn btn-primary">Contact Me!</a>
      </div>

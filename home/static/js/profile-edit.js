@@ -201,51 +201,65 @@ $(function(){
 
 /* Save Intern update */
 function onSubmitIntern() {
-   var editableObjects = $('.editable'); // all editable fields
+	var editableObjects = $('.editable'); // all editable fields
 
-   $.ajax({ // create an AJAX call...
-       data: {'name' : editableObjects[0].text,
-              'school' : editableObjects[1].text,
-              'graduation_date' : editableObjects[2].text,
-              'major' : editableObjects[3].text,
-              'email' : editableObjects[4].text,
-              'description' : editableObjects[5].text,
-              'skills' : editableObjects[6].text
-              },
-       type: 'POST', // GET or POST
-       url: '/profile/update/', // the file to call
-       success: function(response) { // on success..
-           window.location = "/profile"; // redirect to view profile page
-       }
-   });
+	// fixes issue with xeditable and displaying/saving 'Empty' string values in fields
+	for (var i = 0; i < editableObjects.length; i++) { // iterate over editableObjects
+		if (editableObjects[i].text == 'Empty' && editableObjects[i].text.length == 5) { // if editable field contains an 'Empty' string value
+			editableObjects[i].text = '' // keep it as an empty value
+		}
+	}
+   
+	$.ajax({ // create an AJAX call...
+		data: {'name' : editableObjects[0].text,
+			  'school' : editableObjects[1].text,
+			  'graduation_date' : editableObjects[2].text,
+			  'major' : editableObjects[3].text,
+			  'email' : editableObjects[4].text,
+			  'description' : editableObjects[5].text,
+			  'skills' : editableObjects[6].text
+			  },
+		type: 'POST', // GET or POST
+		url: '/profile/update/', // the file to call
+		success: function(response) { // on success..
+			window.location = "/profile"; // redirect to view profile page
+		}
+	});
 }
 
 /* Save Company update */
 function onSubmit() {
    var editableObjects = $('.editable'); // all editable fields
+   
+   	// fixes issue with xeditable and displaying/saving 'Empty' string values in fields
+	for (var i = 0; i < editableObjects.length; i++) { // iterate over editableObjects
+		if (editableObjects[i].text == 'Empty' && editableObjects[i].text.length == 5) { // if editable field contains an 'Empty' string value
+			editableObjects[i].text = '' // keep it as an empty value
+		}
+	}
 
-   $.ajax({ // create an AJAX call...
-       data: {'name' : editableObjects[0].text,
-              'description' : editableObjects[1].text,
-              'industry' : editableObjects[2].text,
-              'address' : editableObjects[3].text,
-              'city' : editableObjects[4].text,
-              'state' : editableObjects[5].text,
-              'zip' : editableObjects[6].text,
-              'email' : editableObjects[7].text,
-              'contactPhone' : editableObjects[8].text,
-              'contactEmail' : editableObjects[9].text,
-              'companyWebsite' : editableObjects[10].text
-              },
-       type: 'POST', // GET or POST
-       url: '/profile/update/', // the file to call
-       success: function(response) { // on success..
-           window.location = "/profile"; // redirect to view profile page
-       }
-   });
+	$.ajax({ // create an AJAX call...
+		data: {'name' : editableObjects[0].text,
+			  'description' : editableObjects[1].text,
+			  'industry' : editableObjects[2].text,
+			  'address' : editableObjects[3].text,
+			  'city' : editableObjects[4].text,
+			  'state' : editableObjects[5].text,
+			  'zip' : editableObjects[6].text,
+			  'email' : editableObjects[7].text,
+			  'contactPhone' : editableObjects[8].text,
+			  'contactEmail' : editableObjects[9].text,
+			  'companyWebsite' : editableObjects[10].text
+			  },
+		type: 'POST', // GET or POST
+		url: '/profile/update/', // the file to call
+		success: function(response) { // on success..
+			window.location = "/profile"; // redirect to view profile page
+		}
+	});
 }
 
 /* Cancel profile update */
 function exitApp() {
-    window.location = "/profile"; // redirect to view profile page
+	window.location = "/profile"; // redirect to view profile page
 }

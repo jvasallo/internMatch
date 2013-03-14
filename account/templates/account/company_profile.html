@@ -50,58 +50,65 @@
 	            </div>
 	          </div>
 	        </div><!-- /.navbar -->
-        <div class="row">
-        <div class="span8">
-          <h2>{{ profile.name }}</h2>
-          <h4>Industry: {{ profile.industry }}</h4>
-          <p>
-              <h3>Company Description:</h3>
-              {{ profile.description }}
-          </p>
-          <p>
-              <p>
-                  <br>
-                  <h4>Company Location:</h4>
-                  <ul>
-                  {{ profile.address }}<br>
-                  {{ profile.city }}, {{ profile.state }} {{ profile.zip }}<br>
-                  </ul>
-              </p>
-              <h4>Contact Information:</h4>
-              <ul>
-                  <b>Phone: </b> {{ profile.phone }}<br>
-                  <b>Email: </b> {{ profile.contactEmail }}<br>
-                  <b>Website: </b> <a href="{{ profile.website }}">{{ profile.website }}</a> <br>
-              </ul>
-          </p>
-        </div> <!-- /.span8 -->
-
-        {% endif %}
+	<div class="row">
+		<div class="span8">
+		<h2>{{ profile.name }}</h2>
+		<h4>Industry: {{ profile.industry }}</h4>
+		{% if userProfile.description %}
+		<p>
+		<h3>Company Description:</h3>
+		{{ profile.description }}
+		</p>
+		{% endif %}
+		<p>
+		<p>
+		<br>
+		<h4>Company Location:</h4>
+			<ul>
+			{{ profile.address }}<br>
+			{{ profile.city }}, {{ profile.state }} &nbsp;{{ profile.zip }}<br>
+			</ul>
+		</p>
+		<h4>Contact Information:</h4>
+			<ul>
+				<b>Phone: </b> {{ profile.phone }}<br>
+				<b>Email: </b> {{ profile.contactEmail }}<br>
+				{% if userProfile.website %}
+				<b>Website: </b> <a href="{{ profile.website }}">{{ profile.website }}</a> <br>
+				{% endif %}
+			</ul>
+		</p>
+		</div> <!-- /.span8 -->
+	{% endif %}
     {% else %}
-      <div class="row">
-        <div class="span8">
-	  <h2>{{ profile.name }}</h2>
-          <h4>Industry: {{ profile.industry }}</h4>
-	  <p>
-              <h3>Company Description:</h3>
-              {{ profile.description }}
-          </p>
-          <p>
-              <p>
-                  <br>
-    	          <h4>Company Location:</h4>
-                  <ul>
-	  	  {{ profile.address }}<br>
-		  {{ profile.city }}, {{ profile.state }} {{ profile.zip }}<br>
-	          </ul>
-	      </p>
-              <h4>Contact Information:</h4>
-  	      <ul>
-	          <b>Phone: </b> {{ profile.phone }}<br>
-		  <b>Email: </b> {{ profile.contactEmail }}<br>
-                  <b>Website: </b> <a href="{{ profile.website }}">{{ profile.website }}</a> <br>
-	      </ul>
-          </p>
-        </div> <!-- /.span8 -->
+	<div class="row">
+		<div class="span8">
+			<h2>{{ profile.name }}</h2>
+			<h4>Industry: {{ profile.industry }}</h4>
+				{% if userProfile.description %}
+				<p>
+					<h3>Company Description:</h3>
+					{{ profile.description }}
+				</p>
+				{% endif %}
+			<p>
+			<p>
+			<br>
+			<h4>Company Location:</h4>
+				<ul>
+					{{ profile.address }}<br>
+					{{ profile.city }}, {{ profile.state }} &nbsp;{{ profile.zip }}<br>
+				</ul>
+			</p>
+			<h4>Contact Information:</h4>
+				<ul>
+					<b>Phone: </b> {{ profile.phone }}<br>
+					<b>Email: </b> {{ profile.contactEmail }}<br>
+					{% if userProfile.website %}
+					<b>Website: </b> <a href="{{ profile.website }}">{{ profile.website }}</a> <br>
+					{% endif %}
+				</ul>
+			</p>
+		</div> <!-- /.span8 -->
     {% endif %}
 {% endblock %}
