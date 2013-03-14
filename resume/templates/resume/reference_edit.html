@@ -16,9 +16,9 @@
 {% if user %}
               <div class="masthead">
                 <h4 class="muted">
-					My Personality: {{ userProfile.quizResult }}<br />
-					Username: {{ user.username }}
-				</h4>
+		    My Personality: {{ userProfile.quizResult }}<br />
+		    Username: {{ user.username }}
+		</h4>
                 <div class="navbar">
                   <div class="navbar-inner">
                     <div class="container">
@@ -36,10 +36,10 @@
                   </div>
                 </div><!-- /.navbar -->
 	<form class="form-horizontal" action='' method="POST">
-		<input type="hidden" id="postingid" value="{{ reference.id }}">
+		<input type="hidden" id="referenceid" value="{{ reference.id }}">
 		<div id="legend">
 			<legend class="">
-				<b>Edit Job Posting</b>
+				<b>Edit Reference</b>
 			</legend>
 		</div>
 		<!-- Begin Reference Edit Form -->
@@ -48,15 +48,15 @@
 				<tbody>
 					<tr>
 						<td class="label-column" style="vertical-align:middle">Name:</td>
-						<td class="field-column" style="vertical-align:middle"><a href="#" id="headline">{{ reference.name }}</a></td>
+						<td class="field-column" style="vertical-align:middle"><a href="#" id="name">{{ reference.name }}</a></td>
 					</tr>
 					<tr>
 						<td class="label-column" style="vertical-align:middle">Relationship:</td>
-						<td class="field-column" style="vertical-align:middle"><a href="#" id="position">{{ reference.relationship }}</a></td>
+						<td class="field-column" style="vertical-align:middle"><a href="#" id="relationship">{{ reference.relationship }}</a></td>
 					</tr>
 					<tr>
 						<td class="label-column" style="vertical-align:middle">Email:</td>
-						<td class="field-column" style="vertical-align:middle"><a href="#" id="description">{{ reference.email }}</a></td>
+						<td class="field-column" style="vertical-align:middle"><a href="#" id="email">{{ reference.email }}</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -64,7 +64,7 @@
 	</form>
 	<div class="form-actions">
 		<!-- Submit and Cancel buttons -->
-		<button onclick="onSubmit()" id="update-profile" class="btn btn-success save-edit" value="Submit">
+		<button onclick="onSubmit()" id="update-reference" class="btn btn-success save-edit" value="Submit">
 			Save
 		</button>
 		<button onclick="exitApp()" class="btn">

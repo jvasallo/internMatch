@@ -29,14 +29,14 @@ function onSubmit() {
    var n = editableObjects.length; // total quiz items
    $.ajax({ // If the field is empty send '', instead of 'Empty', which will get saved in the respective database fields
        data: {'id' : referenceid,
-              'name' : editableObjects[0].text == 'Empty' ? '' : editableObjects[0].text,
-              'relationship' : editableObjects[1].text == 'Empty' ? '' : editableObjects[1].text,
-              'email' : editableObjects[2].text == 'Empty' ? '' : editableObjects[2].text,
+              'name' : editableObjects[0].text,
+              'relationship' : editableObjects[1].text,
+              'email' : editableObjects[2].text,
               },
        type: 'POST', // GET or POST
-       url: '/resume/update/', // the file to call
+       url: '/references/update/', // the file to call
        success: function(response) { // on success..
-           window.location.href = "../../../profile/references/";
+           window.location.href = "/profile/references/";
        }
    });
 }

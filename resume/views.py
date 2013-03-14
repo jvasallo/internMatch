@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect, HttpResponse, Http404
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth import authenticate, login, logout
@@ -37,7 +37,7 @@ def edit(request, reference_id):
         user = request.user
         userProfile = request.user.get_profile()
         if userProfile.is_intern:
-            context = {'user': user, 'userProfile': userProfile, 'reference' : reference, 'active': active}
+            context = {'user': user, 'userProfile': userProfile, 'reference' : reference}
             return render_to_response('resume/reference_edit.html', context, context_instance=RequestContext(request))
         else:
             return HttpResponseRedirect('/')
@@ -54,7 +54,7 @@ def update(request):
                 reference = Reference.objects.get(pk=request.POST.get('id'))
             except Reference.DoesNotExist:
                 raise Http404
-            if not profile.is_intern:
+            if profile.is_intern:
                 reference.name = request.POST.get('name')
                 reference.relationship = request.POST.get('relationship')
                 reference.email = request.POST.get('email')

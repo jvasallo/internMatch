@@ -26,7 +26,7 @@
                         <li><a href="/profile/edit">Edit Profile</a></li>
                         <li><a href="/quiz/quiz">Retake Quiz</a></li>
                         <li><a href="/references/add">Add Reference</a></li>
-                        <li class="active"><a href="/references">View References</a></li>
+                        <li class="active"><a href="/profile/references">View References</a></li>
                         <li><a href="/search">Potential Matches</a></li>
                         <li><a href="/profile/companies">Browse Companies</a></li>
                         <li><a href="/profile/settings"><i class="icon-cog"></i> Account Settings</a></li>
@@ -49,7 +49,7 @@
   	                <b>Contact Email: </b> {{ reference.email }}
                     {% endif %}
                     <br>
-                    <a href="/reference/{{ reference.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal{{ reference.id }}" data-toggle='modal'><i class="icon-trash"></i> Delete</a>
+                    <a href="/references/{{ reference.id }}/edit"><i class="icon-pencil"></i> Edit</a> | <a href="#deleteModal{{ reference.id }}" data-toggle='modal'><i class="icon-trash"></i> Delete</a>
                     </p>
 
                         <div id="deleteModal{{ reference.id }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
