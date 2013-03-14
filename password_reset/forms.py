@@ -24,7 +24,7 @@ class PasswordRecoveryForm(forms.Form):
         labels = {
             'username': _('Username'),
             'email': _('Email'),
-            'both': _('Username or Email'),
+            'both': _('Enter your Username or Email address you used to sign up with Intern Match:'),
         }
         if len(search_fields) == 1:
             self.label_key = search_fields[0]
