@@ -14,7 +14,7 @@
 	      <div class="masthead">
 	        <h4 class="muted">
 				My Personality: {{ userProfile.quizResult }}<br />
-				Username: {{ user.username }}
+				Username: <a href="/profile/intern/{{ userProfile.id }}">{{ user.username }}</a>
 			</h4>
 	        <div class="navbar">
 	          <div class="navbar-inner">
@@ -24,7 +24,7 @@
                         <li><a href="/profile/edit">Edit Profile</a></li>
                         <li><a href="/quiz/quiz">Retake Quiz</a></li>
                         <li><a href="/references/add">Add Reference</a></li>
-                        <li><a href="/references">View References</a></li>
+                        <li><a href="/profile/references">View References</a></li>
                         <li><a href="/search">Potential Matches</a></li>
                         <li><a href="/profile/companies">Browse Companies</a></li>
                         <li><a href="/profile/settings"><i class="icon-cog"></i> Account Settings</a></li>
@@ -78,8 +78,15 @@
 			{% endif %}
 
 			<!-- Intern References -->
-			{% if userProfile.references %}
-			<h3>References:</h3>
+			{% if userProfile.getReferences %}
+			    <h3>References:</h3>
+                            <ol>
+                            {% for reference in userProfile.getReferences %}
+                            <li>
+                                {{ reference.name }}, <i>{{ reference.relationship }}</i> - <a href="{{ reference.email }}?subject=Information%20About%20{{ userProfile.name }}">Contact me</a>
+                            </li>
+                            {% endfor %}
+                            </ol>
 			{% endif %}
         </div> <!-- /.span8 -->
 {% endblock %}

@@ -30,9 +30,9 @@
         {% if profile.id == userProfile.id %}
               <div class="masthead">
                 <h4 class="muted">
-					My Personality: {{ userProfile.quizResult }}<br />
-					Username: {{ user.username }}
-				</h4>
+		    My Personality: {{ profile.quizResult }}<br />
+		    Username: {{ user.username }}
+		</h4>
                 <div class="navbar">
                   <div class="navbar-inner">
                     <div class="container">
@@ -41,7 +41,7 @@
                         <li><a href="/profile/edit">Edit Profile</a></li>
                         <li><a href="/quiz/quiz">Retake Quiz</a></li>
                         <li><a href="/references/add">Add Reference</a></li>
-                        <li><a href="/references">View References</a></li>
+                        <li><a href="/profile/references">View References</a></li>
                         <li><a href="/search">Potential Matches</a></li>
                         <li><a href="/profile/companies">Browse Companies</a></li>
                         <li><a href="/profile/settings"><i class="icon-cog"></i> Account Settings</a></li>
@@ -51,75 +51,121 @@
                 </div><!-- /.navbar -->
                 <div class="row">
                   <div class="span8">
-                    <h2>{{ profile.name }}</h2>
-                    <p>
-                    <h3>Academic Information</h3>
-					<h4>University:</h4>
-                    {{ profile.school }}
-                    <h4>Major:</h4>
-                    {{ profile.major }}
-					<h4>Status: </h4>
-					{{ userProfile.status }}
-                    <h4>Anticipated Graduation Date:</h4>
-                    {{ profile.graduation_date }}
-                    </p>
-                    <p>
-                    <h3>Location:</h3>
-                    I currently live in {{ profile.city }}, {{ profile.state }}.
-                    </p>
-                    <p>
-                    <h3>Professional Summary:</h3>
-                    {{ profile.description}}
-                    </p>
-                    <p>
-                    <h3>Skills:</h3>
-                    {% for skill in profile.getSkills %}
-                    <li>
-                        {{ skill.name }}
-                    </li>
-                    {% endfor %}
-                    </p>
-                    <h3>References:</h3>
-                    <a href="mailto:{{ profile.user.email }}?Subject=Internship%20Opportunity%20From%20{{ userProfile.name }}" class="btn btn-primary">Contact Me!</a>
+                        <!-- Intern Name -->
+                        <h2>{{ profile.name }}</h2>
+
+                        <!-- Intern School Info -->
+                        <p>
+                                <h3>Academic Information</h3>
+                                <h4>University:</h4>
+                                {{ profile.school }}
+                                <h4>Major:</h4>
+                                {{ profile.major }}
+                                <h4>Status: </h4>
+                                {{ profile.status }}
+                                <h4>Anticipated Graduation Date:</h4>
+                                {{ profile.graduation_date }}
+                        </p>
+
+                        <!-- Intern City -->
+                        <p>
+                                <h3>Location:</h3>
+                                I currently live in {{ profile.city }}, {{ profile.state }}.
+                        </p>
+
+                        <!-- Intern Professional Summary -->
+                        {% if profile.description %}
+                        <p>
+                                <h3>Professional Summary:</h3>
+                                {{ profile.description}}
+                        </p>
+                        {% endif %}
+
+                        <!-- Intern Skills -->
+                        {% if profile.getSkills %}
+                        <p>
+                                <h3>Skills:</h3>
+                                <ul>
+                                {% for skill in profile.getSkills %}
+                                <li> {{ skill.name }} </li>
+                                {% endfor %}
+                                </ul>
+                        </p>
+                        {% endif %}
+
+                        <!-- Intern References -->
+                        {% if profile.getReferences %}
+                            <h3>References:</h3>
+                            <ol>
+                            {% for reference in profile.getReferences %}
+                            <li>
+                                {{ reference.name }}, <i>{{ reference.relationship }}</i> - <a href="{{ reference.email }}?subject=Information%20About%20{{ profile.name }}">Contact me</a>
+                            </li>
+                            {% endfor %}
+                            </ol>
+                        {% endif %}
+                        <br />
+                        <a href="mailto:{{ profile.user.email }}?Subject=Internship%20Opportunity%20From%20{{ userProfile.name }}" class="btn btn-primary">Contact Me!</a>
                   </div> <!-- /.span8 -->
       {% endif %}
     {% else %}
       <div class="row">
-        <div class="span8">
-                    <h2>{{ profile.name }}</h2>
-                    <p>
-                    <h3>Scholarly Information</h3>
-                    <h4>University:</h4>
-                    {{ profile.school }}
-                    <h4>Major:</h4>
-                    {{ profile.major }}
-					<h4>Status: </h4>
-					{{ userProfile.status }}
-                    <h4>Anticipated Graduation Date:</h4>
-                    {{ profile.graduation_date }}
-                    </p>
-                    <p>
-                    <h3>Location:</h3>
-                    I currently live in {{ profile.city }}, {{ profile.state }}.
-                    </p>
-					{% if userProfile.description %}
-                    <p>
-                    <h3>Professional Summary:</h3>
-                    {{ profile.description}}
-                    </p>
-					{% endif %}
-					{% if userProfile.getSkills %}
-                    <p>
-                    <h3>Skills:</h3>
-                    {% for skill in profile.getSkills %}
-                    <li>
-                        {{ skill.name }}
-                    </li>
-                    {% endfor %}
-                    </p>
-					{% endfif %}
-                    <h3>References:</h3>
-                    <a href="mailto:{{ profile.user.email }}?Subject=Internship%20Opportunity%20From%20{{ userProfile.name }}" class="btn btn-primary">Contact Me!</a>
-     </div>
+          <div class="span8">
+              <!-- Intern Name -->
+              <h2>{{ profile.name }}</h2>
+
+               <!-- Intern School Info -->
+               <p>
+                   <h3>Academic Information</h3>
+                   <h4>University:</h4>
+                       {{ profile.school }}
+                   <h4>Major:</h4>
+                       {{ profile.major }}
+                   <h4>Status: </h4>
+                       {{ profile.status }}
+                   <h4>Anticipated Graduation Date:</h4>
+                       {{ profile.graduation_date }}
+               </p>
+
+              <!-- Intern City -->
+              <p>
+                  <h3>Location:</h3>
+                      I currently live in {{ profile.city }}, {{ profile.state }}.
+              </p>
+
+              <!-- Intern Professional Summary -->
+              {% if profile.description %}
+                  <p>
+                      <h3>Professional Summary:</h3>
+                          {{ profile.description}}
+                  </p>
+              {% endif %}
+
+              <!-- Intern Skills -->
+              {% if profile.getSkills %}
+                  <p>
+                  <h3>Skills:</h3>
+                  <ul>
+                  {% for skill in profile.getSkills %}
+                      <li> {{ skill.name }} </li>
+                  {% endfor %}
+                  </ul>
+                  </p>
+              {% endif %}
+
+              <!-- Intern References -->
+              {% if profile.getReferences %}
+                  <h3>References:</h3>
+                  <ol>
+                  {% for reference in profile.getReferences %}
+                  <li>
+                      {{ reference.name }}, <i>{{ reference.relationship }}</i> - <a href="{{ reference.email }}?subject=Information%20About%20{{ profile.name }}">Contact me</a>
+                  </li>
+                  {% endfor %}
+                  </ol>
+              {% endif %}
+              <br />
+              <a href="mailto:{{ profile.user.email }}?Subject=Internship%20Opportunity%20From%20{{ userProfile.name }}" class="btn btn-primary">Contact Me!</a>
+          </div>
     {% endif %}
 {% endblock %}

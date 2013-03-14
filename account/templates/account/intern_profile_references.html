@@ -39,10 +39,8 @@
 
       <div class="row">
         <div class="span8">
+            <h1>References</h1>
             {% if references %}
-                {% for reference in references %}
-                   {{ reference.name }}
-                {% endfor %}
 	        {% for reference in references %}
                     <h3>{{ reference.name }}</h3></a>
                     <p><b>Relationship: </b> {{ reference.relationship }}	 
@@ -66,13 +64,12 @@
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <a href="/job-post/{{ reference.id }}/delete" class="btn btn-danger"><i class="icon-trash"></i> Confirm</a>
+                            <a href="/references/{{ reference.id }}/delete" class="btn btn-danger"><i class="icon-trash"></i> Confirm</a>
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                         </div>
-</div>
+                    </div>
                         <hr>
 	        {% endfor %}
-              </div>
             {% else %}
                 <p>
                     Looks like there are no references at the time. Go add some to improve your profile!

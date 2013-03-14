@@ -143,7 +143,6 @@ def jobs(request):
         return HttpResponseRedirect('/login') # redirect to login page        
 
 def references(request):
-    import pdb; pdb.set_trace()
     if request.user.is_authenticated():
         try:
             user = request.user
