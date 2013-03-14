@@ -4,5 +4,8 @@
 {% block title %}{% trans "Password recovery sent" %}{% endblock %}
 
 {% block container %}
-	<p>{% blocktrans with ago=timestamp|timesince %}An email was sent to <strong>{{ email }}</strong> {{ ago }} ago. Use the link in it to set a new password.{% endblocktrans %}</p>
+        <h1>Password Reset Email Sent!</h1><br/>
+	<p>An email was sent to the email, or to the primary email of the account, you provided. Use the link in it to set a new password.</p>
+        <br />
+        <a href="/" class="btn btn-primary">Return to Homepage</a>
 {% endblock %}

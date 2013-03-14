@@ -73,6 +73,7 @@ class PasswordResetForm(forms.Form):
     password1 = forms.CharField(
         label=_('New password'),
         widget=forms.PasswordInput,
+        min_length=6,
     )
     password2 = forms.CharField(
         label=_('New password (confirm)'),
