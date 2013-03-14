@@ -11,7 +11,8 @@ from datetime import date
 
 def ReferencePosting(request):
     if request.user.is_authenticated():
-        profile = request.user.get_profile()
+        user = request.user
+        profile = user.get_profile()
         if not profile.is_intern:
             return HttpResponseRedirect('/profile')
         form = ReferenceForm(request.POST)
@@ -20,10 +21,10 @@ def ReferencePosting(request):
                 reference_post = add_reference(form, profile)
                 return HttpResponseRedirect('/profile')
             else:
-                return render_to_response('resume/reference_post.html', {'form': form}, context_instance=RequestContext(request))
+                return render_to_response('resume/reference_post.html', {'form': form, 'userProfile' : profile}, context_instance=RequestContext(request))
         else:
             form = ReferenceForm()
-            return render_to_response('resume/reference_post.html', {'form': form}, context_instance=RequestContext(request))
+            return render_to_response('resume/reference_post.html', {'form': form, 'userProfile' : profile}, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/register/intern')
 

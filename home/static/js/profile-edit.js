@@ -59,6 +59,19 @@ $(function(){
 		]
     });
 	
+    $('#status').editable({ // status field (required)
+		type: 'select',
+		inputclass: 'input-large',
+		source: [
+			{value: 1, text: 'Freshman'},
+			{value: 2, text: 'Sophomore'},
+			{value: 3, text: 'Junior'},
+			{value: 4, text: 'Senior'},
+			{value: 5, text: 'Masters Candidate'},
+			{value: 6, text: 'PhD Candidate'}
+		]
+    });
+	
 	$('#skills').editable({ // skills field (optional)
 		type: 'select2',
 		inputclass: 'input-large',
@@ -215,9 +228,10 @@ function onSubmitIntern() {
 			  'school' : editableObjects[1].text,
 			  'graduation_date' : editableObjects[2].text,
 			  'major' : editableObjects[3].text,
-			  'email' : editableObjects[4].text,
-			  'description' : editableObjects[5].text,
-			  'skills' : editableObjects[6].text
+			  'status': editableObjects[4].text,
+			  'email' : editableObjects[5].text,
+			  'description' : editableObjects[6].text,
+			  'skills' : editableObjects[7].text
 			  },
 		type: 'POST', // GET or POST
 		url: '/profile/update/', // the file to call

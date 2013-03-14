@@ -18,7 +18,7 @@ class InternRegistrationForm(forms.Form):
 
     # Global Variables
     MAJORS = (
-    ('', 'Select..'),
+    ('', 'Select...'),
     ('Applied Network Systems', 'Applied Network Systems'),
     ('Computer Engineering', 'Computer Engineering'),
     ('Computer Science', 'Computer Science'),
@@ -28,9 +28,19 @@ class InternRegistrationForm(forms.Form):
     ('Software Engineering', 'Software Engineering'),
     ('Systems Analysis', 'Systems Analysis'),
     )
+
+    STATUS = (
+        ('', 'Select...'),
+        ('Freshman', 'Freshman'),
+        ('Sophomore', 'Sophomore'),
+        ('Junior', 'Junior'),
+        ('Senior', 'Senior'),
+        ('Masters Candidate', 'Masters Candidate'),
+        ('PhD Candidate', 'PhD Candidate'),
+    )
     
     STATES = (
-        ('', 'Select..'),
+        ('', 'Select...'),
 	('AL', 'Alabama'),
 	('AK', 'Alaska'),
 	('AZ', 'Arizona'),
@@ -85,14 +95,15 @@ class InternRegistrationForm(forms.Form):
     )
 
     name = forms.CharField(label=(u'Name'), required=True)
-    school = forms.CharField(label=(u'School'), required=True)
+    school = forms.CharField(label=(u'School'), max_length=80, required=True)
     major = forms.ChoiceField(label=(u'Major'), choices=MAJORS, required=True)
-    graduation_date = forms.DateField(label=(u'Graduation Date'), required=True)   
-    city = forms.CharField(label=(u'City'), required=True)
+    status = forms.ChoiceField(label=(u'Status'), choices=STATUS, required=True)
+    graduation_date = forms.DateField(label=(u'Graduation Date'), required=True)
+    city = forms.CharField(label=(u'City'), max_length=22, required=True)
     state = forms.ChoiceField(label=(u'State'), choices=STATES, required=True)
-    description = forms.CharField(label=(u'Optional Additional Info'), widget=forms.Textarea, max_length=1250, required=False)
+    description = forms.CharField(label=(u'Experience'), widget=forms.Textarea, max_length=1250, required=False)
     username = forms.CharField(label=(u'User Name'), required=True)
-    email = forms.EmailField(label=(u'Email Address'), required=True)
+    email = forms.EmailField(label=(u'Email Address'), max_length=50, required=True)
     password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False), required=True, min_length=6)
     password1 = forms.CharField(label=(u'Verify Password'), widget=forms.PasswordInput(render_value=False), required=True, min_length=6)
     agree_terms = forms.MultipleChoiceField(label = (u'In order to proceed, you must agree with our Terms of Service.'),required=True,
@@ -214,18 +225,19 @@ class CompanyRegistrationForm(forms.Form):
     )
  
 
-    name = forms.CharField(label=(u'Company Name'), required=True)
+    name = forms.CharField(label=(u'Company Name'), max_length=30, required=True)
+    ein = forms.CharField(label=(u'EIN'), min_length=9, max_length=9, required=True)
     description = forms.CharField(label=(u'Company Description'), widget=forms.Textarea, max_length=1250, required=False)
     industry = forms.ChoiceField(label=(u'Industry'), choices=INDUSTRIES, required=True)
-    address = forms.CharField(label=(u'Company Address'), required=True)
-    city = forms.CharField(label=(u'City'), required=True)
+    address = forms.CharField(label=(u'Company Address'), max_length=100, required=True)
+    city = forms.CharField(label=(u'City'), max_length=22, required=True)
     state = forms.ChoiceField(label=(u'State'), choices=STATES, required=True)
-    zip = forms.CharField(label=(u'Zip Code'), required=True)
+    zip = forms.CharField(label=(u'Zip Code'), min_length=3, max_length=9, required=True)
     username = forms.CharField(label=(u'User Name'), required=True)
-    email = forms.EmailField(label=(u'<abbr title="This is the email Intern Match will use to contact you. This email is never shared publicly.">Private Email Address</abbr>'), required=True)
-    phone = forms.CharField(label=(u'<abbr title="This is the phone number that will be displayed to prospective interns. We recommend using a general point of contact.">Public Phone Number</abbr>'), required=True)
-    contactEmail = forms.EmailField(label=(u'<abbr title="This is the email that will be displayed to prospective interns. We recommend using emails such as: careers@website.com">Public Email Address</abbr>'), required=True)
-    website = forms.CharField(label=(u'Company Website'), required=False)
+    email = forms.EmailField(label=(u'<abbr title="This is the email Intern Match will use to contact you. This email is never shared publicly.">Private Email Address</abbr>'), max_length=50, required=True)
+    phone = forms.CharField(label=(u'<abbr title="This is the phone number that will be displayed to prospective interns. We recommend using a general point of contact.">Public Phone Number</abbr>'), max_length=15, required=True)
+    contactEmail = forms.EmailField(label=(u'<abbr title="This is the email that will be displayed to prospective interns. We recommend using emails such as: careers@website.com">Public Email Address</abbr>'), max_length=50, required=True)
+    website = forms.CharField(label=(u'Company Website'), max_length=100, required=False)
     password  = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False), required=True, min_length=6)
     password1 = forms.CharField(label=(u'Verify Password'), widget=forms.PasswordInput(render_value=False), required=True, min_length=6)
     agree_terms = forms.MultipleChoiceField(label = (u'In order to proceed, you must agree with our Terms of Service.'),required=True, 

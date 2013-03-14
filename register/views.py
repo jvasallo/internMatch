@@ -25,6 +25,7 @@ def InternRegistration(request):
             profile.name = form.cleaned_data['name']
             profile.school = form.cleaned_data['school']
             profile.major = form.cleaned_data['major']
+            profile.status = form.cleaned_data['status']
             profile.graduation_date = form.cleaned_data['graduation_date']
             profile.city = form.cleaned_data['city']
             profile.state = form.cleaned_data['state']
@@ -54,6 +55,7 @@ def CompanyRegistration(request):
             login(request, user)
             company = user.get_profile()
             company.name = form.cleaned_data['name']
+            company.ein = form.cleaned_data['ein']
             company.description = form.cleaned_data['description']
             company.industry = form.cleaned_data['industry']
             company.address = form.cleaned_data['address']

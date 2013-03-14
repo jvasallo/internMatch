@@ -14,7 +14,11 @@
 {% endblock %}
 {% block container %}
 	      <div class="masthead">
-	        <h3 class="muted">Company Personality: {{ userProfile.quizResult }}<br />Username: {{ user.username }} </h3>
+	        <h4 class="muted">	
+				Company Personality: {{ userProfile.quizResult }}<br />
+				Username: {{ user.username }}<br />
+				EIN: {{ userProfile.ein }}
+			</h4>
 	        <div class="navbar">
 	          <div class="navbar-inner">
 	            <div class="container">

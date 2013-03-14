@@ -5,8 +5,9 @@ from django.db.models.signals import post_save
 class Profile(models.Model):
     user = models.OneToOneField(User)
     name = models.CharField(max_length=30, null=True)
+    ein = models.CharField(max_length=9, null=True)
     address = models.CharField(max_length=100, null=True)
-    city = models.CharField(max_length=20, null=True)
+    city = models.CharField(max_length=22, null=True)
     state = models.CharField(max_length=20, null=True)
     zip = models.CharField(max_length=10, null=True)
     school = models.CharField(max_length=80, null=True)
@@ -15,6 +16,7 @@ class Profile(models.Model):
     website = models.CharField(max_length=100, null=True)
     graduation_date = models.DateField(null=True)
     major = models.CharField(max_length=50, null=True)
+    status = models.CharField(max_length=20, null=True)
     industry = models.CharField(max_length=50, null=True)
     description = models.CharField(max_length=1250, null=True)
     is_intern = models.BooleanField()

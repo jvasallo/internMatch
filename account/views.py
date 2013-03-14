@@ -96,6 +96,7 @@ def update(request):
                 profile.school = request.POST.get('school')
                 profile.graduation_date = request.POST.get('graduation_date')
                 profile.major = request.POST.get('major')
+                profile.status = request.POST.get('status')
                 user.email = request.POST.get('email')
                 profile.description = request.POST.get('description')
                 if request.POST.get('skills') != profile.getSkillList():

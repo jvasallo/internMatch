@@ -28,7 +28,11 @@
 {% block container %}
     {% if not userProfile.is_intern %}
               <div class="masthead">
-                <h3 class="muted">Company Personality: {{ userProfile.quizResult }}<br />Username: {{ user.username }} </h3>
+                <h4 class="muted">
+					Company Personality: {{ userProfile.quizResult }}<br />
+					Username: {{ user.username }}<br />
+					EIN: {{ userProfile.ein }}
+				</h4>
                 <div class="navbar">
                   <div class="navbar-inner">
                     <div class="container">
@@ -46,7 +50,10 @@
                 </div><!-- /.navbar -->
     {% else %}
               <div class="masthead">
-                <h3 class="muted">My Personality: {{ userProfile.quizResult }}<br />Username: {{ user.username }} </h3>
+                <h4 class="muted">
+					My Personality: {{ userProfile.quizResult }}<br />
+					Username: {{ user.username }} 
+				</h4>
                 <div class="navbar">
                   <div class="navbar-inner">
                     <div class="container">
