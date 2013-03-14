@@ -30,25 +30,9 @@
         {% if profile.id == userProfile.id %}
               <div class="masthead">
                 <h4 class="muted">
-		    My Personality: {{ profile.quizResult }}<br />
-		    Username: {{ user.username }}
+		    <i>Viewing as a Company</i><br/>
+                    <a href="/profile">Back to My Profile</a>
 		</h4>
-                <div class="navbar">
-                  <div class="navbar-inner">
-                    <div class="container">
-                      <ul class="nav">
-                        <li class="active"><a href="/profile">Profile</a></li>
-                        <li><a href="/profile/edit">Edit Profile</a></li>
-                        <li><a href="/quiz/quiz">Retake Quiz</a></li>
-                        <li><a href="/references/add">Add Reference</a></li>
-                        <li><a href="/profile/references">View References</a></li>
-                        <li><a href="/search">Potential Matches</a></li>
-                        <li><a href="/profile/companies">Browse Companies</a></li>
-                        <li><a href="/profile/settings"><i class="icon-cog"></i> Account Settings</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div><!-- /.navbar -->
                 <div class="row">
                   <div class="span8">
                         <!-- Intern Name -->
