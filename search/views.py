@@ -62,7 +62,7 @@ def company(request):
         personality_filter = request.GET.get('personality_filter', 'off')
         location = request.GET.get('location', False)
         page = request.GET.get('page', False)
-        user_profile.q
+        # user_profile.q
         # quiz_score = Quiz.objects.filter(quiz_result=quizResult)
         get_params = {'location': location, 'page': page, 'personality_filter': personality_filter, 'keyword': keyword}
 
@@ -71,6 +71,8 @@ def company(request):
             interns = getInternsFromKeyword(k.strip(','), interns)
         for l in location.split(' '):
             interns = getInternsFromLocation(l.strip(','), interns)
+        if personality_filter == 'on':
+            interns = getInternsFromPersonality(user_profile.quizResult, interns)
         interns = getListingsByPage(interns, page)
 
         # import pdb; pdb.set_trace()
@@ -78,10 +80,10 @@ def company(request):
         return render_to_response('search/intern_search.html', context, context_instance=RequestContext(request))
 
 
-def getInternsFromPersonality(keyword, interns=False):
+def getInternsFromPersonality(quiz_result, interns=False):
     result = Profile.objects.filter(is_intern=True).filter(user__is_active=True).filter(name__isnull=False).distinct()
-    if keyword:
-        result = Profile.objects.filter(is_intern=True).filter(skill__name__icontains=keyword).distinct()
+    if quiz_result:
+        result = Profile.objects.filter(is_intern=True).filter(user__quizresult__quiz_result=quiz_result).distinct()
     if interns != False:
         result = (result & interns).distinct()
     return result
