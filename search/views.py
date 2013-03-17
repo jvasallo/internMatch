@@ -79,12 +79,15 @@ def company(request):
             interns = getInternsFromKeyword(k.strip(','), interns)
         for l in location.split(' '):
             interns = getInternsFromLocation(l.strip(','), interns)
+        quiz = user_profile.quizResult()
         if personality_filter == 'on':
-            interns = getInternsFromPersonality(user_profile.quizResult, interns)
+            interns = getInternsFromPersonality(quiz, interns)
+            quiz = True
+        pagination = getPagination(int(page),len(interns))
         interns = getListingsByPage(interns, page)
         context = {'user': request.user, 'userProfile': user_profile, 'interns': interns, 'get_params': get_params,
-                   'postings_per_page': POSTINGS_PER_PAGE}
-        return render_to_response('search/intern_search.html', context, context_instance=RequestContext(request))
+                   'postings_per_page': POSTINGS_PER_PAGE, 'pagination': pagination, 'quiz': quiz}
+        return render_to_response('search/intern_search.html',context, context_instance=RequestContext(request))
 
 # Determine which pagination numbers to display
 def getPagination(page, total_listings):

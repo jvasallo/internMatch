@@ -39,19 +39,58 @@
 
     <br>
 
+    <div class="pagination pagination-centered">
+        <ul>
+            {% if pagination.left_page %}
+                <li>
+                    <a href="/search?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page={{ pagination.left_page }}">&laquo;
+                    </a>
+                </li>
+            {% endif %}
+            {% for p in pagination.pages %}
+                <li><a href="/search?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page={{ p }}">
+                    {% if p == get_params.page %}<u><b>{{ p }}</b></u>
+                    {% else %}{{ p }}{% endif %}
+                </a>
+                </li>
+            {% endfor %}
+            {% if pagination.right_page %}
+                <li>
+                    <a href="/search?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page={{ pagination.right_page }}">&raquo;
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span3 well">
-                <br>
+            <div class="span3 {% if userProfile %}well{% endif %}">
+                {% if userProfile %}
+                    <b>Personality Match Only: </b>
+                    <br>
 
-                <div class="btn-group" data-toggle="buttons-radio">
-                    <a href="/search/company?keyword={{ get_params.keyword }}&location={{ get_params.location }}&personality_filter=on&page=1"
-                       class="btn {% if get_params.personality_filter == 'on' %}btn-primary{% endif %}">On</a>
-                    <a href="/search/company?keyword={{ get_params.keyword }}&location={{ get_params.location }}&personality_filter=&page=1"
-                       class="btn {% if get_params.personality_filter != 'on' %}btn-primary{% endif %}">Off</a>
-                </div>
-                <br>
-                <br>
+                    <div class="row-fluid">
+                        <div class="btn-group span3" data-toggle="buttons-radio">
+                            <a href="/search/company?keyword={{ get_params.keyword }}&location={{ get_params.location }}&personality_filter=on&page=1"
+                               class="btn {% if not quiz %}disabled{% endif %} {% if personality_filter == 'on' %}btn-primary{% endif %}">On</a>
+                            <a href="/search/company?keyword={{ get_params.keyword }}&location={{ get_params.location }}&personality_filter=&page=1"
+                               class="btn {% if not quiz %}disabled{% endif %} {% if personality_filter != 'on' %}btn-primary{% endif %}">Off</a>
+                        </div>
+                    </div>
+
+                    {% if not quiz %}
+                        <br>
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div class="alert"> <b>Take our personality quiz to find better company matches</b></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <br>
+                    <br>
+
+                {% endif %}
             </div>
             <div class="span9 well">
                 {% if interns %}
@@ -75,6 +114,31 @@
                     </p>
                 {% endif %}
             </div>
+        </div>
+
+        <div class="pagination pagination-centered">
+            <ul>
+                {% if pagination.left_page %}
+                    <li>
+                        <a href="/search?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page={{ pagination.left_page }}">&laquo;
+                        </a>
+                    </li>
+                {% endif %}
+                {% for p in pagination.pages %}
+                    <li>
+                        <a href="/search?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page={{ p }}">
+                            {% if p == get_params.page %}<u><b>{{ p }}</b></u>
+                            {% else %}{{ p }}{% endif %}
+                        </a>
+                    </li>
+                {% endfor %}
+                {% if pagination.right_page %}
+                    <li>
+                        <a href="/search?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page={{ pagination.right_page }}">&raquo;
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
         <!-- End Row -->
     </div> <!-- End Container -->
