@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class Profile(models.Model):
@@ -26,7 +27,10 @@ class Profile(models.Model):
         return self.graduation_date.strftime("%Y-%m-%d")
 
     def quizResult(self):
-        q = self.user.quizresult_set.get()
+        try:
+            q = self.user.quizresult_set.get()
+        except ObjectDoesNotExist:
+            return None
         result = q.quiz_result
         return result
 
