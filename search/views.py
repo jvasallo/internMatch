@@ -33,19 +33,20 @@ def intern(request):
     location = request.GET.get('location', False)
     page = request.GET.get('page', False)
     get_params = {'location': location, 'page': page, 'personality_filter': personality_filter, 'keyword': keyword}
-    postings = []
     posting_list = getPostingsFromKeyword(keyword)
     for l in location.split(' '):
+        # import pdb; pdb.set_trace()
         posting_list = getPostingsFromLocation(posting_list, l.strip(','))
-    posting_list = getListingsByPage(posting_list, page)
-    for posting in posting_list:
-        posting_company = User.objects.get(id=posting.company.id)
-        if posting_company.is_active:
-            postings.append(posting)
+
     if request.user.is_authenticated():
+        # import pdb; pdb.set_trace()
+        if personality_filter == 'on':
+            posting_list = getPostingsFromPersonality(user_profile.quizResult(), posting_list)
+        postings = getListingsByPage(posting_list, page)
         context = {'user': request.user, 'userProfile': user_profile, 'get_params': get_params,
                    'personality_filter': personality_filter, 'postings': postings}
     else:
+        postings = getListingsByPage(posting_list, page)
         context = {'user': None, 'postings': postings, 'get_params': get_params,
                    'personality_filter': personality_filter}
         # import pdb; pdb.set_trace()
@@ -62,7 +63,7 @@ def company(request):
         location = request.GET.get('location', False)
         page = request.GET.get('page', False)
         user_profile.q
-        quiz_score = Quiz.objects.filter(quiz_result=quizResult)
+        # quiz_score = Quiz.objects.filter(quiz_result=quizResult)
         get_params = {'location': location, 'page': page, 'personality_filter': personality_filter, 'keyword': keyword}
 
         interns = False
@@ -85,13 +86,14 @@ def getInternsFromPersonality(keyword, interns=False):
         result = (result & interns).distinct()
     return result
 
-# def getPostingsFromPersonality(quiz_result, postings=False):
-#     result = JobPost.objects.filter(
-#     if keyword:
-#         result = Profile.objects.filter(is_intern=True).filter(skill__name__icontains=keyword).distinct()
-#     if interns != False:
-#         result = (result & interns).distinct()
-#     return result
+def getPostingsFromPersonality(quiz_result, postings=False):
+    # import pdb; pdb.set_trace()
+    result = JobPost.objects.filter(date_post_ends__gte=date.today()).order_by('date_post_ends').distinct()
+    if quiz_result:
+        result = JobPost.objects.filter(company__user__quizresult__quiz_result=quiz_result).distinct()
+    if postings != False:
+        result = (result & postings).distinct()
+    return result
 
 
 def getPostingsFromLocation(posting_list, location):
