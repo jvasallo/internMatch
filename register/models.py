@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User)
     name = models.CharField(max_length=30, null=True)
@@ -23,21 +24,21 @@ class Profile(models.Model):
 
     def formattedDate(self):
         return self.graduation_date.strftime("%Y-%m-%d")
-    
+
     def quizResult(self):
         q = self.user.quizresult_set.get()
         result = q.quiz_result
         return result
-   
+
     def getActiveJobs(self):
         activeJobs = []
         for job in self.jobpost_set.all():
-	    if job.active():
+            if job.active():
                 activeJobs.append(job)
-	return activeJobs
-     
+        return activeJobs
+
     def getReferences(self):
-	return self.reference_set.all()    
+        return self.reference_set.all()
 
     def getSkills(self):
         return self.skill_set.all()
@@ -51,11 +52,12 @@ class Profile(models.Model):
 
     def __unicode__(self):
         return unicode(self.name)
-    
-    
+
+
 def create_profile_callback(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+
 #    else:
 #        Profile.objects.update(user=instance)
 

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 
 from job_post.models import JobPost
+from quiz.models import Quiz
 from register.models import Profile
 
 # Filter the search request by intern or company, passing along any GET parameters
@@ -60,6 +61,8 @@ def company(request):
         personality_filter = request.GET.get('personality_filter', 'off')
         location = request.GET.get('location', False)
         page = request.GET.get('page', False)
+        user_profile.q
+        quiz_score = Quiz.objects.filter(quiz_result=quizResult)
         get_params = {'location': location, 'page': page, 'personality_filter': personality_filter, 'keyword': keyword}
 
         interns = False
@@ -81,6 +84,14 @@ def getInternsFromPersonality(keyword, interns=False):
     if interns != False:
         result = (result & interns).distinct()
     return result
+
+# def getPostingsFromPersonality(quiz_result, postings=False):
+#     result = JobPost.objects.filter(
+#     if keyword:
+#         result = Profile.objects.filter(is_intern=True).filter(skill__name__icontains=keyword).distinct()
+#     if interns != False:
+#         result = (result & interns).distinct()
+#     return result
 
 
 def getPostingsFromLocation(posting_list, location):
@@ -124,8 +135,10 @@ def getPostingsFromKeyword(keyword, postings=False):
     result = JobPost.objects.filter(date_post_ends__gte=date.today()).order_by('date_post_ends').distinct()
     if keyword:
         result = (JobPost.objects.filter(skill__name__icontains=keyword).filter(
-            date_post_ends__gte=date.today()).order_by('date_post_ends') | JobPost.objects.filter(position__icontains=keyword).filter(
-            date_post_ends__gte=date.today()).order_by('date_post_ends') | JobPost.objects.filter(headline__icontains=keyword).filter(
+            date_post_ends__gte=date.today()).order_by('date_post_ends') | JobPost.objects.filter(
+            position__icontains=keyword).filter(
+            date_post_ends__gte=date.today()).order_by('date_post_ends') | JobPost.objects.filter(
+            headline__icontains=keyword).filter(
             date_post_ends__gte=date.today()).order_by('date_post_ends')).distinct()
     if postings != False:
         result = (result & postings).distinct()

@@ -1,82 +1,103 @@
 {% extends 'search/base.html' %}
 {% block listdropdown %}
     {% if userProfile %}
-                        <li class="dropdown">
-                            <a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/profile">Edit Profile</a></li>
-                                <li><a href="/quiz">Take Quiz</a></li>
-                                <li><a href="/logout">Logout</a></li>
-                            </ul>
-                        </li>
+        <li class="dropdown">
+            <a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b
+                    class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="/profile">Edit Profile</a></li>
+                <li><a href="/quiz">Take Quiz</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </li>
     {% endif %}
 {% endblock %}
 {% block signinbutton %}
     {% if not userProfile %}
-                <p class="navbar-text pull-right"><a href="/login" class="navbar-link">Login</a></p>
+        <p class="navbar-text pull-right"><a href="/login" class="navbar-link">Login</a></p>
     {% endif %}
 {% endblock %}
 {% block container %}
     <div class="container-fluid">
         <div class="row-fluid">
-	    <div class="span12 well">
-                <h1>Search Results <small>{{get_params.keyword}} {% if get_params.location and get_params.keyword %}, {% endif %} {{get_params.location}}</small></h1>
-		    <form class="search-form">
-		    Seeking:
-		    <input type="text" class="input-large" id="skills" data-provide="typeahead" data-items="4" placeholder="Enter job title or keyword" name="keyword"/>
-		    in
-		    <input type="text" class="input-large" id="city" data-provide="typeahead" data-items="2" placeholder="City, State, or Zip Code" name="location">
-		    <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i> Search	</button>
-                    </form>
+            <div class="span12 well">
+                <h1>Search Results
+                    <small>{{ get_params.keyword }} {% if get_params.location and get_params.keyword %}
+                        , {% endif %} {{ get_params.location }}</small>
+                </h1>
+                <form class="search-form" action="/search">
+                    Seeking:
+                    <input type="text" class="input-large" id="skills" data-provide="typeahead" data-items="4"
+                           placeholder="Enter job title or keyword" name="keyword"/>
+                    in
+                    <input type="text" class="input-large" id="city" data-provide="typeahead" data-items="2"
+                           placeholder="City, State, or Zip Code" name="location">
+                    <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i> Search</button>
+                </form>
             </div>
         </div>
     </div>
     <br>
+
     <div class="container-fluid">
         <div class="row-fluid">
-	    <div class="span3 well">
-	        <b>Personality Match Only: </b>
-		<br>
-		<div class="btn-group" data-toggle="buttons-radio">
-		    <a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=1&personality_filter=on" class="btn {% if personality_filter == 'on' %}btn-primary{% endif %}">On</a>
-                    <a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=1&personality_filter=" class="btn {% if personality_filter == '' %}btn-primary{% endif %}">Off</a>
-                </div>
-		<br>
-		<br>
 
-	    </div>
-	    <div class="span9 well">
+            <div class="span3 {% if userProfile %}well{% endif %}">
+                {% if userProfile %}
+                    <b>Personality Match Only: </b>
+                <br>
+
+                <div class="btn-group" data-toggle="buttons-radio">
+                    <a href="/search/intern?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page=1&personality_filter=on"
+                       class="btn {% if personality_filter == 'on' %}btn-primary{% endif %}">On</a>
+                    <a href="/search/intern?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page=1&personality_filter="
+                       class="btn {% if personality_filter == '' %}btn-primary{% endif %}">Off</a>
+                </div>
+                <br>
+                <br>
+                {% endif %}
+            </div>
+
+            <div class="span9 well">
                 {% if postings %}
-	            {% for posting in postings %}
+                    {% for posting in postings %}
                         <a href="/job-post/{{ posting.id }}"><h3>{{ posting.headline }}</h3></a>
-		        <p>
+                        <p>
                             <a href="/profile/company/{{ posting.company.id }}"><b>{{ posting.company.name }}</b></a>
-                            {% if posting.city and posting.state %} - {{ posting.city }}, {{ posting.state }} 
+                            {% if posting.city and posting.state %} - {{ posting.city }}, {{ posting.state }}
                             {% elif posting.city and not posting.state %} - {{ posting.city }}
                             {% elif posting.state and not posting.city %} - {{ posting.state }}
                             {% endif %}
-		            <br>
-		            {{ posting.position }}
+                            <br>
+                            {{ posting.position }}
                         </p>
-		        <hr>
-  		    {% endfor %}
+                        <hr>
+                    {% endfor %}
                 {% else %}
                     <p>
-                    Drats...there appears to be no one that fits your criteria at this time. However, check back soon! Hundreds of users sign up everyday!
+                        Drats...there appears to be no one that fits your criteria at this time. However, check back
+                        soon! Hundreds of users sign up everyday!
                     </p>
                 {% endif %}
-	    </div>
-        </div><!-- End Row-->
+            </div>
+        </div>
+
+        <!-- End Row-->
         <div class="pagination pagination-centered">
-              <ul>
+            <ul>
                 <li><a href="#">&laquo;</a></li>
-                <li><a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=1">1</a></li>
-                <li><a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=2">2</a></li>
-                <li><a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=3">3</a></li>
-                <li><a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=4">4</a></li>
-                <li><a href="/search/intern?keyword={{get_params.keyword}}&location={{get_params.location}}&page=5">5</a></li>
+                <li><a href="/search/intern?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page=1">1</a>
+                </li>
+                <li><a href="/search/intern?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page=2">2</a>
+                </li>
+                <li><a href="/search/intern?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page=3">3</a>
+                </li>
+                <li><a href="/search/intern?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page=4">4</a>
+                </li>
+                <li><a href="/search/intern?keyword={{ get_params.keyword }}&location={{ get_params.location }}&page=5">5</a>
+                </li>
                 <li><a href="#">&raquo;</a></li>
-              </ul>
-          </div>
+            </ul>
+        </div>
     </div><!-- End Container -->
 {% endblock %}
