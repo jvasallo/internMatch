@@ -28,9 +28,9 @@ class ReferenceForm(forms.Form):
                                     )
         super(ReferenceForm, self).__init__(*args, **kwargs)
  
-    name = forms.CharField(label=('Name'), required=False,)
-    relationship = forms.CharField(label=('Relationship'), required=False,)
-    email = forms.CharField(label=('E-Mail'), required=False,)
+    name = forms.CharField(label=('Name'), required=True,)
+    relationship = forms.CharField(label=('Relationship'), required=True,)
+    email = forms.CharField(label=('E-Mail'), required=True,)
     
     def clean(self):
         return self.cleaned_data

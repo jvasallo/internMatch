@@ -17,6 +17,9 @@ $(function(){
     });
 
     $('#email').editable({
+	 validate: function(value) { // required
+            if($.trim(value) == '') return 'This field is required';
+        },
 	type: 'textarea',
 	inputclass: 'input-large'
     });
