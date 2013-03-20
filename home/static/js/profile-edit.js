@@ -178,13 +178,6 @@ function onSubmitIntern() {
 		}
 	}
 	
-	// for (state in stateList) {
-		// alert('Value: ' + stateList[state].value);
-		// alert('Text: ' + stateList[state].text); 
-		// alert('EO: ' + editableObjects[6].text);
-		// alert('Compare: ' + (stateList[state].text == editableObjects[6].text));
-	// }
-   
 	$.ajax({ // create an AJAX call...
 		data: {'name' : editableObjects[0].text,
 			  'school' : editableObjects[1].text,
@@ -214,7 +207,7 @@ function onSubmit() {
 		if (editableObjects[i].text == 'Empty' && editableObjects[i].text.length == 5) { // if editable field contains an 'Empty' string value
 			editableObjects[i].text = '' // keep it as an empty value
 		}
-		if (i == 6) { // check the state field
+		if (i == 5) { // check the state field
 			for (state in stateList) { // iterate over stateList
 				if (stateList[state].text == editableObjects[i].text) { // if the state in the list compares true with the state selected
 					editableObjects[i].text = stateList[state].value; // change state field into the state initials (value)
