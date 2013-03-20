@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block listdropdown %}
+    {% if user %}
+        {% if profile.is_intern %}
+                        <li class="dropdown">
+                            <a href="/profile/intern" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">View Profile</a></li>
+                                <li><a href="/profile/edit">Edit Profile</a></li>
+                                <li><a href="/quiz">Take Quiz</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+        {% else %}
+                        <li class="dropdown">
+                            <a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/profile">View Profile</a></li>
+                                <li><a href="/profile/edit">Edit Profile</a></li>
+                                <li><a href="/quiz">Take Quiz</a></li>
+                                <li><a href="/job-post">Post New Job</a></li>
+                                <li><a href="/profile/jobs">View Active Jobs</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+{% block signinbutton %}
+    {% if user = None %}
+                <p class="navbar-text pull-right"><a href="/login" class="navbar-link">Login</a></p>
+    {% endif %}
+{% endblock %}
+{% block container %}
+	<h1>Page Not Found</h1>
+
+	<p>Sorry, but the requested page could not be found.</p>
+{% endblock %}
