@@ -84,7 +84,7 @@
                             <ol>
                             {% for reference in userProfile.getReferences %}
                             <li>
-                                {{ reference.name }}, <i>{{ reference.relationship }}</i> - <a href="{{ reference.email }}?subject=Information%20About%20{{ userProfile.name }}">Contact me</a>
+                                {{ reference.name }}, <i>{{ reference.relationship }}</i> - <a href="{{ reference.email }}?subject=Information%20About%20{{ userProfile.name }}">Contact me</a> <!-- <a href="mailto:{{ reference.email }}">Contact me</a> -->
                             </li>
                             {% endfor %}
                             </ol>
