@@ -237,7 +237,7 @@ class CompanyRegistrationForm(forms.Form):
     email = forms.EmailField(label=(u'<abbr title="This is the email Intern Match will use to contact you. This email is never shared publicly.">Private Email Address</abbr>'), max_length=50, required=True)
     phone = forms.CharField(label=(u'<abbr title="This is the phone number that will be displayed to prospective interns. We recommend using a general point of contact.">Public Phone Number</abbr>'), max_length=15, required=True)
     contactEmail = forms.EmailField(label=(u'<abbr title="This is the email that will be displayed to prospective interns. We recommend using emails such as: careers@website.com">Public Email Address</abbr>'), max_length=50, required=True)
-    website = forms.CharField(label=(u'Company Website'), max_length=100, required=False)
+    website = forms.URLField(label=(u'Company Website'), max_length=100, required=False)
     password  = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False), required=True, min_length=6)
     password1 = forms.CharField(label=(u'Verify Password'), widget=forms.PasswordInput(render_value=False), required=True, min_length=6)
     agree_terms = forms.MultipleChoiceField(label = (u'In order to proceed, you must agree with our Terms of Service.'),required=True, 
