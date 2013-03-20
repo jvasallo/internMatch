@@ -20,59 +20,7 @@ $(function(){
 	$('#state').editable({ // state field (required)
 		type: 'select',
 		inputclass: 'input-large',
-		source: [
-			{value: 'AL', text: 'Alabama'},
-			{value: 'AK', text: 'Alaska'},
-			{value: 'AZ', text: 'Arizona'},
-			{value: 'AR', text: 'Arkansas'},
-			{value: 'CA', text: 'California'},
-			{value: 'CO', text: 'Colorado'},
-			{value: 'CT', text: 'Connecticut'},
-			{value: 'DE', text: 'Delaware'},
-			{value: 'DC', text: 'Dist of Columbia'},
-			{value: 'FL', text: 'Florida'},
-			{value: 'GA', text: 'Georgia'},
-			{value: 'HI', text: 'Hawaii'},
-			{value: 'ID', text: 'Idaho'},
-			{value: 'IL', text: 'Illinois'},
-			{value: 'IN', text: 'Indiana'},
-			{value: 'IA', text: 'Iowa'},
-			{value: 'KS', text: 'Kansas'},
-			{value: 'KY', text: 'Kentucky'},
-			{value: 'LA', text: 'Louisiana'},
-			{value: 'ME', text: 'Maine'},
-			{value: 'MD', text: 'Maryland'},
-			{value: 'MA', text: 'Massachusetts'},
-			{value: 'MI', text: 'Michigan'},
-			{value: 'MN', text: 'Minnesota'},
-			{value: 'MS', text: 'Mississippi'},
-			{value: 'MO', text: 'Missouri'},
-			{value: 'MT', text: 'Montana'},
-			{value: 'NE', text: 'Nebraska'},
-			{value: 'NV', text: 'Nevada'},
-			{value: 'NH', text: 'New Hampshire'},
-			{value: 'NJ', text: 'New Jersey'},
-			{value: 'NM', text: 'New Mexico'},
-			{value: 'NY', text: 'New York'},
-			{value: 'NC', text: 'North Carolina'},
-			{value: 'ND', text: 'North Dakota'},
-			{value: 'OH', text: 'Ohio'},
-			{value: 'OK', text: 'Oklahoma'},
-			{value: 'OR', text: 'Oregon'},
-			{value: 'PA', text: 'Pennsylvania'},
-			{value: 'RI', text: 'Rhode Island'},
-			{value: 'SC', text: 'South Carolina'},
-			{value: 'SD', text: 'South Dakota'},
-			{value: 'TN', text: 'Tennessee'},
-			{value: 'TX', text: 'Texas'},
-			{value: 'UT', text: 'Utah'},
-			{value: 'VT', text: 'Vermont'},
-			{value: 'VA', text: 'Virginia'},
-			{value: 'WA', text: 'Washington'},
-			{value: 'WV', text: 'West Virginia'},
-			{value: 'WI', text: 'Wisconsin'},
-			{value: 'WY', text: 'Wyoming'}
-		]
+		source: stateList // stateList defined below
 	});
 	
     $('#email').editable({ // private email field
@@ -215,13 +163,27 @@ $(function(){
 /* Save Intern update */
 function onSubmitIntern() {
 	var editableObjects = $('.editable'); // all editable fields
-
-	// fixes issue with xeditable and displaying/saving 'Empty' string values in fields
+	
+	// fixes issue with xeditable
 	for (var i = 0; i < editableObjects.length; i++) { // iterate over editableObjects
 		if (editableObjects[i].text == 'Empty' && editableObjects[i].text.length == 5) { // if editable field contains an 'Empty' string value
 			editableObjects[i].text = '' // keep it as an empty value
 		}
+		if (i == 6) { // check the state field
+			for (state in stateList) { // iterate over stateList
+				if (stateList[state].text == editableObjects[i].text) { // if the state in the list compares true with the state selected
+					editableObjects[i].text = stateList[state].value; // change state field into the state initials (value)
+				}
+			}
+		}
 	}
+	
+	// for (state in stateList) {
+		// alert('Value: ' + stateList[state].value);
+		// alert('Text: ' + stateList[state].text); 
+		// alert('EO: ' + editableObjects[6].text);
+		// alert('Compare: ' + (stateList[state].text == editableObjects[6].text));
+	// }
    
 	$.ajax({ // create an AJAX call...
 		data: {'name' : editableObjects[0].text,
@@ -247,10 +209,17 @@ function onSubmitIntern() {
 function onSubmit() {
    var editableObjects = $('.editable'); // all editable fields
    
-   	// fixes issue with xeditable and displaying/saving 'Empty' string values in fields
+   	// fixes issue with xeditable
 	for (var i = 0; i < editableObjects.length; i++) { // iterate over editableObjects
 		if (editableObjects[i].text == 'Empty' && editableObjects[i].text.length == 5) { // if editable field contains an 'Empty' string value
 			editableObjects[i].text = '' // keep it as an empty value
+		}
+		if (i == 6) { // check the state field
+			for (state in stateList) { // iterate over stateList
+				if (stateList[state].text == editableObjects[i].text) { // if the state in the list compares true with the state selected
+					editableObjects[i].text = stateList[state].value; // change state field into the state initials (value)
+				}
+			}
 		}
 	}
 
@@ -279,3 +248,57 @@ function onSubmit() {
 function exitApp() {
 	window.location = "/profile"; // redirect to view profile page
 }
+
+var stateList = [
+		{value: 'AL', text: 'Alabama'},
+		{value: 'AK', text: 'Alaska'},
+		{value: 'AZ', text: 'Arizona'},
+		{value: 'AR', text: 'Arkansas'},
+		{value: 'CA', text: 'California'},
+		{value: 'CO', text: 'Colorado'},
+		{value: 'CT', text: 'Connecticut'},
+		{value: 'DE', text: 'Delaware'},
+		{value: 'DC', text: 'Dist of Columbia'},
+		{value: 'FL', text: 'Florida'},
+		{value: 'GA', text: 'Georgia'},
+		{value: 'HI', text: 'Hawaii'},
+		{value: 'ID', text: 'Idaho'},
+		{value: 'IL', text: 'Illinois'},
+		{value: 'IN', text: 'Indiana'},
+		{value: 'IA', text: 'Iowa'},
+		{value: 'KS', text: 'Kansas'},
+		{value: 'KY', text: 'Kentucky'},
+		{value: 'LA', text: 'Louisiana'},
+		{value: 'ME', text: 'Maine'},
+		{value: 'MD', text: 'Maryland'},
+		{value: 'MA', text: 'Massachusetts'},
+		{value: 'MI', text: 'Michigan'},
+		{value: 'MN', text: 'Minnesota'},
+		{value: 'MS', text: 'Mississippi'},
+		{value: 'MO', text: 'Missouri'},
+		{value: 'MT', text: 'Montana'},
+		{value: 'NE', text: 'Nebraska'},
+		{value: 'NV', text: 'Nevada'},
+		{value: 'NH', text: 'New Hampshire'},
+		{value: 'NJ', text: 'New Jersey'},
+		{value: 'NM', text: 'New Mexico'},
+		{value: 'NY', text: 'New York'},
+		{value: 'NC', text: 'North Carolina'},
+		{value: 'ND', text: 'North Dakota'},
+		{value: 'OH', text: 'Ohio'},
+		{value: 'OK', text: 'Oklahoma'},
+		{value: 'OR', text: 'Oregon'},
+		{value: 'PA', text: 'Pennsylvania'},
+		{value: 'RI', text: 'Rhode Island'},
+		{value: 'SC', text: 'South Carolina'},
+		{value: 'SD', text: 'South Dakota'},
+		{value: 'TN', text: 'Tennessee'},
+		{value: 'TX', text: 'Texas'},
+		{value: 'UT', text: 'Utah'},
+		{value: 'VT', text: 'Vermont'},
+		{value: 'VA', text: 'Virginia'},
+		{value: 'WA', text: 'Washington'},
+		{value: 'WV', text: 'West Virginia'},
+		{value: 'WI', text: 'Wisconsin'},
+		{value: 'WY', text: 'Wyoming'}
+	]
