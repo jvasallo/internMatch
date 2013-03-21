@@ -1,4 +1,4 @@
-Intern Match is a software system that is targeted toward Universities to help
+InternMatch is a software system that is targeted toward Universities to help
 match students with internships with personality traits as one of the main
 ways to help find the best possible match for the company culture. Currently,
 a system like this is needed within DePaul since our client has stated that
