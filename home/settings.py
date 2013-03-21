@@ -11,6 +11,12 @@ if DEBUG:
     EMAIL_HOST_PASSWORD = ''
     EMAIL_USE_TLS = False
     DEFAULT_FROM_EMAIL = 'accountservices@internmatch.com'
+else:
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = 'manageinternmatch@gmail.com'
+    EMAIL_HOST_PASSWORD = 'internmatch'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
