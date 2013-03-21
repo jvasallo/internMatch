@@ -3,20 +3,12 @@ import os
 
 PROJECT_ROOT = os.path.dirname(__file__)
 
-DEBUG = False
-if DEBUG:
-    EMAIL_HOST = 'localhost'
-    EMAIL_PORT = 1025
-    EMAIL_HOST_USER = ''
-    EMAIL_HOST_PASSWORD = ''
-    EMAIL_USE_TLS = False
-    DEFAULT_FROM_EMAIL = 'accountservices@internmatch.com'
-else:
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_HOST_USER = 'manageinternmatch@gmail.com'
-    EMAIL_HOST_PASSWORD = 'internmatch'
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
+DEBUG = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'manageinternmatch@gmail.com'
+EMAIL_HOST_PASSWORD = 'internmatch'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -189,5 +181,5 @@ LOGGING = {
 }
 
 # HEROKU SETTING - Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] =  dj_database_url.config()
