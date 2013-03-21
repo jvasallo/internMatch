@@ -1,33 +1,33 @@
 {% extends 'account/base.html' %}
 {% block listdropdown %}
     {% if not userProfile.is_intern %}
-                        <li class="dropdown">
-                            <a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/profile">View Profile</a></li>
-                                <li><a href="/profile/edit">Edit Profile</a></li>
-                                <li><a href="/quiz">Take Quiz</a></li>
-                                <li><a href="/job-post">Post New Job</a></li>
-                                <li><a href="/profile/jobs">View Active Jobs</a></li>
-                                <li><a href="/logout">Logout</a></li>
-                            </ul>
-                        </li>
+		<li class="dropdown">
+			<a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a href="/profile">View Profile</a></li>
+				<li><a href="/profile/edit">Edit Profile</a></li>
+				<li><a href="/quiz">Take Quiz</a></li>
+				<li><a href="/job-post">Post New Job</a></li>
+				<li><a href="/profile/jobs">View Active Jobs</a></li>
+				<li><a href="/logout">Logout</a></li>
+			</ul>
+		</li>
     {% endif %}
     {% if userProfile.is_intern %}
-                        <li class="dropdown">
-                            <a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/profile">View Profile</a></li>
+		<li class="dropdown">
+			<a href="/profile" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a href="/profile">View Profile</a></li>
 				<li><a href="/profile/edit">Edit Profile</a></li>
-                                <li><a href="/quiz">Take Quiz</a></li>
-                                <li><a href="/logout">Logout</a></li>
-                            </ul>
-                        </li>
+				<li><a href="/quiz">Take Quiz</a></li>
+				<li><a href="/logout">Logout</a></li>
+			</ul>
+		</li>
     {% endif %}
 {% endblock %}
 {% block container %}
     {% if not userProfile.is_intern %}
-              <div class="masthead">
+            <div class="masthead">
                 <h4 class="muted">
 					Company Personality: {{ userProfile.quizResult }}<br />
 					Username: {{ user.username }}<br />
@@ -73,9 +73,9 @@
     {% endif %}
 
     <form class="form-horizontal" action='' method="POST">
-    <div id="legend">
-        <legend class=""><b>Edit Profile</b></legend>
-    </div>
+		<div id="legend">
+			<legend class=""><b>Edit Profile</b></legend>
+		</div>
 		
     {% if userProfile.is_intern %}	
 	<!-- Begin Intern Edit Form -->

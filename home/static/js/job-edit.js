@@ -1,12 +1,12 @@
+/* Edit Job Posting Form */
 $(function(){
-    // turn to inline mode
-    $.fn.editable.defaults.mode = 'inline';
+    $.fn.editable.defaults.mode = 'inline'; // turn to inline mode
 
     $('#headline').editable({
-	validate: function(value) {
-  	    if($.trim(value) == '') return 'This field is required';
-	},
-	inputclass: 'input-large'
+		validate: function(value) {
+			if($.trim(value) == '') return 'This field is required';
+		},
+		inputclass: 'input-large'
     });
 
     $('#position').editable({
@@ -17,8 +17,8 @@ $(function(){
     });
 
     $('#description').editable({
-	type: 'textarea',
-	inputclass: 'input-xxlarge'
+		type: 'textarea',
+		inputclass: 'input-xxlarge'
     });
 
     $('#company_bio').editable({
@@ -27,40 +27,39 @@ $(function(){
     });
 
     $('#required').editable({
-        type: 'textarea',
-        inputclass: 'input-xxlarge'
+		type: 'select2',
+		inputclass: 'input-large',
+		select2: {
+			tags: [""],
+			tokenSeparators: [",", " "]
+		}
     });
 
     $('#desired').editable({
-        type: 'textarea',
-        inputclass: 'input-xxlarge'
+		type: 'select2',
+		inputclass: 'input-large',
+		select2: {
+			tags: [""],
+			tokenSeparators: [",", " "]
+		}
     });
     
-    $('#url').editable({
-        type: 'textarea',
-        inputclass: 'input-xxlarge'
-    });
-
     $('#city').editable({
-	validate: function(value) {
-            if($.trim(value) == '') return 'This field is required';
-	},
-	inputclass: 'input-medium'
+		validate: function(value) {
+				if($.trim(value) == '') return 'This field is required';
+		},
+		inputclass: 'input-medium'
     });
 
-    var states = [];
-    $.each({"AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas", "CA": "California", "CO": "Colorado", "CT": "Connecticut", "DE": "Delaware", "DC": "Dist of Columbia", "FL": "Florida", "GA": "Georgia", "HI": "Hawaii", "ID": "Idaho", "IL": "Illinois", "IN": "Indiana", "IA": "Iowa", "KS": "Kansas", "KY": "Kentucky", "LA": "Louisiana", "ME": "Maine", "MD": "Maryland", "MA": "Massachusetts", "MI": "Michigan", "MN": "Minnesota", "MS": "Mississippi", "MO": "Missouri", "MT": "Montana", "NE": "Nebraska", "NV": "Nevada", "NH": "New Hampshire", "NJ": "New Jersey", "NM": "New Mexico", "NY": "New York", "NC": "North Carolina", "ND": "North Dakota", "OH": "Ohio", "OK": "Oklahoma", "OR": "Oregon", "PA": "Pennsylvania", "RI": "Rhode Island", "SC": "South Carolina", "SD": "South Dakota", "TN": "Tennessee", "TX": "Texas", "UT": "Utah", "VT": "Vermont", "VA": "Virginia", "WA": "Washington", "WV": "West Virginia", "WI": "Wisconsin", "WY": "Wyoming"}, function(k, v) {
-        states.push({id: k, text: v});
-    });
-
-    // Working - Search/Predictive Text (type: select2.js)
-    $('#state').editable({
-	type: 'select2',
-	inputclass: 'input-large',
-	source: states,
-	validate: function(value) {
-            if($.trim(value) == '') return 'This field is required';
-	},
+	$('#state').editable({
+		type: 'select',
+		inputclass: 'input-large',
+		source: stateList // stateList defined below
+	});
+	
+	$('#url').editable({
+        type: 'url',
+        inputclass: 'input-large'
     });
 
     $('#end_date').editable({
@@ -70,8 +69,8 @@ $(function(){
         type: 'date',
         format: 'yyyy-mm-dd',    
         datepicker: {
-                weekStart: 1
-           }
+			weekstart: 1
+		}
     });
 
 });
@@ -79,28 +78,89 @@ $(function(){
 function onSubmit() {
    var editableObjects = $('.editable');
    var postingid = document.getElementById('postingid').value;
-   var n = editableObjects.length; // total quiz items
-   $.ajax({ // If the field is empty send '', instead of 'Empty', which will get saved in the respective database fields
-       data: {'id' : postingid,
-              'headline' : editableObjects[0].text == 'Empty' ? '' : editableObjects[0].text,
-              'position' : editableObjects[1].text == 'Empty' ? '' : editableObjects[1].text,
-              'description' : editableObjects[2].text == 'Empty' ? '' : editableObjects[2].text,
-              'company_bio' : editableObjects[3].text == 'Empty' ? '' : editableObjects[3].text,
-              'required' : editableObjects[4].text == '' ? '' : editableObjects[4].text,
-              'desired' : editableObjects[5].text == '' ? '' : editableObjects[5].text,
-              'city' : editableObjects[6].text == 'Empty' ? '' : editableObjects[6].text,
-              'state' : editableObjects[7].text == 'Empty' ? '' : editableObjects[7].text,
-              'url' : editableObjects[8].text == 'Empty' ? '' : editableObjects[8].text,
-              'end_date' : editableObjects[9].text == 'Empty' ? '' : editableObjects[9].text,
-              },
-       type: 'POST', // GET or POST
-       url: '/job-post/update/', // the file to call
-       success: function(response) { // on success..
-           window.location.href = "../../../profile/jobs/";
-       }
-   });
+   
+   	// fixes issue with xeditable
+	for (var i = 0; i < editableObjects.length; i++) { // iterate over editableObjects
+		if (editableObjects[i].text == 'Empty' && editableObjects[i].text.length == 5) { // if editable field contains an 'Empty' string value
+			editableObjects[i].text = '' // keep it as an empty value
+		}
+	}
+   
+   	$.ajax({ // create an AJAX call...
+		data: {'id' : postingid,
+              'headline' : editableObjects[0].text,
+              'position' : editableObjects[1].text,
+              'description' : editableObjects[2].text,
+              'company_bio' : editableObjects[3].text,
+              'required' : editableObjects[4].text,
+              'desired' : editableObjects[5].text,
+              'city' : editableObjects[6].text,
+              'state' : editableObjects[7].text,
+              'url' : editableObjects[8].text,
+              'end_date' : editableObjects[9].text
+			  },
+		type: 'POST', // GET or POST
+		url: '/job-post/update/', // the file to call
+		success: function(response) { // on success..
+			window.location = "/profile/jobs"; // redirect to view jobs page
+		}
+	});
 }
 
 function exitApp() {
     window.location = "/profile/jobs";
 }
+
+var stateList = [
+	{value: 'AL', text: 'Alabama'},
+	{value: 'AK', text: 'Alaska'},
+	{value: 'AZ', text: 'Arizona'},
+	{value: 'AR', text: 'Arkansas'},
+	{value: 'CA', text: 'California'},
+	{value: 'CO', text: 'Colorado'},
+	{value: 'CT', text: 'Connecticut'},
+	{value: 'DE', text: 'Delaware'},
+	{value: 'DC', text: 'Dist of Columbia'},
+	{value: 'FL', text: 'Florida'},
+	{value: 'GA', text: 'Georgia'},
+	{value: 'HI', text: 'Hawaii'},
+	{value: 'ID', text: 'Idaho'},
+	{value: 'IL', text: 'Illinois'},
+	{value: 'IN', text: 'Indiana'},
+	{value: 'IA', text: 'Iowa'},
+	{value: 'KS', text: 'Kansas'},
+	{value: 'KY', text: 'Kentucky'},
+	{value: 'LA', text: 'Louisiana'},
+	{value: 'ME', text: 'Maine'},
+	{value: 'MD', text: 'Maryland'},
+	{value: 'MA', text: 'Massachusetts'},
+	{value: 'MI', text: 'Michigan'},
+	{value: 'MN', text: 'Minnesota'},
+	{value: 'MS', text: 'Mississippi'},
+	{value: 'MO', text: 'Missouri'},
+	{value: 'MT', text: 'Montana'},
+	{value: 'NE', text: 'Nebraska'},
+	{value: 'NV', text: 'Nevada'},
+	{value: 'NH', text: 'New Hampshire'},
+	{value: 'NJ', text: 'New Jersey'},
+	{value: 'NM', text: 'New Mexico'},
+	{value: 'NY', text: 'New York'},
+	{value: 'NC', text: 'North Carolina'},
+	{value: 'ND', text: 'North Dakota'},
+	{value: 'OH', text: 'Ohio'},
+	{value: 'OK', text: 'Oklahoma'},
+	{value: 'OR', text: 'Oregon'},
+	{value: 'PA', text: 'Pennsylvania'},
+	{value: 'RI', text: 'Rhode Island'},
+	{value: 'SC', text: 'South Carolina'},
+	{value: 'SD', text: 'South Dakota'},
+	{value: 'TN', text: 'Tennessee'},
+	{value: 'TX', text: 'Texas'},
+	{value: 'UT', text: 'Utah'},
+	{value: 'VT', text: 'Vermont'},
+	{value: 'VA', text: 'Virginia'},
+	{value: 'WA', text: 'Washington'},
+	{value: 'WV', text: 'West Virginia'},
+	{value: 'WI', text: 'Wisconsin'},
+	{value: 'WY', text: 'Wyoming'}
+]

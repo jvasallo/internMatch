@@ -151,9 +151,10 @@ def update(request):
                 if request.POST.get('state') in states:
                     posting.state = states[request.POST.get('state')]
                 posting.date_post_ends = request.POST.get('end_date')
-                if request.POST.get('url') != '':
-                    posting.url = request.POST.get('url')
-                    posting.url = posting.fixUrl()
+                posting.url = request.POST.get('url')
+##                if request.POST.get('url') != '':
+##                    posting.url = request.POST.get('url')
+##                    posting.url = posting.fixUrl()
                 if request.POST.get('desired') != posting.getDesSkillList():
                     posting.skill_set.filter(type='desired').delete()
                     add_skills(request.POST.getlist('desired')[0].split(','), posting, 'desired')
