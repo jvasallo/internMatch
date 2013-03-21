@@ -19,7 +19,7 @@ def ReferencePosting(request):
         if request.method == 'POST':
             if form.is_valid():
                 reference_post = add_reference(form, profile)
-                return HttpResponseRedirect('/profile')
+                return HttpResponseRedirect('/profile/references')
             else:
                 return render_to_response('resume/reference_post.html', {'form': form, 'userProfile' : profile}, context_instance=RequestContext(request))
         else:
