@@ -109,8 +109,11 @@
                         {% if profile.getActiveJobs %}
                             <p>
                             <h4>Current Job Postings:</h4>
+                            <ul>
                             {% for job in profile.getActiveJobs %}
+                            <li>
                             <a href="/job-post/{{ job.id }}"> {{ job.headline }}</a>
+                            </li>
                             {% endfor %}
                             </ul>
                         </p>
