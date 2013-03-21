@@ -3,7 +3,7 @@ import os
 
 PROJECT_ROOT = os.path.dirname(__file__)
 
-DEBUG = False
+DEBUG = True
 if DEBUG:
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = 1025
@@ -14,9 +14,9 @@ if DEBUG:
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-     ('Joel Vasallo', 'joelvasallo@gmail.com'),
-     ('David Kingman', 'david.kingman@gmail.com'),
-     ('Juan Carlos Escobar', 'Escobar.jc7@gmail.com'),
+#     ('Joel Vasallo', 'joelvasallo@gmail.com'),
+#     ('David Kingman', 'david.kingman@gmail.com'),
+#     ('Juan Carlos Escobar', 'Escobar.jc7@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -183,5 +183,5 @@ LOGGING = {
 }
 
 # HEROKU SETTING - Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] =  dj_database_url.config()
