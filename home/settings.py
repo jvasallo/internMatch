@@ -14,9 +14,9 @@ if DEBUG:
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-#     ('Joel Vasallo', 'joelvasallo@gmail.com'),
-#     ('David Kingman', 'david.kingman@gmail.com'),
-#     ('Juan Carlos Escobar', 'Escobar.jc7@gmail.com'),
+     ('Joel Vasallo', 'joelvasallo@gmail.com'),
+     ('David Kingman', 'david.kingman@gmail.com'),
+     ('Juan Carlos Escobar', 'Escobar.jc7@gmail.com'),
 )
 
 MANAGERS = ADMINS
