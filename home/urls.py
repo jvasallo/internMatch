@@ -19,3 +19,8 @@ urlpatterns = patterns('',
     url(r'^quiz/', include('quiz.urls')),
     url(r'^search/', include('search.urls')),
 )
+
+if not settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    )
