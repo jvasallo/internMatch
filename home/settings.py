@@ -73,7 +73,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'collected_static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = os.path.join(PROJECT_ROOT, 'static')
+STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -123,6 +123,7 @@ WSGI_APPLICATION = 'home.wsgi.application'
 
 TEMPLATE_DIRS = (
   os.path.join(PROJECT_ROOT, "templates"),
+  os.path.join(PROJECT_ROOT, "../register/templates"),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -149,7 +150,7 @@ INSTALLED_APPS = (
     'search',
     'crispy_forms',
     'home',
-	'password_reset',
+    'password_reset',
 )
 
 # A sample logging configuration. The only tangible logging
