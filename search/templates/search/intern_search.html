@@ -78,7 +78,7 @@
                             <a href="/search/company?keyword={{ get_params.keyword }}&location={{ get_params.location }}&personality_filter=on&page=1"
                                class="btn {% if not quiz %}disabled{% endif %} {% if personality_filter == 'on' %}btn-primary{% endif %}">On</a>
                             <a href="/search/company?keyword={{ get_params.keyword }}&location={{ get_params.location }}&personality_filter=&page=1"
-                               class="btn {% if not quiz %}disabled{% endif %} {% if personality_filter != '' %}btn-primary{% endif %}">Off</a>
+                               class="btn {% if not quiz %}disabled{% endif %} {% if personality_filter == '' %}btn-primary{% endif %}">Off</a>
                         </div>
                     </div>
 

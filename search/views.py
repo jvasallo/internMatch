@@ -36,18 +36,15 @@ def intern(request):
     location = request.GET.get('location', False)
     page = request.GET.get('page', False)
     get_params = {'location': location, 'page': int(page), 'personality_filter': personality_filter, 'keyword': keyword}
-    # import pdb; pdb.set_trace()
     posting_list = getPostingsFromKeyword(keyword)
     for l in location.split(' '):
         posting_list = getPostingsFromLocation(posting_list, l.strip(','))
 
     if request.user.is_authenticated():
         quiz = user_profile.quizResult()
-        # import pdb; pdb.set_trace()
         if personality_filter == 'on' and user_profile.quizResult():
             posting_list = getPostingsFromPersonality(quiz, posting_list)
             quiz = True
-        # import pdb; pdb.set_trace()
         pagination = getPagination(int(page),len(posting_list))
         postings = getListingsByPage(posting_list, page)
         context = {'user': request.user, 'userProfile': user_profile, 'get_params': get_params,
@@ -59,7 +56,6 @@ def intern(request):
         context = {'user': None, 'postings': postings, 'get_params': get_params,
                    'personality_filter': personality_filter,'postings_per_page': POSTINGS_PER_PAGE,
                    'pagination': pagination}
-        # import pdb; pdb.set_trace()
     return render_to_response('search/job_search.html', context, context_instance=RequestContext(request))
 
 
@@ -80,19 +76,18 @@ def company(request):
         for l in location.split(' '):
             interns = getInternsFromLocation(l.strip(','), interns)
         quiz = user_profile.quizResult()
-        if personality_filter == 'on':
+        if personality_filter == 'on' and user_profile.quizResult():
             interns = getInternsFromPersonality(quiz, interns)
             quiz = True
         pagination = getPagination(int(page),len(interns))
         interns = getListingsByPage(interns, page)
         context = {'user': request.user, 'userProfile': user_profile, 'interns': interns, 'get_params': get_params,
-                   'postings_per_page': POSTINGS_PER_PAGE, 'pagination': pagination, 'quiz': quiz}
+                   'personality_filter': personality_filter, 'postings_per_page': POSTINGS_PER_PAGE, 'pagination': pagination, 'quiz': quiz}
         return render_to_response('search/intern_search.html',context, context_instance=RequestContext(request))
 
 # Determine which pagination numbers to display
 def getPagination(page, total_listings):
     pages_to_display = 4
-    # import pdb; pdb.set_trace()
     result = [i for i in range(1,int(math.ceil(float(total_listings)/POSTINGS_PER_PAGE)) + 1)]
     if len(result) <= pages_to_display:
         return {'pages': result, 'left_page': False, 'right_page': False}
@@ -115,7 +110,6 @@ def getInternsFromPersonality(quiz_result, interns=False):
 
 
 def getPostingsFromPersonality(quiz_result, postings=False):
-    # import pdb; pdb.set_trace()
     result = JobPost.objects.filter(date_post_ends__gte=date.today()).order_by('date_post_ends').distinct()
     if quiz_result:
         result = JobPost.objects.filter(company__user__quizresult__quiz_result=quiz_result).distinct()
