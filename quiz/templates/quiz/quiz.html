@@ -9,11 +9,15 @@
         <legend class="">{{ quiz.question }}</legend>
       </div>
 
+      <center>
+      <h2>Most Like Me</h2>
       <ul id="sortable">
         {% for option in quiz.option_set.all %}
           <li id="{{ option.option_value }}" class="ui-state-default quiz-option"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{ option.option_name }}</li>
         {% endfor %}
       </ul>
+      <h2>Least Like Me</h2>
+      </center>
 
       <div class="form-actions">  
         <!-- Submit and Cancel buttons -->
